@@ -16,10 +16,22 @@ from reportlab.pdfbase.ttfonts import TTFont
 from functions import do_split,split_line,get_info,split_string
 import sys
 
-pdfmetrics.registerFont(TTFont('long_font', 'fonts/FOR_LONG_NAMES.ttf'))
+import os
+
+file_path = 'test_pdfs/test'+str(1)+'.pdf'
+k=0
+while(os.path.exists(file_path)):
+	k+=1
+	file_path = 'test_pdfs/test'+str(k)+'.pdf'
+
+sh="Ornitons"
+lg="Ornitons"
+	
+
+pdfmetrics.registerFont(TTFont('long_font', 'fonts/'+lg+'.ttf'))
 pdfmetrics.registerFont(TTFont('info_font', 'fonts/info_font.ttf'))
 pdfmetrics.registerFont(TTFont('bold_font', 'fonts/bold_font.ttf'))
-pdfmetrics.registerFont(TTFont('short_font', 'fonts/FOR_SHORT_NAMES.ttf'))
+pdfmetrics.registerFont(TTFont('short_font', 'fonts/'+sh+'.ttf'))
 
 def get_height(font_list):
 	string_height=0
@@ -80,15 +92,15 @@ if len(brand_name)>11:
 else:
 	brand_font='short_font'
 
-if max_len<=7 and len(strings)==1:
+if max_len<=12 and len(strings)==1:
 	frag_font='short_font'
-elif max_len<=10 and len(strings)==2:
+elif max_len<=12 and len(strings)==2:
 	frag_font='short_font'
 else:
 	frag_font='long_font'
 	
-	
-c = Canvas("test.pdf", pagesize=(width,height))
+
+c = Canvas(file_path, pagesize=(width,height))
 c.setLineWidth(0.1*cm)
 #c.rect(0,0, width, height)
 #SHOP NAME
@@ -143,9 +155,9 @@ for i in range(len(strings)):
 text_h=0
 text_H=0
 print(str_sizes)
-
+max_Len=0
 #ПОДГОН ПО ВЫСОТЕ ВТОРИЧНЫЙ ИНДИВИДУАЛЬНЫЙ/ ВЫЯВЛЕНИЕ d
-while(text_H<max_H-min_H):
+while(text_H<max_H-min_H ):
 	for i in range(len(str_sizes)):
 		d=1
 		if str_sizes[i]>0:
@@ -153,11 +165,16 @@ while(text_H<max_H-min_H):
 				text_H=d
 				bf=str_sizes[i]
 				str_sizes[i]+=.1
+				#max_Len=stringWidth(strings[i],frag_font,str_sizes[i])<width-0.1*cm
 				for j in range(len(str_sizes)):
-					text_H+=str_sizes[j]*.8+d
+						text_H+=str_sizes[j]*.8+d
 	if len(strings)==1:
 		break
 	print(str_sizes)
+for i in range(len(strings)):
+	if len(strings[i])<max_len:
+		while(stringWidth(strings[i],frag_font,str_sizes[i])>width-0.1*cm):
+			str_sizes[i]-=.1
 min_L=90
 
 for j in range(len(strings)):
@@ -196,9 +213,9 @@ for j in range(len(strings)):
 	print(str_y[i],"string_",i)
 c.setLineWidth(1)
 p1.fontSize=6
-c.line(0,min_H,0,max_H)
+
 	
 c.save()
 print(width,height,2.5*cm,1.8*cm,cm)
 # Open the generated PDF using default PDF viewer
-subprocess.Popen(["start", "", "test.pdf"], shell=True)
+#subprocess.Popen(["start", "", file_path], shell=True)

@@ -12,6 +12,7 @@ def _main():
 		frag_name=request.args.get('frag_name')
 		conc=request.args.get('conc')
 		ml=request.args.get('ml')
+		#subprocess.run(['python', 'get_pdf.py',brand_name,frag_name,conc,ml])
 		subprocess.run(['python', 'get_pdf.py',brand_name,frag_name,conc,ml])
 		print(brand_name,frag_name,conc,ml)
 	if request.method == 'GET':
