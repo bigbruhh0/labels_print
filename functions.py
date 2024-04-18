@@ -1,6 +1,3 @@
-
-
-
 def split_line(l):
 	flg_one=False
 	flg_n=False
@@ -95,7 +92,6 @@ def do_split(frag_name):
 	#s=[0,'MEMFIS','BOYS']		
 	cnt_lines=2	
 	return(s,cnt_lines)
-
 def split_string(l):
 	buf=''
 	buf_n=0
@@ -127,10 +123,8 @@ def split_string(l):
 	return line
 def get_info():
 	brand='Les Liquides Imaginaires'
-	name='KSODFKOSDKF KFKFKF'
+	name='DOM ROSA'
 	conc='parf'
 	ml='10'
 	shop='АллюрПарфюм'
 	return brand,name,conc,ml,shop
-print(split_string('BLOOM'))
-print_stack=[]
