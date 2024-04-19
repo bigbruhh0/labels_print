@@ -98,7 +98,7 @@ elif l_b>17:
 else:
 	brand_font='short1_font'
 
-if max_len<=8:
+if max_len<=13:
 	frag_font='short_font'
 else:
 	frag_font='long_font'
@@ -188,14 +188,11 @@ for j in range(len(strings)):
 	print(yy)			
 			##trash
 d=0
-#ВЫЯВЛЕНИЕ d		
+#ВЫЯВЛЕНИЕ d	
+diff=1	
 def find_d():	
-	if len(strings)>1:	
-		d=max_H-min_H-text_H
-		d=abs(d/((len(strings)+1)))
-	else:
-		d=((max_H-min_H)-text_H)/2
-		print(d,d,d,d,d)
+	d=((height-2)-text_H)/(len(strings)+5)
+	print(d,d,d,d,d)
 	return d
 
 #l_size=min_L-2
@@ -204,35 +201,49 @@ max_H=height-l_size*.8-4
 
 
 if len(strings)==1:
-		text_H=str_sizes[0]*.8+d
+	text_H=str_sizes[0]*.8
 else:
-	text_H=str_sizes[0]*.8Үstr_sizes[1]*.8
-
+	text_H=str_sizes[0]*.8+str_sizes[1]*.8
+text_H=text_H+l_size*0.8+shop_font[1]*0.8*2
 d=0
 d=find_d()
 
 
-		
+c.setLineWidth(.1)
 print('MAXH:',max_H,';h:',max_H-min_H,';text_H:',text_H,'d:',d,';',len(strings))
 #c.rect(5,min_H,min_H,text_H)
+
+min_H=d*3+shop_font[1]*0.75+shop_font[1]*0.7
+
 for j in range(len(strings)):
+	
 	i=len(strings)-j-1
 	c.setFont(frag_font, str_sizes[i])  # Задаем шрифт и размер
 	text_width=stringWidth(strings[i],frag_font,str_sizes[i])
-	stir=c.drawString(width/2-text_width/2,min_H+str_y[i]+(d+1)*(j+1),strings[i])#Рисуем название
+	c.rect(width/2-text_width/2,min_H+str_y[i]+(d+1)*(j)+diff,stringWidth(strings[i],frag_font,str_sizes[i]),str_sizes[i]*0.8)
+	stir=c.drawString(width/2-text_width/2,min_H+str_y[i]+(d+1)*(j)+diff,strings[i])#Рисуем название
 	print(d)
 	print(str_y[i],"string_",i)
-c.setLineWidth(1)
+
+
 dd=height-max_H-l_size*.8
 c.setFont(brand_font, l_size)  # Рисуем бренд
-brand_BOX=c.drawString(width/2-stringWidth(brand_name,brand_font,l_size)/2,height-l_size*.8-4+dd/2+1,brand_name)
+name_H=0
+
+for i in str_sizes:
+	if i>0:
+		name_H+=(i+d)*0.8
+c.rect(width/2-stringWidth(brand_name,brand_font,l_size)/2,name_H+min_H+d+diff,stringWidth(brand_name,brand_font,l_size),l_size*0.8)
+brand_BOX=c.drawString(width/2-stringWidth(brand_name,brand_font,l_size)/2,name_H+min_H+d+diff,brand_name)
 #SHOP NAME
 c.setFont(shop_font[0], shop_font[1])
-shop_BOX=stir=c.drawString(width/2-stringWidth(shop_name,shop_font[0],shop_font[1])/2,0.1*cm,shop_name)
+c.rect(width/2-stringWidth(shop_name,shop_font[0],shop_font[1])/2,d+diff,stringWidth(shop_name,shop_font[0],shop_font[1]),shop_font[1]*0.7)
+shop_BOX=c.drawString(width/2-stringWidth(shop_name,shop_font[0],shop_font[1])/2,d+diff,shop_name)
 min_L=0.1*cm+shop_font[1]*0.8+shop_font[1]*0.8
 #CONCENTRATION
 c.setFont(shop_font[0], shop_font[1])
-shop_BOX=stir=c.drawString(width/2-stringWidth("{0} {1} ml".format(conc,ml),shop_font[0],shop_font[1])/2,0.1*cm+shop_font[1]*0.8+d*0.5+1,"{0} {1} ml".format(conc,ml))
+c.rect(width/2-stringWidth("{0} {1} ml".format(conc,ml),shop_font[0],shop_font[1])/2,shop_font[1]*0.75+d*2+diff,stringWidth("{0} {1} ml".format(conc,ml),shop_font[0],shop_font[1]),shop_font[1]*0.6)
+conc_BOX=c.drawString(width/2-stringWidth("{0} {1} ml".format(conc,ml),shop_font[0],shop_font[1])/2,shop_font[1]*0.75+d*2+diff,"{0} {1} ml".format(conc,ml))
 f = open('test_pdfs/test'+str(k)+'.txt', "w")
 f.writelines([sh,' / ',lg,' / ',sh1,' / ',sh2,' / ',frag_font,' / ',brand_font])
 f.close()
