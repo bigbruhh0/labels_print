@@ -25,13 +25,16 @@ while(os.path.exists(file_path)):
 	file_path = 'test_pdfs/test'+str(k)+'.pdf'
 
 sh="Ornitons"
-lg="Ornitons"
+lg="steelfish"
+sh1="OrnitonsBold"
+sh2="Afrora"
 	
 
 pdfmetrics.registerFont(TTFont('long_font', 'fonts/'+lg+'.ttf'))
 pdfmetrics.registerFont(TTFont('info_font', 'fonts/info_font.ttf'))
 pdfmetrics.registerFont(TTFont('bold_font', 'fonts/bold_font.ttf'))
 pdfmetrics.registerFont(TTFont('short_font', 'fonts/'+sh+'.ttf'))
+pdfmetrics.registerFont(TTFont('short1_font', 'fonts/'+sh1+'.ttf'))
 
 def get_height(font_list):
 	string_height=0
@@ -87,14 +90,15 @@ for i in strings:
 		STR_MAX=i
 print(STR_MAX)
 
-if len(brand_name)>11:
+l_b=len(brand_name)
+if l_b>17:
 	brand_font='long_font'
-else:
+elif l_b>17:
 	brand_font='short_font'
+else:
+	brand_font='short1_font'
 
-if max_len<=12 and len(strings)==1:
-	frag_font='short_font'
-elif max_len<=12 and len(strings)==2:
+if max_len<=8:
 	frag_font='short_font'
 else:
 	frag_font='long_font'
@@ -103,15 +107,7 @@ else:
 c = Canvas(file_path, pagesize=(width,height))
 c.setLineWidth(0.1*cm)
 #c.rect(0,0, width, height)
-#SHOP NAME
-p1 = Paragraph(shop_name,my_style)
-p1.wrapOn(c, 2.5 * cm, 0.0 * cm)
-p1.drawOn(c, 0.0 * cm, 0.2 * cm)
 
-#CONCENTRATION
-p2 = Paragraph(conc+' '+ml+' ml',my_style)
-p2.wrapOn(c, 2.5 * cm, 0.0 * cm)
-p2.drawOn(c, 0.0 * cm, 0.25 * cm+get_height([shop_font])*.65)
 
 
 #BRAND LABEL
@@ -129,7 +125,7 @@ print(l_size)
 
 #FRAGRANCE NAME
 
-min_H=18
+min_H=0.1*cm+shop_font[1]*0.8+shop_font[1]*0.8+2
 max_H=height-l_size*.8-4
 L_SIZE=20
 L_COUNT=len(strings)
@@ -169,7 +165,12 @@ while(text_H<max_H-min_H ):
 				for j in range(len(str_sizes)):
 						text_H+=str_sizes[j]*.8+d
 	if len(strings)==1:
+		#text_H+=str_sizes[i]*.8+d
 		break
+	if len(strings)==2:
+		if len(strings[0])==len(strings[1]):
+			#text_H+=str_sizes[i]*.8+d+str_sizes[i]*.8+d
+			break
 	print(str_sizes)
 for i in range(len(strings)):
 	if len(strings[i])<max_len:
@@ -185,37 +186,57 @@ for j in range(len(strings)):
 	yy+=(str_sizes[i]*.8)
 	
 	print(yy)			
-			
+			##trash
 d=0
 #ВЫЯВЛЕНИЕ d		
 def find_d():	
 	if len(strings)>1:	
 		d=max_H-min_H-text_H
-		d=abs(d/((len(strings)+1)))/2
+		d=abs(d/((len(strings)+1)))
 	else:
-		d=max_H-2-min_H-len(strings)*L_SIZE*.8
-		d=abs(d/((len(strings)+1)/2))
+		d=((max_H-min_H)-text_H)/2
+		print(d,d,d,d,d)
+	return d
 
 #l_size=min_L-2
 max_H=height-l_size*.8-4
 
-c.setFont(brand_font, l_size)  # Рисуем бренд
-stir=c.drawString(width/2-stringWidth(brand_name,brand_font,l_size)/2,height-l_size*.8-4,brand_name)
 
-find_d()
-print('MAXH:',max_H,';h:',max_H-min_H,';text_H:',text_H,'d:',d,';')
 
+if len(strings)==1:
+		text_H=str_sizes[0]*.8+d
+else:
+	text_H=str_sizes[0]*.8Үstr_sizes[1]*.8
+
+d=0
+d=find_d()
+
+
+		
+print('MAXH:',max_H,';h:',max_H-min_H,';text_H:',text_H,'d:',d,';',len(strings))
+#c.rect(5,min_H,min_H,text_H)
 for j in range(len(strings)):
 	i=len(strings)-j-1
 	c.setFont(frag_font, str_sizes[i])  # Задаем шрифт и размер
 	text_width=stringWidth(strings[i],frag_font,str_sizes[i])
-	stir=c.drawString(width/2-text_width/2,min_H+str_y[i]+(d+1)*j,strings[i])#Рисуем название
+	stir=c.drawString(width/2-text_width/2,min_H+str_y[i]+(d+1)*(j+1),strings[i])#Рисуем название
+	print(d)
 	print(str_y[i],"string_",i)
 c.setLineWidth(1)
-p1.fontSize=6
-
-	
+dd=height-max_H-l_size*.8
+c.setFont(brand_font, l_size)  # Рисуем бренд
+brand_BOX=c.drawString(width/2-stringWidth(brand_name,brand_font,l_size)/2,height-l_size*.8-4+dd/2+1,brand_name)
+#SHOP NAME
+c.setFont(shop_font[0], shop_font[1])
+shop_BOX=stir=c.drawString(width/2-stringWidth(shop_name,shop_font[0],shop_font[1])/2,0.1*cm,shop_name)
+min_L=0.1*cm+shop_font[1]*0.8+shop_font[1]*0.8
+#CONCENTRATION
+c.setFont(shop_font[0], shop_font[1])
+shop_BOX=stir=c.drawString(width/2-stringWidth("{0} {1} ml".format(conc,ml),shop_font[0],shop_font[1])/2,0.1*cm+shop_font[1]*0.8+d*0.5+1,"{0} {1} ml".format(conc,ml))
+f = open('test_pdfs/test'+str(k)+'.txt', "w")
+f.writelines([sh,' / ',lg,' / ',sh1,' / ',sh2,' / ',frag_font,' / ',brand_font])
+f.close()
 c.save()
-print(width,height,2.5*cm,1.8*cm,cm)
 # Open the generated PDF using default PDF viewer
 #subprocess.Popen(["start", "", file_path], shell=True)
+print(height-max_H-l_size*.8,0,0,0,0)
