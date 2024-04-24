@@ -82,43 +82,79 @@ def do_split(frag_name):
 					cnt_lines=3
 					s[2],s[3]=split_line(s[2])
 			else:
-				#print('/m/')
+				
 				cnt_lines=3
 				
 				s[1]=frag_name[:x_l-1]
 				s[2]=frag_name[x_l:x_r+1]
 				s[3]=frag_name[x_r+2:]
-	print(s)
+
 	#s=[0,'MEMFIS','BOYS']		
 	cnt_lines=2	
 	return(s,cnt_lines)
 def split_string(l):
+	l=l.upper()
+	except_list=[]
+	with open('data/except_list.txt', 'r', encoding='utf-8') as file:
+		for line in file:
+			modified_line = line.replace('\n', '')
+		
+			except_list.append(modified_line)
+
+	if l.find("NO.")>-1:
+		l=l.replace("NO.","no.")
+	
 	buf=''
 	buf_n=0
 	syms_list=[" ",'!']
 	line=['','']
-	s=[]
-	if len(line)>6:
+	s=[0]
+	if len(line)>10:
 		line[0]=l
 	else:
 		for i in range(len(l)):
 			if (l[i] in syms_list)or (i==len(l)-1):
 				s.append(i)
-		print(s)
+
 		mid=len(l)/2
-		print(mid)
+	
 		min_D=9999999
-		if len(s)>1:
+		for i in range(len(s)):
+			if i!=0 and i<len(s)-1:
+				p1=s[i-1]
+				p2=s[i]
+				p3=s[i+1]
+				if i>1:
+					p1=s[i-1]+1
+				if i==len(s)-2:
+					p3=s[i+1]+1
+				b1=l[p1:p2]
+				b2=l[p2+1:p3]
+				check_string=b1+' '+b2
+				if check_string=="EAU DE":
+					check_string+=l[s[i+1]:s[i+2]+1]
+				
+				for j in except_list:
+					if check_string==j or check_string==j+' ' or check_string==' '+j:
+						
+						s[i]=150
+						s[i+1]=150
+				
+		if len(s)>2 and len(l)>12:
 			for i in range(len(s)):
 				if abs(mid-s[i])<min_D:
 					min_D=mid-s[i]
 					buf=s[i]
-					print(abs(mid-s[i]),mid,s[i],min_D)
+					
 			line[0]=l[:buf]
 			line[1]=l[buf+1:]
 		else:
 			line[0]=l
-	print(l)
+
+	mx=0
+	for i in line:
+		if len(line)>mx:
+			mx=len(line)
 	print(line)
 	return line
 def get_info():
@@ -128,3 +164,4 @@ def get_info():
 	ml='10'
 	shop='АллюрПарфюм'
 	return brand,name,conc,ml,shop
+split_string("AKSDNJKASNFJKAS NJKSANFJKA 2KEKIS SHMEKIS")
