@@ -97,6 +97,8 @@ class _Line:
 		self.fontSize=30
 		if self.type=="brand":
 			self.fonts=['short_font','medium_font','medium_font']
+			self.ks=[0.7,0.7,0.82]
+			self.k=self.ks[0]
 			self.fontName=self.fonts[0]
 			#if self.len<=20:
 			#	self.fontName='short_font'
@@ -182,10 +184,15 @@ class _Line:
 				self.fontSize=14
 			else:
 				self.fontSize=10
+			MAX_H=self.fontSize*(self.k+.07)
 			if stringWidth(self.text,self.fontName,self.fontSize)>_W:
 				self.fontName=self.fonts[1]
+				self.k=self.ks[1]
 			if stringWidth(self.text,self.fontName,self.fontSize)>_W:
 				self.fontName=self.fonts[2]
+				self.k=self.ks[2]
+			while self.getH()<MAX_H:
+				self.fontSize+=.1
 			while stringWidth(self.text,self.fontName,self.fontSize)>_W-v_border*2:
 				self.fontSize-=.1
 			self.y=_H-h_border-self.fontSize*self.k
@@ -320,11 +327,11 @@ def main(file_path,width,height):
 	k=0
 	f=file_path
 	b_f=file_path
-	while(os.path.exists(f)):
+	while(os.path.exists(f+'.pdf')):
 		k+=1
-		b_f=file_path+'_'+str(k)+'.pdf'
-		f = file_path+'_'+str(k)+'.pdf'
-	c = Canvas(f, pagesize=(_W,_H))
+		b_f=file_path+'_'+str(k)
+		f = file_path+'_'+str(k)
+	c = Canvas(f+'.pdf', pagesize=(_W,_H))
 	obj[0].calc_width(c)
 	obj[1].calc_width(c)
 	global free_h
@@ -369,4 +376,8 @@ obj.append(_Line(conc+" "+ml+" ml",'Arial',8,'conc'))
 obj.append(_Line("АллюрПарфюм",'Arial',8,'shop'))
 obj.append(_Line(frag_name,'Arial',10,'name'))
 free_h=1.5*(2+len(obj[3].ln_text))
-main('test_pdfs/'+brand_name.replace(' ','_')+'___'+frag_name.replace(' ','_')+'.pdf',_W,_H)
+product_name=brand_name+frag_name
+product_name=''.join(filter(str.isalnum, product_name))
+#print(product_name)
+main('test_pdfs/'+product_name,_W,_H)
+

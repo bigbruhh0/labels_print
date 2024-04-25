@@ -1,5 +1,0 @@
-brand/14/short_font/0.8/0/
-test_pdfs/Chanel___No_19.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/Chanel___No_19.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/Chanel___No_19.pdfname/46.29999999999995/medium_font/0.7/0/
-test_pdfs/Chanel___No_19.pdf

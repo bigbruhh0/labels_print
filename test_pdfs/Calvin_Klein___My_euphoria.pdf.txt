@@ -1,5 +1,0 @@
-brand/10/short_font/0.8/0/
-test_pdfs/Calvin_Klein___My_euphoria.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/Calvin_Klein___My_euphoria.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/Calvin_Klein___My_euphoria.pdfname/19.599999999999568/long_font/0.82/0/
-test_pdfs/Calvin_Klein___My_euphoria.pdf

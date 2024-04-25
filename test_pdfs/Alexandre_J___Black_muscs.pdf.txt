@@ -1,5 +1,0 @@
-brand/10/short_font/0.8/0/
-test_pdfs/Alexandre_J___Black_muscs.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/Alexandre_J___Black_muscs.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/Alexandre_J___Black_muscs.pdfname/18.99999999999956/long_font/0.82/0/
-test_pdfs/Alexandre_J___Black_muscs.pdf

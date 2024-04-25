@@ -1,5 +1,0 @@
-brand/10/medium_font/0.8/0.2/
-test_pdfs/La_Maison_de_la_Vanille___Vanille_sauvage_de_madagascar.pdfconc/7.5/info_font/0.7/0.2/
-test_pdfs/La_Maison_de_la_Vanille___Vanille_sauvage_de_madagascar.pdfshop/7.5/info_font/0.75/0.2/
-test_pdfs/La_Maison_de_la_Vanille___Vanille_sauvage_de_madagascar.pdfname/14.799999999999523/long_font/0.82/0.2/
-test_pdfs/La_Maison_de_la_Vanille___Vanille_sauvage_de_madagascar.pdf

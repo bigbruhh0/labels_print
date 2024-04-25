@@ -1,5 +1,0 @@
-brand/10/short_font/0.8/1.6100000000000003/
-test_pdfs/Christian_Dior___Escale_aux_marquises.pdfconc/7.5/info_font/0.7/1.6100000000000003/
-test_pdfs/Christian_Dior___Escale_aux_marquises.pdfshop/7.5/info_font/0.75/1.6100000000000003/
-test_pdfs/Christian_Dior___Escale_aux_marquises.pdfname/22.299999999999606/long_font/0.82/1.6100000000000003/
-test_pdfs/Christian_Dior___Escale_aux_marquises.pdf

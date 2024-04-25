@@ -1,5 +1,0 @@
-brand/14/medium_font/0.8/0/
-test_pdfs/Adam_Levine___For_women.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/Adam_Levine___For_women.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/Adam_Levine___For_women.pdfname/21.7999999999996/long_font/0.82/0/
-test_pdfs/Adam_Levine___For_women.pdf

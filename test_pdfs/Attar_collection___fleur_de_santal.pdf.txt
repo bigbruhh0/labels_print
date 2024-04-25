@@ -1,5 +1,0 @@
-brand/9.8/short_font/0.8/0.0/
-test_pdfs/Attar_collection___fleur_de_santal.pdfconc/7.5/info_font/0.7/0.0/
-test_pdfs/Attar_collection___fleur_de_santal.pdfshop/7.5/info_font/0.75/0.0/
-test_pdfs/Attar_collection___fleur_de_santal.pdfname/16.09999999999952/short_font/0.7/0.0/
-test_pdfs/Attar_collection___fleur_de_santal.pdf

@@ -1,5 +1,0 @@
-brand/10/short_font/0.8/1.2/
-test_pdfs/Bohoboco___red_wine_brown_sugar.pdfconc/7.5/info_font/0.7/1.2/
-test_pdfs/Bohoboco___red_wine_brown_sugar.pdfshop/7.5/info_font/0.75/1.2/
-test_pdfs/Bohoboco___red_wine_brown_sugar.pdfname/17.999999999999545/long_font/0.82/1.2/
-test_pdfs/Bohoboco___red_wine_brown_sugar.pdf

@@ -1,5 +1,0 @@
-brand/14/short_font/0.8/0/
-test_pdfs/Akro___dark.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/Akro___dark.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/Akro___dark.pdfname/46.099999999999945/medium_font/0.7/0/
-test_pdfs/Akro___dark.pdf

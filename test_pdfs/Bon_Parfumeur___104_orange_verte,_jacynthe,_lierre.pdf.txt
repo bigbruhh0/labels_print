@@ -1,5 +1,0 @@
-brand/9.600000000000001/short_font/0.8/0/
-test_pdfs/Bon_Parfumeur___104_orange_verte,_jacynthe,_lierre.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/Bon_Parfumeur___104_orange_verte,_jacynthe,_lierre.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/Bon_Parfumeur___104_orange_verte,_jacynthe,_lierre.pdfname/13.899999999999526/long_font/0.82/0/
-test_pdfs/Bon_Parfumeur___104_orange_verte,_jacynthe,_lierre.pdf

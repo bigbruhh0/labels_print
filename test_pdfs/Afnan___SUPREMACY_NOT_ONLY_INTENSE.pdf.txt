@@ -1,5 +1,0 @@
-brand/10/short_font/0.8/0.6/
-test_pdfs/Afnan___SUPREMACY_NOT_ONLY_INTENSE.pdfconc/7.5/info_font/0.7/0.6/
-test_pdfs/Afnan___SUPREMACY_NOT_ONLY_INTENSE.pdfshop/7.5/info_font/0.75/0.6/
-test_pdfs/Afnan___SUPREMACY_NOT_ONLY_INTENSE.pdfname/15.899999999999519/long_font/0.82/0.6/
-test_pdfs/Afnan___SUPREMACY_NOT_ONLY_INTENSE.pdf

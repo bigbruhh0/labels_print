@@ -1,5 +1,0 @@
-brand/10/medium_font/0.8/0/
-test_pdfs/Dolce_and_Gabbana___light_blue_forever_pour_homme.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/Dolce_and_Gabbana___light_blue_forever_pour_homme.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/Dolce_and_Gabbana___light_blue_forever_pour_homme.pdfname/12.99999999999953/long_font/0.82/0/
-test_pdfs/Dolce_and_Gabbana___light_blue_forever_pour_homme.pdf

@@ -1,5 +1,0 @@
-brand/14/short_font/0.8/0/
-test_pdfs/27_87___PER_SE.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/27_87___PER_SE.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/27_87___PER_SE.pdfname/37.599999999999824/medium_font/0.7/0/
-test_pdfs/27_87___PER_SE.pdf
