@@ -1,0 +1,5 @@
+brand/9.9/short_font/0.8/0/
+test_pdfs/Atelier_des_Ors___Lune_Feline.pdfconc/7.5/info_font/0.7/0/
+test_pdfs/Atelier_des_Ors___Lune_Feline.pdfshop/7.5/info_font/0.75/0/
+test_pdfs/Atelier_des_Ors___Lune_Feline.pdfname/21.8999999999996/long_font/0.82/0/
+test_pdfs/Atelier_des_Ors___Lune_Feline.pdf

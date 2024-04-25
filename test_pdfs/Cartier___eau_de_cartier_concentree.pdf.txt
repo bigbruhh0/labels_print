@@ -1,0 +1,5 @@
+brand/10/short_font/0.8/0.7/
+test_pdfs/Cartier___eau_de_cartier_concentree.pdfconc/7.5/info_font/0.7/0.7/
+test_pdfs/Cartier___eau_de_cartier_concentree.pdfshop/7.5/info_font/0.75/0.7/
+test_pdfs/Cartier___eau_de_cartier_concentree.pdfname/16.89999999999953/long_font/0.82/0.7/
+test_pdfs/Cartier___eau_de_cartier_concentree.pdf

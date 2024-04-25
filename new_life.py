@@ -32,6 +32,17 @@ class st:
 		self.pos=pos
 		self.d=0
 		self.size_d=0
+		self.spacing=0
+	def set_spacing(self):
+		self.spacing=0
+		if len(obj[3].max_line)>=10:
+			w=self.getWidth()+self.spacing*(len(self.text)-1)
+			while (w<_W-v_border*5):
+				self.spacing+=.1
+				w=self.getWidth()+self.spacing*(len(self.text)-1)
+		if len(obj[3].max_line)<=10:
+			self.spacing=self.spacing*.7
+		
 	def last_fix(self,d):
 		H=d
 		for i in obj[3].ln_text:
@@ -47,18 +58,30 @@ class st:
 	def draw_rect_border(self,c):
 		c.setStrokeColorRGB(0,0,255)
 		c.rect(self.x-self.getWidth()/2,self.d+obj[3].y+self.getHeight()*(self.pos)*(len(obj[3].ln_text)-1),self.getWidth(),self.getHeight())
-		print(self.getHeight(),self.x,self.getWidth(),self.fontSize)
-	def draw_self(self,c,d):
-		H=self.last_fix(d)
-		H=obj[0].y-H
-		dh=H/2/2
-		self.fontSize=self.fontSize+self.size_d
-		c.setFont(self.fontName,self.fontSize)
-		print(self.fontName,self.fontSize)
-		print('draw',self.fontSize)
-		c.drawCentredString(self.x,dh+self.d+obj[3].y+self.getHeight()*(self.pos)*(len(obj[3].ln_text)-1),self.text)
-		print('testname',self.d)
-		print(self.pos,self.getHeight())
+	def draw_self(self, c, d):
+		H = self.last_fix(d)
+		H = obj[0].y - H
+		dh = H / 2
+		global lazy_d
+		lazy_d=dh
+		#self.space=2
+		if dev_draw:
+			c.setLineWidth(0.2)
+			c.line(0,self.get_pos(dh)[0],_W,self.get_pos(dh)[0])
+			c.line(0,self.get_pos(dh)[1],_W,self.get_pos(dh)[1])
+		self.fontSize = self.fontSize + self.size_d
+		c.setFont(self.fontName, self.fontSize)
+		textobject = c.beginText()
+		textobject.setCharSpace(self.spacing)  # Установка межбуквенного интервала
+		b=self.spacing*(len(self.text)-1)
+		textobject.setFont(self.fontName, self.fontSize)
+		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2, dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
+		textobject.textLines(self.text)
+		c.drawText(textobject)
+	def get_pos(self,dh):
+		return dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1),dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1)+self.getHeight()
+
+		
 class _Line:
 	def __init__(self,_text, fontName, fontSize,_type):
 		self.d=0
@@ -71,14 +94,16 @@ class _Line:
 		self.len=len(self.text)
 		self.type=_type
 		self.width=200
-		self.fontSize=12
+		self.fontSize=30
 		if self.type=="brand":
-			if self.len<=15:
-				self.fontName='short_font'
-				self.k=0.65
-			else:
-				self.fontName='medium_font'
-				self.k=0.65
+			self.fonts=['short_font','medium_font','medium_font']
+			self.fontName=self.fonts[0]
+			#if self.len<=20:
+			#	self.fontName='short_font'
+			#	self.k=0.65
+			#else:
+			##	self.fontName='medium_font'
+			#	self.k=0.65
 		if self.type=="shop":
 			self.fontName='info_font'
 			self.k=.75
@@ -101,22 +126,21 @@ class _Line:
 
 					self.lines.append(i)
 			self.lines=list(reversed(self.lines))
-			print(mx,'max')
 			self.ln_text=[]		
 			if len(self.lines)>1:
-				if mx<=12:
-					self.fontName='medium_font'
-					self.k=0.7
-				elif mx<12:
-					self.fontName='medium_font'
-					self.k=.7
-				else:
+				if mx>=10 and mx<=12:
 					self.fontName='long_font'
-					self.k=0.8
+					self.k=0.82
+				elif mx>=12:
+					self.fontName='long_font'
+					self.k=0.82
+				else:
+					self.fontName='short_font'
+					self.k=0.7
 			else:
 				if mx>6:
 					self.fontName='long_font'
-					self.k=0.8
+					self.k=0.82
 				else:
 					self.fontName='medium_font'
 					self.k=0.7	
@@ -135,7 +159,6 @@ class _Line:
 			for i in self.ln_text:
 				
 				h+=i.fontSize*i.k
-				print(i.fontSize,h,i.fontSize*i.k)
 		return h
 	def draw_rect_border(self,c):
 		if self.type!="name":
@@ -145,6 +168,8 @@ class _Line:
 		else:
 			for i in self.ln_text:
 				i.draw_rect_border(c)
+	def get_pos(self):
+		return self.y+self.d,self.y+self.getH()+self.d
 	def getWidth(self,*li):
 		if li:
 			self.width=stringWidth(li[0],self.fontName,self.fontSize)
@@ -153,16 +178,26 @@ class _Line:
 		return self.width
 	def calc_width(self,c):
 		if self.type=="brand":
-			self.fontSize=10
-			while self.getWidth()>_W-v_border*2:
+			if len(obj[3].ln_text)==1 and len(obj[3].ln_text[0].text)<11:
+				self.fontSize=14
+			else:
+				self.fontSize=10
+			if stringWidth(self.text,self.fontName,self.fontSize)>_W:
+				self.fontName=self.fonts[1]
+			if stringWidth(self.text,self.fontName,self.fontSize)>_W:
+				self.fontName=self.fonts[2]
+			while stringWidth(self.text,self.fontName,self.fontSize)>_W-v_border*2:
 				self.fontSize-=.1
 			self.y=_H-h_border-self.fontSize*self.k
 
 		if self.type=="conc":
 			self.y=obj[2].y+obj[2].getH()
 		if self.type=="name":
-			self.y=obj[1].y+obj[1].getH()
 			self.fontSize=50
+			for i in self.ln_text:
+				i.fontSize=50
+			self.y=obj[1].y+obj[1].getH()
+			
 			mx=0
 			mx_buf=''
 			mn_buf=''
@@ -186,7 +221,6 @@ class _Line:
 				
 				for i in self.ln_text:
 					i.fontSize-=.1
-				
 			self.calc_height(c)
 	def calc_height(self,c):
 		if self.type=="name":
@@ -199,42 +233,72 @@ class _Line:
 			textH=0
 			for i in self.ln_text:
 				textH+=i.getHeight()
-				
+			
 			while (textH>self.dh-free_h):
 				for i in self.ln_text:
 					i.fontSize-=.1
-					print(i.fontSize)
+					
 				textH=0
 				for i in self.ln_text:
 					textH+=i.getHeight()
-			self.fontSize=self.ln_text[0].fontSize
+			if len(self.ln_text)==1:
+				for i in self.ln_text:
+					if i.fontSize>24:
+						i.fontSize=24
 			#c.rect(v_border,1*(2+len(self.ln_text))+self.d+obj[1].y+obj[1].getH(),_W-2*v_border,self.dh-1*(2+len(self.ln_text))*2)
-	def draw_self(self,c,d):
-		print("HEAAIAIHGHT: ",self.getH())
-		c.setFillColorRGB(0,0,0)
-		if self.type!='name':
-			c.setFont(self.fontName,self.fontSize)
-			c.drawCentredString(self.x,self.y+self.d,self.text)
+	def draw_self(self, c, d):
+		if self.type != 'name':
+			c.setFont(self.fontName, self.fontSize)
+			c.setFillColorRGB(0, 0, 0)
+			
+			textobject1 = c.beginText(self.x-self.getWidth()/2, self.y + self.d)
+			textobject1.setCharSpace(0)
+			textobject1.setFont(self.fontName, self.fontSize)
+			textobject1.textLines(self.text)
+			c.drawText(textobject1)
+			c.setLineWidth(0.2)
+			if dev_draw:
+				c.line(0,self.get_pos()[1],_W,self.get_pos()[1])
+				c.line(0,self.get_pos()[0],_W,self.get_pos()[0])
 		else:
+			if len(self.ln_text)>1:
+				for i in self.ln_text:
+					i.set_spacing()
+				mn=9999
+				for i in self.ln_text:
+					if i.spacing<mn:
+						mn=i.spacing
+			else:
+				mn=0
 			for i in self.ln_text:
-				i.draw_self(c,d)
+				i.spacing=mn
+				i.draw_self(c, d)
 	def shift(self,d,c):
+		H=d
+		for i in obj[3].ln_text:
+			H+=d+i.fontSize*i.k
+		H=H+obj[1].y+obj[1].fontSize*obj[1].k
+		H = obj[0].y - H
+		dh = H / 2
 		if self.type=='conc':
-			self.d=d
+			self.d=d+dh
+		elif self.type=='shop':
+			self.d=dh
 		elif self.type=='name':
 			for i in range(len(self.ln_text)):
 				self.ln_text[i].d=d+d*(i+1)
-				print(self.ln_text[i].d)
 		elif self.type=='brand':
 			self.d=-d*0
 
 def init_fonts():
 	sh="Ornitons"
+	sh_brand='VelaSansExtraBold'#GaretBook.ttf
 	lg="steelfish"
 	sh1="OrnitonsBold"
 	sh2="Afrora"
 	br_med="RainTungesten"
-		
+	conf="ConfigCondensedRegular"
+	bold="ConfigCondenced"
 
 	pdfmetrics.registerFont(TTFont('long_font', 'fonts/'+lg+'.ttf'))
 	pdfmetrics.registerFont(TTFont('info_font', 'fonts/info_font.ttf'))
@@ -242,18 +306,23 @@ def init_fonts():
 	pdfmetrics.registerFont(TTFont('short_font', 'fonts/'+sh+'.ttf'))
 	pdfmetrics.registerFont(TTFont('short1_font', 'fonts/'+sh1+'.ttf'))
 	pdfmetrics.registerFont(TTFont('medium_font', 'fonts/'+br_med+'.ttf'))
+	pdfmetrics.registerFont(TTFont('test_config', 'fonts/'+conf+'.ttf'))
+	pdfmetrics.registerFont(TTFont('bold_font', 'fonts/'+bold+'.ttf'))
+	pdfmetrics.registerFont(TTFont('sh_brand', 'fonts/'+sh_brand+'.ttf'))
 	return 'long_font','info_font','bold_font','short_font','short1_font','medium_font'
 def get_params():
-	v_border=.05*cm
-	h_border=.15*cm
+	v_border=.1*cm
+	h_border=.1*cm
 	return v_border,h_border,2.5*cm,1.8*cm
 
 
 def main(file_path,width,height):
 	k=0
 	f=file_path
+	b_f=file_path
 	while(os.path.exists(f)):
 		k+=1
+		b_f=file_path+'_'+str(k)+'.pdf'
 		f = file_path+'_'+str(k)+'.pdf'
 	c = Canvas(f, pagesize=(_W,_H))
 	obj[0].calc_width(c)
@@ -274,20 +343,28 @@ def main(file_path,width,height):
 	
 	for i in obj:
 		i.shift(d,c)
-		i.draw_self(c,d)
-		#i.draw_rect_border(c)
+	
+	obj[0].draw_self(c,d)
+	obj[3].draw_self(c,d)
+	dh=(obj[0].y-obj[3].ln_text[0].last_fix(d))/2
+	obj[1].draw_self(c,d+lazy_d)
+	obj[2].draw_self(c,d+lazy_d)
+	#i.draw_rect_border(c)
 	#c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
 	c.setStrokeColorRGB(0, 255, 0)
 
-	f = open('test_pdfs/test'+str(k)+'.txt', "w")
+	f = open(file_path+'.txt', "w")
 	for i in obj:
-		f.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+'\n')
+		f.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
 	c.save()
+	#os.remove(str(b_f))
 
 fonts=init_fonts()
 obj=[]
+lazy_d=0
+dev_draw=False
 v_border,h_border,_W,_H=get_params()
-obj.append(_Line(brand_name,'Arial',10,'brand'))
+obj.append(_Line(brand_name,'Arial',9,'brand'))
 obj.append(_Line(conc+" "+ml+" ml",'Arial',8,'conc'))
 obj.append(_Line("АллюрПарфюм",'Arial',8,'shop'))
 obj.append(_Line(frag_name,'Arial',10,'name'))

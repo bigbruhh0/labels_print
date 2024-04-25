@@ -155,7 +155,6 @@ def split_string(l):
 	for i in line:
 		if len(line)>mx:
 			mx=len(line)
-	print(line)
 	return line
 def get_info():
 	brand='Les Liquides Imaginaires'
@@ -164,4 +163,4 @@ def get_info():
 	ml='10'
 	shop='АллюрПарфюм'
 	return brand,name,conc,ml,shop
-split_string("AKSDNJKASNFJKAS NJKSANFJKA 2KEKIS SHMEKIS")
+

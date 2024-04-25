@@ -1,0 +1,5 @@
+brand/10/short_font/0.8/0.30000000000000004/
+test_pdfs/Armaf___Club_de_nuit_white_imperiale.pdfconc/7.5/info_font/0.7/0.30000000000000004/
+test_pdfs/Armaf___Club_de_nuit_white_imperiale.pdfshop/7.5/info_font/0.75/0.30000000000000004/
+test_pdfs/Armaf___Club_de_nuit_white_imperiale.pdfname/15.199999999999521/long_font/0.82/0.30000000000000004/
+test_pdfs/Armaf___Club_de_nuit_white_imperiale.pdf

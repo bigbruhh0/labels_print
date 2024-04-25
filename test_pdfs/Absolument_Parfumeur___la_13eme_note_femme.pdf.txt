@@ -1,0 +1,5 @@
+brand/10/medium_font/0.8/1.4700000000000002/
+test_pdfs/Absolument_Parfumeur___la_13eme_note_femme.pdfconc/7.5/info_font/0.7/1.4700000000000002/
+test_pdfs/Absolument_Parfumeur___la_13eme_note_femme.pdfshop/7.5/info_font/0.75/1.4700000000000002/
+test_pdfs/Absolument_Parfumeur___la_13eme_note_femme.pdfname/20.999999999999588/long_font/0.82/1.4700000000000002/
+test_pdfs/Absolument_Parfumeur___la_13eme_note_femme.pdf

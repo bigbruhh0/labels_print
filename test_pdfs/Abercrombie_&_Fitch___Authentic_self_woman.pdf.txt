@@ -1,0 +1,5 @@
+brand/10/medium_font/0.8/1.3300000000000003/
+test_pdfs/Abercrombie_&_Fitch___Authentic_self_woman.pdfconc/7.5/info_font/0.7/1.3300000000000003/
+test_pdfs/Abercrombie_&_Fitch___Authentic_self_woman.pdfshop/7.5/info_font/0.75/1.3300000000000003/
+test_pdfs/Abercrombie_&_Fitch___Authentic_self_woman.pdfname/19.999999999999574/long_font/0.82/1.3300000000000003/
+test_pdfs/Abercrombie_&_Fitch___Authentic_self_woman.pdf

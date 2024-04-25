@@ -20,6 +20,7 @@ a={}
 for i in range(len(lines)):
 	b=(i+1)-cnt*4
 	if b==1:
+		a['type']='1'
 		a['brand_name']=lines[i].replace('\n','')
 	if b==2:
 		a['frag_name']=lines[i].replace('\n','')

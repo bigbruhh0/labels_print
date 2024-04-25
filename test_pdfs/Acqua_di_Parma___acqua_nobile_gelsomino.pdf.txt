@@ -1,0 +1,5 @@
+brand/10/medium_font/0.8/1.3/
+test_pdfs/Acqua_di_Parma___acqua_nobile_gelsomino.pdfconc/7.5/info_font/0.7/1.3/
+test_pdfs/Acqua_di_Parma___acqua_nobile_gelsomino.pdfshop/7.5/info_font/0.75/1.3/
+test_pdfs/Acqua_di_Parma___acqua_nobile_gelsomino.pdfname/18.799999999999557/long_font/0.82/1.3/
+test_pdfs/Acqua_di_Parma___acqua_nobile_gelsomino.pdf

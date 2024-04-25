@@ -1,0 +1,5 @@
+brand/14/short_font/0.8/0/
+test_pdfs/Le_Labo___another_13.pdfconc/7.5/info_font/0.7/0/
+test_pdfs/Le_Labo___another_13.pdfshop/7.5/info_font/0.75/0/
+test_pdfs/Le_Labo___another_13.pdfname/22.799999999999613/long_font/0.82/0/
+test_pdfs/Le_Labo___another_13.pdf

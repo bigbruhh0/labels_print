@@ -1,0 +1,5 @@
+brand/10/short_font/0.8/1.8000000000000005/
+test_pdfs/Loewe___Las_tardes_de_capricho.pdfconc/7.5/info_font/0.7/1.8000000000000005/
+test_pdfs/Loewe___Las_tardes_de_capricho.pdfshop/7.5/info_font/0.75/1.8000000000000005/
+test_pdfs/Loewe___Las_tardes_de_capricho.pdfname/20.599999999999582/long_font/0.82/1.8000000000000005/
+test_pdfs/Loewe___Las_tardes_de_capricho.pdf

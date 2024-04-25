@@ -1,0 +1,5 @@
+brand/10/short_font/0.8/1.0999999999999999/
+test_pdfs/Ard_Al_Khaleej___ghala_zayed_luxury_rouge.pdfconc/7.5/info_font/0.7/1.0999999999999999/
+test_pdfs/Ard_Al_Khaleej___ghala_zayed_luxury_rouge.pdfshop/7.5/info_font/0.75/1.0999999999999999/
+test_pdfs/Ard_Al_Khaleej___ghala_zayed_luxury_rouge.pdfname/17.899999999999544/long_font/0.82/1.0999999999999999/
+test_pdfs/Ard_Al_Khaleej___ghala_zayed_luxury_rouge.pdf
