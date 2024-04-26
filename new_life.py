@@ -58,7 +58,7 @@ class st:
 	def draw_rect_border(self,c):
 		c.setStrokeColorRGB(0,0,255)
 		c.rect(self.x-self.getWidth()/2,self.d+obj[3].y+self.getHeight()*(self.pos)*(len(obj[3].ln_text)-1),self.getWidth(),self.getHeight())
-	def draw_self(self, c, d):
+	def draw_self(self, c, d,dd):
 		H = self.last_fix(d)
 		H = obj[0].y - H
 		dh = H / 2
@@ -75,7 +75,7 @@ class st:
 		textobject.setCharSpace(self.spacing)  # Установка межбуквенного интервала
 		b=self.spacing*(len(self.text)-1)
 		textobject.setFont(self.fontName, self.fontSize)
-		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2, dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
+		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2,dd+dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
 		textobject.textLines(self.text)
 		c.drawText(textobject)
 	def get_pos(self,dh):
@@ -254,11 +254,17 @@ class _Line:
 						i.fontSize=24
 			#c.rect(v_border,1*(2+len(self.ln_text))+self.d+obj[1].y+obj[1].getH(),_W-2*v_border,self.dh-1*(2+len(self.ln_text))*2)
 	def draw_self(self, c, d):
+		dd=0
+		if self.type!='brand' :
+			for i in {'q','j','p','g'}:
+				if i in self.text:
+					dd=-1
 		if self.type != 'name':
+			
 			c.setFont(self.fontName, self.fontSize)
 			c.setFillColorRGB(0, 0, 0)
-			
-			textobject1 = c.beginText(self.x-self.getWidth()/2, self.y + self.d)
+			print(self.type,dd)
+			textobject1 = c.beginText(self.x-self.getWidth()/2, self.y + self.d+dd)
 			textobject1.setCharSpace(0)
 			textobject1.setFont(self.fontName, self.fontSize)
 			textobject1.textLines(self.text)
@@ -279,7 +285,7 @@ class _Line:
 				mn=0
 			for i in self.ln_text:
 				i.spacing=mn
-				i.draw_self(c, d)
+				i.draw_self(c, d,dd)
 	def shift(self,d,c):
 		H=d
 		for i in obj[3].ln_text:

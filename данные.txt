@@ -6,3 +6,5 @@
 ---------
 210x297
 canvas.drawString(10,0.20*i * cm, '.'+str(i))
+
+47x45 sets

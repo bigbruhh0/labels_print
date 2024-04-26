@@ -8,7 +8,7 @@ def send_post_request(url, data):
 	except requests.exceptions.RequestException as e:
 		print("Ошибка при отправке POST-запроса:", e)
 lines=[]
-with open('test_data.txt', 'r', encoding='utf-8') as file:
+with open('data\test_data.txt', 'r', encoding='utf-8') as file:
     for line in file:
         modified_line = line.replace('№', 'No ')
         print(modified_line)

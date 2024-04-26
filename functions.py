@@ -163,4 +163,31 @@ def get_info():
 	ml='10'
 	shop='АллюрПарфюм'
 	return brand,name,conc,ml,shop
+def add_image_to_pdf(image_path, pdf_path,y,c):
+    image = Image.open(image_path)
 
+    image_width, image_height = image.size
+
+    pdf_width, pdf_height = (4.5*cm,4.7*cm)
+
+    new_image_width = pdf_width
+
+    new_image_height = 10
+
+    c.drawImage(image_path, 0, y, width=new_image_width, height=new_image_height)
+def create_text_image(text, image_path, font_size=20, font_path=None):
+    image = Image.new("RGBA", (5048, 2024), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(image)
+
+    if font_path:
+        font = ImageFont.truetype(font_path, font_size)
+    else:
+        font = ImageFont.load_default()
+
+    draw.text((10, 10), text, fill="black", font=font)
+
+    bbox = image.getbbox()
+
+    cropped_image = image.crop(bbox)
+
+    cropped_image.save(image_path)
