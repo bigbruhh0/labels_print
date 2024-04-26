@@ -1,4 +1,35 @@
+from PIL import Image, ImageDraw, ImageFont
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from PIL import Image, ImageFilter
+from reportlab.lib.units import cm
+import os
 
+
+def add_smooth_image_to_pdf(image_path, pdf_path):
+    # Создаем новый PDF-документ с форматом страницы letter
+    c = canvas.Canvas(pdf_path, pagesize=(4.5*cm,4.7*cm))
+
+    # Открываем изображение с помощью Pillow
+    image = Image.open(image_path)
+
+    # Сглаживаем изображение
+    smooth_image = image.filter(ImageFilter.SMOOTH)
+
+    # Сохраняем сглаженное изображение временно
+    smooth_image_path = "smoothed_image.png"
+    smooth_image.save(smooth_image_path)
+
+    # Вставляем сглаженное изображение на страницу PDF
+    c.drawImage(smooth_image_path, 100, 400)  # Указываем координаты для размещения изображения
+
+    # Завершаем создание PDF-документа
+    c.save()
+
+    # Удаляем временный файл
+    os.remove(smooth_image_path)
 def add_image_to_pdf(image_path, pdf_path,y):
     # Открываем изображение с помощью Pillow
     image = Image.open(image_path)
@@ -13,7 +44,7 @@ def add_image_to_pdf(image_path, pdf_path,y):
     new_image_width = pdf_width
 
     # Вычисляем новую высоту изображения, сохраняя пропорции
-    new_image_height = 10
+    new_image_height = int(image_height * (new_image_width / image_width))
 
 
 
@@ -22,7 +53,28 @@ def add_image_to_pdf(image_path, pdf_path,y):
 
 
 
+def create_text_image(text, image_path, font_size=20, font_path=None):
+    # Создаем изображение с прозрачным фоном
+    image = Image.new("RGBA", (5048, 2024), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(image)
 
+    # Устанавливаем шрифт и размер текста
+    if font_path:
+        font = ImageFont.truetype(font_path, font_size)
+    else:
+        font = ImageFont.load_default()
+
+    # Рисуем текст на изображении
+    draw.text((10, 10), text, fill="black", font=font)
+
+    # Получаем ограничивающий прямоугольник для всех непрозрачных пикселей на изображении
+    bbox = image.getbbox()
+
+    # Обрезаем изображение по ограничивающему прямоугольнику
+    cropped_image = image.crop(bbox)
+
+    # Сохраняем обрезанное изображение
+    cropped_image.save(image_path)
 
 # Пример использования функции
 # Пример использования функции

@@ -1,3 +1,4 @@
+
 def split_line(l):
 	flg_one=False
 	flg_n=False
@@ -92,7 +93,7 @@ def do_split(frag_name):
 	#s=[0,'MEMFIS','BOYS']		
 	cnt_lines=2	
 	return(s,cnt_lines)
-def split_string(l):
+def split_string(l,*tp):
 	l=l.upper()
 	except_list=[]
 	with open('data/except_list.txt', 'r', encoding='utf-8') as file:
@@ -139,8 +140,11 @@ def split_string(l):
 						
 						s[i]=150
 						s[i+1]=150
-				
-		if len(s)>2 and len(l)>12:
+		if tp:
+			k=22
+		else:
+			k=12
+		if len(s)>2 and len(l)>k:
 			for i in range(len(s)):
 				if abs(mid-s[i])<min_D:
 					min_D=mid-s[i]

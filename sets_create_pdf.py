@@ -9,70 +9,126 @@ from reportlab.lib import colors
 from reportlab.lib.fonts import addMapping
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
-from functions import do_split, split_line, get_info, split_string,add_image_to_pdf,create_text_image
+from functions import do_split, split_line, get_info, split_string#,add_image_to_pdf,create_text_image
 from pathlib import Path
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import subprocess
 import sys
 import os
+from PIL import Image, ImageDraw, ImageFont
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from PIL import Image, ImageFilter
+from reportlab.lib.units import cm
+import os
+
+def add_image_to_pdf(image_path, pdf_path,y,c):
+    image = Image.open(image_path)
+
+    image_width, image_height = image.size
+
+    pdf_width, pdf_height = (4.5*cm,4.7*cm)
+
+    new_image_width = pdf_width
+
+    new_image_height = 10
+
+    c.drawImage(image_path, 0, y, width=new_image_width, height=new_image_height)
+def create_text_image(text, image_path, font_size=20, font_path=None):
+	image = Image.new("RGBA", (10096, 10096), (255, 255, 255, 0))
+	draw = ImageDraw.Draw(image)
+
+	if font_path:
+		font = ImageFont.truetype(font_path, font_size)
+	else:
+		font = ImageFont.load_default()
+
+	draw.text((10, 10), text, fill="black", font=font)
+
+	bbox = image.getbbox()
+
+	cropped_image = image.crop(bbox)
+
+	cropped_image.save(image_path)
 
 def rg(spis):
 	return range(len(spis))
 def getHto(pos):
 	h=0
-	print('POS',pos)
 	for i in range(pos+1):
-		h+=lines_obj[i].getHeight()
-		print(i,h)
+		h+=lines_obj[i].image_H
 	return h
 class _lines:
 	def __init__(self,pos, brand_name, frag_name, conc):
 		self.pos=pos
 		self.brand_name = brand_name
 		self.frag_name = frag_name
+		self.fontName='list_font'
 		self.conc = conc
 		print(self.brand_name,self.frag_name,self.conc)
-		self.fontName=fonts[7-self.pos]
-		print(self.fontName)
-		self.text=str(pos+1)+'. '+self.brand_name+' - '+self.frag_name+', '+self.conc
+		self.text=self.brand_name+' - '+self.frag_name+', '+self.conc
+		create_text_image(self.brand_name+' - '+self.frag_name+', '+self.conc,self.brand_name+' - '+self.frag_name+', '+self.conc+'.png',font_size, font_path)
 		self.fontSize=12
 		self.k=0.7
 		self.x=x_border
 		self.y=H
-	def drawSelf(self,c):
-		textobject = c.beginText()
-		textobject.setCharSpace(0)  # Установка межбуквенного интервала
-		textobject.setFont(self.fontName, self.fontSize)
-		textobject.setTextOrigin(self.x,name_obj.y-getHto(self.pos))
-		textobject.textLines(self.text)
-		c.drawText(textobject)
-	def calcWidth(self):
-		while self.getWidth()>W-x_border*2:
-			self.fontSize-=.1
+		self.image = Image.open(self.text+'.png',)
+	def drawSelf(self,d,last_shift):
+		new_image_width = self.image_W
+		new_image_height = self.image_H
+		numb_size=self.image_H/.8
+		c.setFont(self.fontName, numb_size)
+		l_w=stringWidth(str(self.pos+1)+'.',self.fontName,numb_size)
+		if self.pos==9:
+			k1=stringWidth('1',self.fontName,numb_size)
+		else:
+			k1=0
+		c.drawString(x_border-k1,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1)+self.image_H*0.2,str(self.pos+1)+'.')
+		c.drawImage(self.text+'.png',l_w+ x_border-k1,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1), width=new_image_width, height=new_image_height)
+	def calcWidth(self,h):
+		self.image_H=h
+		numb_size=self.image_H/.8
+		if self.pos==9:
+			k1=stringWidth('1',self.fontName,numb_size)
+		else:
+			k1=0
+		image_width, image_height = self.image.size
+		k=h/image_height
+		hh=k*image_width
+		numb_size=self.image_H/0.8
+		l_w=stringWidth(str(self.pos+1)+'.',self.fontName,numb_size)
+		if hh>W-2*x_border-l_w-k1:
+			print("MEASURED",self.pos+1)
+			self.image_W=W-2*x_border-l_w-k1
+		else:
+			print("DEF WIDTH",self.pos+1)
+			self.image_W=hh
 	def getWidth(self):
-		return stringWidth(self.text,self.fontName,self.fontSize)
+		pass
 	def getHeight(self):
-		return self.fontSize*self.k
+		pass
 
 class Name:
 	def __init__(self, s_name):
 		self.s_name = s_name
-		self.lines=split_string(s_name)
+		self.lines=split_string(s_name,0)
 		if '' in self.lines:
 			self.lines.remove('')
 		self.fontName='brand_font'
-		self.fontSize=24
+		self.fontSize=20
 		self.x=W/2
 		self.y=H-y_border
 		self.k=0.7
-	def drawSelf(self,c):
+	def drawSelf(self,last_shift):
 		for i in range(len(self.lines)):
 			c.setLineWidth(0.1)
-			self.y=self.y-self.getHeight()*i
+			self.y=self.y-self.getHeight()*i-2*(i)
 			c.setStrokeColorRGB(255,0,0)
-			c.rect(self.x-self.getWidth(self.lines[i])/2,self.y-self.getHeight()*i,self.getWidth(self.lines[i]),self.getHeight())
-			textobject1 = c.beginText(self.x-self.getWidth(self.lines[i])/2, self.y)
+			#c.rect(self.x-self.getWidth(self.lines[i])/2,self.y-self.getHeight()*i,self.getWidth(self.lines[i]),self.getHeight())
+			textobject1 = c.beginText(self.x-self.getWidth(self.lines[i])/2,-last_shift/2.4 + self.y+2)
 			textobject1.setCharSpace(0)
 			textobject1.setFont(self.fontName, self.fontSize)
 			textobject1.textLines(self.lines[i])
@@ -99,51 +155,58 @@ class Name:
 
 	
 def create_pdf(name, lines_list, filename):
-	c = Canvas(filename, pagesize=(W, H))
-	c.rect(x_border,y_border,W-x_border*2,H-y_border*2)
+	
+	#c.rect(x_border,y_border,W-x_border*2,H-y_border*2)
 	name_obj.calcWidth()
-	name_obj.drawSelf(c)
-	c.line(0,name_obj.getY2(),W,H-y_border-name_obj.getH()*len(name_obj.lines))
-	mn=999
+	
+	p=0
+	if n<8:
+		p=1.5*cm
+	name_obj.drawSelf(p)
+	dH=name_obj.y-y_border-p
+	#c.rect(0,y_border,W,dH)
+	d=2
+	h_per_name=dH/(n)-d
+	if h_per_name>12:
+		h_per_name=12
+		d=dH/n-12
+	print(h_per_name)
+	
 	for i in lines_obj:
-		i.calcWidth()
-		if i.fontSize<mn:
-			mn=i.fontSize
-	for i in lines_obj:
-		i.fontSize=mn
-		i.drawSelf(c)
-	c.save()
+		i.calcWidth(h_per_name)
+		print(name_obj.y)
+		i.drawSelf(d,p)
+	
+
 # Определяем путь к текущему файлу
 current_directory = Path(__file__).resolve()
 
 # Путь к файлу kek.ttf
 #print(current_directory.parent / 'fonts' / 'kek.ttf')
 pdfmetrics.registerFont(TTFont('brand_font', current_directory.parent/'fonts/'/'RainTungesten.ttf'))
-pdfmetrics.registerFont(TTFont('list_font', current_directory.parent/'fonts/'/'Ornitons.ttf'))
-fonts=[]
-for i in range(0,8):
-	n=((i+1)*2)
-	fonts.append('Roboto-Medium'+str(i)+'.ttf')
-	bg='Roboto-Medium'+str((i+1)*2)+'.ttf'
-	print(bg)
-	pdfmetrics.registerFont(TTFont('Roboto-Medium'+str(i)+'.ttf', current_directory.parent/'fonts/'/'sets/'/bg))
+pdfmetrics.registerFont(TTFont('list_font', current_directory.parent/'fonts/'/'testset.ttf'))
 n = 5
 W=4.7*cm
 H=4.5*cm
 x_border=.2*cm
 y_border=.2*cm
+font_size = 300
+font_path = "fonts/arnamu.ttf"
 lines_data = [
-    ["B1", "Fe3", "Co3"],
-    ["Br2", "Fragnce3", "Conceion3"],
-    ["Acqua di parma", "ACQUA NOBILE GELSOMINO", "edp"],
-    ["Brand4", "Fragrance4", "Concentration4"],
-    ["Brand5", "Fragrance5", "Concentration5"]
+    ["Jose Eisenberg", "Ambre D'Orient Secret V", "edp"],
+    ["Christian Dior", "Ambre Nuit", "edp"],
+    ["Maison Francis Kurkjian", "Grand Soir", "parf"],
+    ["The House Of Oud", "Just Before", "edt"],
+    ["Al Haramain", "Amber Oud Gold Edition", "edp"],
+    
 ]
 lines_obj=[]
 for i in rg(lines_data):
 	lines_obj.append(_lines(i,lines_data[i][0],lines_data[i][1],lines_data[i][2]))
 	
-name_obj = Name("LACOSTE L.12.12 WOMAN")
+name_obj = Name("ЯНТАРНАЯ АМБРА ЯНТАРНАЯ АМБРА")
 
-create_pdf(name_obj, lines_obj, "odutput.pdf")
+c = Canvas("odutput2.pdf", pagesize=(W, H))
 
+create_pdf(name_obj, lines_obj, "odutput2.pdf")
+c.save()
