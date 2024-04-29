@@ -1,0 +1,5 @@
+brand/11.099999999999996/short_font/0.7/0.5/
+ToPrint/CastlebajacBeautiguldaylheaubonheurconc/7.5/info_font/0.7/0.5/
+ToPrint/CastlebajacBeautiguldaylheaubonheurshop/7.5/info_font/0.75/0.5/
+ToPrint/CastlebajacBeautiguldaylheaubonheurname/15.899999999999519/long_font/0.82/0.5/
+ToPrint/CastlebajacBeautiguldaylheaubonheur

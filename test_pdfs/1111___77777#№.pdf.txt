@@ -1,0 +1,5 @@
+brand/15.499999999999995/short_font/0.7/0/
+test_pdfs/1111___77777#¹.pdfconc/7.5/info_font/0.7/0/
+test_pdfs/1111___77777#¹.pdfshop/7.5/info_font/0.75/0/
+test_pdfs/1111___77777#¹.pdfname/27.59999999999968/long_font/0.82/0/
+test_pdfs/1111___77777#¹.pdf

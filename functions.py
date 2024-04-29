@@ -1,3 +1,4 @@
+
 def split_line(l):
 	flg_one=False
 	flg_n=False
@@ -82,44 +83,82 @@ def do_split(frag_name):
 					cnt_lines=3
 					s[2],s[3]=split_line(s[2])
 			else:
-				#print('/m/')
+				
 				cnt_lines=3
 				
 				s[1]=frag_name[:x_l-1]
 				s[2]=frag_name[x_l:x_r+1]
 				s[3]=frag_name[x_r+2:]
-	print(s)
+
 	#s=[0,'MEMFIS','BOYS']		
 	cnt_lines=2	
 	return(s,cnt_lines)
-def split_string(l):
+def split_string(l,*tp):
+	l=l.upper()
+	except_list=[]
+	with open('data/except_list.txt', 'r', encoding='utf-8') as file:
+		for line in file:
+			modified_line = line.replace('\n', '')
+		
+			except_list.append(modified_line)
+
+	if l.find("NO.")>-1:
+		l=l.replace("NO.","no.")
+	
 	buf=''
 	buf_n=0
 	syms_list=[" ",'!']
 	line=['','']
-	s=[]
-	if len(line)>6:
+	s=[0]
+	if len(line)>10:
 		line[0]=l
 	else:
 		for i in range(len(l)):
 			if (l[i] in syms_list)or (i==len(l)-1):
 				s.append(i)
-		print(s)
+
 		mid=len(l)/2
-		print(mid)
+	
 		min_D=9999999
-		if len(s)>1:
+		for i in range(len(s)):
+			if i!=0 and i<len(s)-1:
+				p1=s[i-1]
+				p2=s[i]
+				p3=s[i+1]
+				if i>1:
+					p1=s[i-1]+1
+				if i==len(s)-2:
+					p3=s[i+1]+1
+				b1=l[p1:p2]
+				b2=l[p2+1:p3]
+				check_string=b1+' '+b2
+				if check_string=="EAU DE":
+					check_string+=l[s[i+1]:s[i+2]+1]
+				
+				for j in except_list:
+					if check_string==j or check_string==j+' ' or check_string==' '+j:
+						
+						s[i]=150
+						s[i+1]=150
+		if tp:
+			k=22
+		else:
+			k=12
+		if len(s)>2 and len(l)>k:
 			for i in range(len(s)):
 				if abs(mid-s[i])<min_D:
 					min_D=mid-s[i]
 					buf=s[i]
-					print(abs(mid-s[i]),mid,s[i],min_D)
+					
 			line[0]=l[:buf]
 			line[1]=l[buf+1:]
 		else:
 			line[0]=l
-	print(l)
-	print(line)
+
+	mx=0
+	for i in line:
+		if len(line)>mx:
+			mx=len(line)
 	return line
 def get_info():
 	brand='Les Liquides Imaginaires'
@@ -128,3 +167,31 @@ def get_info():
 	ml='10'
 	shop='АллюрПарфюм'
 	return brand,name,conc,ml,shop
+def add_image_to_pdf(image_path, pdf_path,y,c):
+    image = Image.open(image_path)
+
+    image_width, image_height = image.size
+
+    pdf_width, pdf_height = (4.5*cm,4.7*cm)
+
+    new_image_width = pdf_width
+
+    new_image_height = 10
+
+    c.drawImage(image_path, 0, y, width=new_image_width, height=new_image_height)
+def create_text_image(text, image_path, font_size=20, font_path=None):
+    image = Image.new("RGBA", (5048, 2024), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(image)
+
+    if font_path:
+        font = ImageFont.truetype(font_path, font_size)
+    else:
+        font = ImageFont.load_default()
+
+    draw.text((10, 10), text, fill="black", font=font)
+
+    bbox = image.getbbox()
+
+    cropped_image = image.crop(bbox)
+
+    cropped_image.save(image_path)
