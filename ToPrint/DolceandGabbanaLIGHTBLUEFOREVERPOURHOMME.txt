@@ -1,0 +1,5 @@
+brand/11.099999999999996/medium_font/0.7/0/
+ToPrint/DolceandGabbanaLIGHTBLUEFOREVERPOURHOMMEconc/7.5/info_font/0.7/0/
+ToPrint/DolceandGabbanaLIGHTBLUEFOREVERPOURHOMMEshop/7.5/info_font/0.75/0/
+ToPrint/DolceandGabbanaLIGHTBLUEFOREVERPOURHOMMEname/12.99999999999953/long_font/0.82/0/
+ToPrint/DolceandGabbanaLIGHTBLUEFOREVERPOURHOMME

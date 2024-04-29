@@ -333,43 +333,45 @@ def main(file_path,width,height):
 	k=0
 	f=file_path
 	b_f=file_path
-	while(os.path.exists(f+'.pdf')):
-		k+=1
-		b_f=file_path+'_'+str(k)
-		f = file_path+'_'+str(k)
-	c = Canvas(f+'.pdf', pagesize=(_W,_H))
-	obj[0].calc_width(c)
-	obj[1].calc_width(c)
-	global free_h
-	
-	
-	for i in obj:
+	if os.path.exists(f+'.pdfsdfsd'):
+		pass
+	else:
+		
+		c = Canvas(f+'.pdf', pagesize=(_W,_H))
+		obj[0].calc_width(c)
+		obj[1].calc_width(c)
+		global free_h
 		
 		
-		i.calc_width(c)
-		i.calc_height(c)
-	free_h=0
-	for i in obj:
-		free_h+=i.getH()
-	free_h=_H-2*h_border-free_h
-	d=free_h/(3+len(obj[3].ln_text))
-	
-	for i in obj:
-		i.shift(d,c)
-	
-	obj[0].draw_self(c,d)
-	obj[3].draw_self(c,d)
-	dh=(obj[0].y-obj[3].ln_text[0].last_fix(d))/2
-	obj[1].draw_self(c,d+lazy_d)
-	obj[2].draw_self(c,d+lazy_d)
-	#i.draw_rect_border(c)
-	#c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
-	c.setStrokeColorRGB(0, 255, 0)
+		for i in obj:
+			
+			
+			i.calc_width(c)
+			i.calc_height(c)
+		free_h=0
+		for i in obj:
+			free_h+=i.getH()
+		free_h=_H-2*h_border-free_h
+		d=free_h/(3+len(obj[3].ln_text))
+		
+		for i in obj:
+			i.shift(d,c)
+		
+		obj[0].draw_self(c,d)
+		obj[3].draw_self(c,d)
+		dh=(obj[0].y-obj[3].ln_text[0].last_fix(d))/2
+		obj[1].draw_self(c,d+lazy_d)
+		obj[2].draw_self(c,d+lazy_d)
+		#i.draw_rect_border(c)
+		#c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
+		c.setStrokeColorRGB(0, 255, 0)
 
-	f = open(file_path+'.txt', "w")
-	for i in obj:
-		f.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
-	c.save()
+		conf = open(file_path+'.txt', "w")
+		for i in obj:
+			conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
+		c.save()
+		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
+		os.remove(f+'.pdf')
 	#os.remove(str(b_f))
 
 fonts=init_fonts()
@@ -385,5 +387,6 @@ free_h=1.5*(2+len(obj[3].ln_text))
 product_name=brand_name+frag_name
 product_name=''.join(filter(str.isalnum, product_name))
 #print(product_name)
-main('ToPrint/'+product_name,_W,_H)
+print_folder='ToPrint/'
+main(print_folder+product_name,_W,_H)
 

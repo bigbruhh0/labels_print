@@ -6,6 +6,7 @@ import threading
 import asyncio
 import websockets
 import json
+from tkinter import ttk
 ws_get=[0,[]]
 def check_date():
     current_datetime = datetime.now()
@@ -56,7 +57,7 @@ async def handle_messages():
 				global ws_get
 				ws_get=my_list
 				if len(my_list[1])>0:
-					add_work(my_list[1][0][0].upper() + '_' + my_list[1][0][1] + '_' + my_list[1][0][2] + '_' + my_list[1][0][3])
+					add_work(my_list[1][0][0].upper() + '^' + my_list[1][0][1] + '^' + my_list[1][0][2] + '^' + my_list[1][0][3])
 					print(my_list[1])
 					# Установка состояния полей ввода на normal
 					brand_name_entry.config(state="normal")
@@ -86,13 +87,31 @@ async def handle_messages():
 		except websockets.exceptions.ConnectionClosed:
 			print("Connection closed by server")
 
+
+
+# Задание геометрии дочернего окна
+
+def add_to_tree(item):
+	time_data, product_data = item.split("|")
+	a, b, c, d = product_data.split("^")
+	done_work_listbox.insert('', tk.END, values=(len(done_work_listbox.get_children())+1,a, b, c, d))
+	done_work_listbox.yview_moveto(1)
+	
+def append_to_file(filename, value):
+	with open(filename, 'a') as file:
+		current_datetime = datetime.now()
+		hms = current_datetime.strftime("%d:%m:%y:%H:%M:%S")
+		file.write(value.replace('\n','') +'|'+hms+'\n')
+
+
 def add_work(text):
     global done_work
     current_datetime = datetime.now()
     hms = current_datetime.strftime("%H:%M:%S")
-    text = hms + '|' + text.replace(' ', '_')
+    text = hms + '|' + text
     print('ADD:', text)
     done_work.append(text)
+    add_to_tree(text)
     with open(file_path, "w") as file:
         for i in range(len(done_work)):
             file.write(done_work[i] + '\n')
@@ -109,13 +128,15 @@ last_date = read_info(cfg_file_path)[0]
 current_date = check_date()
 
 def send_log():
-    pass
+	a,b,c,d=brand_name_entry.get(),frag_name_entry.get(),conc_entry.get(),ml_entry.get()
+	append_to_file('config/problem_labels.txt',a+b+c+d+'\n')
 
 root = tk.Tk()
 root.title("Server Control App")
-
-send_post_button = tk.Button(root, text="Открыть в редакторе", command=edit_pdf)
-send_log = tk.Button(root, text="Сообщить об ошибке", command=send_log)
+button_frame = tk.Frame(root)
+button_frame.pack()
+send_post_button = tk.Button(button_frame, text="Открыть в редакторе", command=edit_pdf)
+send_log = tk.Button(button_frame, text="Сообщить об ошибке", command=send_log)
 
 brand_name_entry = tk.Entry(root, width=30,state="readonly")
 brand_name_entry.insert(0, "Brand Name")
@@ -129,8 +150,13 @@ conc_entry.insert(0, "Conc")
 ml_entry = tk.Entry(root, width=30,state="readonly")
 ml_entry.insert(0, "ML")
 
+
+
 result_label = tk.Label(root, text="")
 number_label = tk.Label(root, text="0")
+
+#open_list_button = tk.Button(button_frame, text="Open List Window", command=lambda: create_list_window(done_work, root))
+#open_list_button.pack(side=tk.LEFT,pady=20)
 
 if current_date == last_date:
     file_name = datetime.now().date()
@@ -157,16 +183,68 @@ else:
     print(file_name)
     print('Новая сессия')
     print('Файл:')
-    
-send_post_button.grid(row=1, column=0, pady=5)
-send_log.grid(row=1, column=1, pady=5)
-brand_name_entry.grid(row=2, column=0, columnspan=2, pady=5)
-frag_name_entry.grid(row=3, column=0, columnspan=2, pady=5)
-conc_entry.grid(row=4, column=0, columnspan=2, pady=5)
-ml_entry.grid(row=5, column=0, columnspan=2, pady=5)
-result_label.grid(row=6, column=0, columnspan=2)
-number_label.place(relx=0.5, rely=.95, anchor="center")
+# Создание Listbox для отображения списка done_work
+parent_geometry = root.geometry()
+parent_x, parent_y = map(int, parent_geometry.split('+')[1:3])
 
+# Размеры и позиция дочернего окна относительно родительского окна
+child_width = 700
+child_height = 200
+child_x = parent_x + root.winfo_width()  # Позиция X окна (правый край родительского окна)
+child_y = parent_y  # Позиция Y окна (верхняя граница родительского окна)
+
+#list_window = tk.Toplevel(root)
+#list_window.title("Done Work List")
+#list_window.geometry(f"{child_width}x{child_height}+{child_x}+{child_y}")
+done_work_listbox = ttk.Treeview(root, columns=('d','A', 'B', 'C', 'D'), show='headings')
+done_work_listbox.heading('d', text='#')
+done_work_listbox.heading('A', text='Бренд')
+done_work_listbox.heading('B', text='Аромат')
+done_work_listbox.heading('C', text='Конц.')
+done_work_listbox.heading('D', text='Объем')
+done_work_listbox.column('d', width=30, anchor="center")
+done_work_listbox.column('C', width=30, anchor="center")
+done_work_listbox.column('D', width=30, anchor="center")
+done_work_listbox.column('A', width=250, anchor="center")
+done_work_listbox.column('B', width=300, anchor="center")
+for i in done_work:
+	add_to_tree(i)
+# Размещение Listbox на окне
+done_work_listbox.pack(padx=10, pady=10)
+send_post_button.pack(side=tk.LEFT, pady=5)
+send_log.pack(side=tk.LEFT, pady=5)
+brand_name_entry.pack(side=tk.TOP, pady=5)
+frag_name_entry.pack(side=tk.TOP, pady=5)
+conc_entry.pack(side=tk.TOP, pady=5)
+ml_entry.pack(side=tk.TOP, pady=5)
+result_label.pack(side=tk.TOP)
+number_label.pack(side=tk.BOTTOM)
+def on_item_select(event):
+	# Получить индекс выбранной строки
+	selected_row = done_work_listbox.selection()[0]
+
+	# Получить данные из выбранной строки
+	data = done_work_listbox.item(selected_row)['values']
+	brand_name_entry.config(state="normal")
+	frag_name_entry.config(state="normal")
+	conc_entry.config(state="normal")
+	ml_entry.config(state="normal")
+	# Вставить данные в Entry
+	brand_name_entry.delete(0, tk.END)  # Очистить Entry перед вставкой новых данных
+	brand_name_entry.insert(0, data[1])  # Пример: вставить первый элемент из строки таблицы
+	frag_name_entry.delete(0, tk.END)  # Очистить Entry перед вставкой новых данных
+	frag_name_entry.insert(0, data[2])  # Пример: вставить первый элемент из строки таблицы
+	conc_entry.delete(0, tk.END)  # Очистить Entry перед вставкой новых данных
+	conc_entry.insert(0, data[3])  # Пример: вставить первый элемент из строки таблицы
+	ml_entry.delete(0, tk.END)  # Очистить Entry перед вставкой новых данных
+	ml_entry.insert(0, data[4])  # Пример: вставить первый элемент из строки таблицы
+	brand_name_entry.config(state="readonly")
+	frag_name_entry.config(state="readonly")
+	conc_entry.config(state="readonly")
+	ml_entry.config(state="readonly")
+
+# Привязать обработчик событий к таблице
+done_work_listbox.bind('<ButtonRelease-1>', on_item_select)
 
 # Функция для запуска асинхронной части (WebSocket)
 def run_asyncio():
