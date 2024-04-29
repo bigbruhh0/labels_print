@@ -1,5 +1,0 @@
-brand/11.099999999999996/medium_font/0.7/0.5/
-ToPrint/CDASDASDebajacBeautiguldaylheaubonheurconc/7.5/info_font/0.7/0.5/
-ToPrint/CDASDASDebajacBeautiguldaylheaubonheurshop/7.5/info_font/0.75/0.5/
-ToPrint/CDASDASDebajacBeautiguldaylheaubonheurname/15.899999999999519/long_font/0.82/0.5/
-ToPrint/CDASDASDebajacBeautiguldaylheaubonheur
