@@ -70,14 +70,14 @@ class _lines:
 		self.conc = conc
 		print(self.brand_name,self.frag_name,self.conc)
 		self.text=self.brand_name+' - '+self.frag_name+', '+self.conc
-		create_text_image(self.brand_name+' - '+self.frag_name+', '+self.conc,self.brand_name+' - '+self.frag_name+', '+self.conc+'.png',font_size, font_path)
+		create_text_image(self.brand_name+' - '+self.frag_name+', '+self.conc,cache_folder+self.brand_name+' - '+self.frag_name+', '+self.conc+'.png',font_size, font_path)
 		self.fontSize=12
 		self.k=0.7
 		self.x=x_border
 		self.y=H
-		self.image = Image.open(self.text+'.png',)
+		self.image = Image.open(cache_folder+self.text+'.png',)
 	def drawSelf(self,d,last_shift):
-		new_image_width = self.image_W
+		new_image_width = self.orig_w*self.k
 		new_image_height = self.image_H
 		numb_size=self.image_H/.8
 		c.setFont(self.fontName, numb_size)
@@ -87,7 +87,7 @@ class _lines:
 		else:
 			k1=0
 		c.drawString(x_border-k1,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1)+self.image_H*0.2,str(self.pos+1)+'.')
-		c.drawImage(self.text+'.png',l_w+ x_border-k1,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1), width=new_image_width, height=new_image_height)
+		c.drawImage(cache_folder+self.text+'.png',l_w+ x_border-k1,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1), width=new_image_width, height=new_image_height)
 	def calcWidth(self,h):
 		self.image_H=h
 		numb_size=self.image_H/.8
@@ -106,6 +106,8 @@ class _lines:
 		else:
 			print("DEF WIDTH",self.pos+1)
 			self.image_W=hh
+		self.k=self.image_W/image_width
+		self.orig_w=image_width
 	def getWidth(self):
 		pass
 	def getHeight(self):
@@ -171,10 +173,13 @@ def create_pdf(name, lines_list, filename):
 		h_per_name=12
 		d=dH/n-12
 	print(h_per_name)
-	
+	mn=999
 	for i in lines_obj:
 		i.calcWidth(h_per_name)
-		print(name_obj.y)
+		if i.k<mn:
+			mn=i.k
+	for i in lines_obj:
+		i.k=mn
 		i.drawSelf(d,p)
 	
 
@@ -185,28 +190,47 @@ current_directory = Path(__file__).resolve()
 #print(current_directory.parent / 'fonts' / 'kek.ttf')
 pdfmetrics.registerFont(TTFont('brand_font', current_directory.parent/'fonts/'/'RainTungesten.ttf'))
 pdfmetrics.registerFont(TTFont('list_font', current_directory.parent/'fonts/'/'testset.ttf'))
-n = 5
+n = 10
 W=4.7*cm
 H=4.5*cm
 x_border=.2*cm
 y_border=.2*cm
 font_size = 300
 font_path = "fonts/arnamu.ttf"
-lines_data = [
-    ["Jose Eisenberg", "Ambre D'Orient Secret V", "edp"],
-    ["Christian Dior", "Ambre Nuit", "edp"],
-    ["Maison Francis Kurkjian", "Grand Soir", "parf"],
-    ["The House Of Oud", "Just Before", "edt"],
-    ["Al Haramain", "Amber Oud Gold Edition", "edp"],
-    
-]
+brandy=False
+
+title_str=sys.argv[1]
+print('title',title_str)
+n=(len(sys.argv)-2)/3
+j=sys.argv[2:]
+buf=[]
+lines_data=[]
+for i in range(len(j)):
+	if (i+1)%3==0:
+		buf.append(j[i])
+		lines_data.append(buf)
+		print(buf)
+		buf=[]
+		
+	else:
+		buf.append(j[i])
+print(n)
+buf_check=lines_data[0][0]
+for i in range(len(lines_data)):
+	if buf_check == lines_data[i][0]:
+		if i==len(lines_data)-1:
+			brandy=True
+	else:
+		break
+print(brandy)
 lines_obj=[]
+cache_folder='cache_folder/'
 for i in rg(lines_data):
 	lines_obj.append(_lines(i,lines_data[i][0],lines_data[i][1],lines_data[i][2]))
-	
-name_obj = Name("ЯНТАРНАЯ АМБРА ЯНТАРНАЯ АМБРА")
 
-c = Canvas("odutput2.pdf", pagesize=(W, H))
+name_obj = Name("ЯНТАРНАЯ АМБРА")
 
-create_pdf(name_obj, lines_obj, "odutput2.pdf")
+c = Canvas("ToPrint/set_label.pdf", pagesize=(W, H))
+
+create_pdf(name_obj, lines_obj, "ToPrint/set_label.pdf")
 c.save()

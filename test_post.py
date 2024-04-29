@@ -1,14 +1,14 @@
 import requests
-
+import json
 def send_post_request(url, data):
 	try:
-		response = requests.post(url, data=data)
+		response = requests.post(url, json=data)
 		print("Статус код:", response.status_code)
 		print("Ответ сервера:", response.text)
 	except requests.exceptions.RequestException as e:
 		print("Ошибка при отправке POST-запроса:", e)
 lines=[]
-with open('data\test_data.txt', 'r', encoding='utf-8') as file:
+with open('data/test_data.txt', 'r', encoding='utf-8') as file:
     for line in file:
         modified_line = line.replace('№', 'No ')
         print(modified_line)
@@ -32,6 +32,7 @@ for i in range(len(lines)):
 	print(a)
 	if (i+1)%4==0:
 		data_set.append(a)
+		print('a',a)
 		cnt+=1
 		a={}
 print(data_set)
@@ -40,4 +41,5 @@ url = 'http://127.0.0.1:5000/'
 
 # Данные, которые вы хотите отправить
 for i in data_set:
-	send_post_request(url, i)
+	print(i)
+	send_post_request(url,i)

@@ -263,7 +263,7 @@ class _Line:
 			
 			c.setFont(self.fontName, self.fontSize)
 			c.setFillColorRGB(0, 0, 0)
-			print(self.type,dd)
+			#print(self.type,dd)
 			textobject1 = c.beginText(self.x-self.getWidth()/2, self.y + self.d+dd)
 			textobject1.setCharSpace(0)
 			textobject1.setFont(self.fontName, self.fontSize)
@@ -385,5 +385,5 @@ free_h=1.5*(2+len(obj[3].ln_text))
 product_name=brand_name+frag_name
 product_name=''.join(filter(str.isalnum, product_name))
 #print(product_name)
-main('test_pdfs/'+product_name,_W,_H)
+main('ToPrint/'+product_name,_W,_H)
 

@@ -1,53 +1,102 @@
-import sys
-import socket
-from flask import Flask, request
+import asyncio
+import websockets
+from aiohttp import web
 import subprocess
+import json
+# Переменная, которую будем отслеживать
+a = None
+ws_data=[0,[]]
+# Обработчик POST-запросов для обновления переменной a
+async def delete_pos(request):
+	data = await request.json()
+	bup=json.loads(data.get('k'))
+	print(bup)
+	print('Запрошено удаление: ',bup)
+	if bup in ws_data[1]:
+		ws_data[1].remove(bup)
+		ws_data[0]-=1
+	print('Удаление выполнено успешно')
+	return web.Response(text="ok")
+async def update_variable(request):
+	global count_do
+	data = await request.json()
+	print(data)
+	if 'brand_name' in data:
+		#print('val')
+		_type = data.get('type')
+		if _type=='1':
+			print('Создание этикетки обычной')
+		elif _type=='2':
+			print('Создание этикети сета')
+		if _type == '1':
+			brand_name = data.get('brand_name')
+			frag = data.get('frag_name')
+			frag_name = frag
+			conc = data.get('conc')
+			ml = data.get('ml')
 
-app = Flask(__name__)
-server_started = False
+			if None in [brand_name, frag_name, conc, ml]:
+				print("Одно из значений не было получено.")
+				return "Не все данные предоставлены", 400
+			#print(brand_name,frag_name,conc,ml)
+			subprocess.run(['python', 'PDF_LABEL.py', brand_name, frag_name, conc, ml], check=True)
+			#print(brand_name, frag_name, conc, ml)
+			
+			ws_data[0]+=1
+			ws_data[1].append([brand_name,frag_name,conc,ml])
+		elif _type=='2':
+			set_name='FUCKING SET NAME'
+			lines_data = [
+				["Jose Eisenberg", "Ambre D'Orient Secret V", "edp"],
+				["Jose Eisenberg", "Ambre Nuit", "edp"],
+				["Jose Eisenberg", "Grand Soir", "parf"],
+				["Jose Eisenberg", "Just Before", "edt"],
+				["Jose Eisenberg", "Amber Oud Gold Edition", "edp"],
+				["Jose Eisenberg", "Amasadadbre D'Orient Secret V", "edp"],
+				["Jose Eisenberg", "Ambre Nusdasdit", "edp"],
+				["Jose Eisenberg", "Graasdsadnd Soir", "parf"],
+				["Jose Eisenberg", "Just saaa", "edt"],
+				["Jose Eisenberg", "Amber Oud Godsdasld Edition", "edp"],
+    
+    
+			]
+			args=[set_name]
+			for i in lines_data:
+				for j in i:
+					args.append(j)
+			#print(args,1)
+			subprocess.run(['python', 'PDF_SET.py']+args, check=True)
+			ws_data[0]+=len(lines_data)
+			ws_data[1]=[set_name]
+		return web.Response(text=_type + "ok")
+	else:
+		return web.Response(text="Value not provided in request", status=400)
 
-def exit_app():
-    sys.exit()
+# Эндпоинт для получения текущего значения переменной a
+async def get_value(request):
+    global a
+    return web.Response(text=str(a))
 
-@app.route('/', methods=['GET', 'POST'])
-def _main():
-    if request.method == 'POST':
-        print('POST')
-        _type = request.form.get('type')
-        print(_type, 'type')
-        if _type == '1':
-            brand_name = request.form.get('brand_name')
-            frag = request.form.get('frag_name')
-            frag_name = frag
-            conc = request.form.get('conc')
-            ml = request.form.get('ml')
+# WebSocket обработчик для отправки значения переменной a клиенту
+async def handle_ws(websocket, path):
+    global ws_data
+    while True:
+        await websocket.send(json.dumps(ws_data))
+        await asyncio.sleep(1)
 
-            if None in [brand_name, frag_name, conc, ml]:
-                print("Одно из значений не было получено.")
-                return "Не все данные предоставлены", 400
+# Главная функция сервера
+async def main():
+    app = web.Application()
+    app.add_routes([web.post('/', update_variable),
+					web.post('/del', delete_pos),
+                    web.get('/get_value', get_value)])
+    app_runner = web.AppRunner(app)
+    await app_runner.setup()
+    server = web.TCPSite(app_runner, 'localhost', 5000)
+    await server.start()
 
-            subprocess.run(['python', 'new_life.py', brand_name, frag_name, conc, ml], check=True)
-            print(brand_name, frag_name, conc, ml)
+    async with websockets.serve(handle_ws, "localhost", 5001):
+        print("WebSocket server started...")
+        await asyncio.Future()  # Бесконечное ожидание
 
-    if request.method == 'GET':
-        print('GET')
-
-    return brand_name + '_' + frag_name + '_' + conc + "_" + ml + ' ' + "ok"
-
-@app.route('/shutdown', methods=['POST'])
-def shutdown_server():
-	print('SHUTDOWN')
-	global server_started
-	if not server_started:
-		raise RuntimeError('Сервер не запущен')
-
-	server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	server_socket.connect(('localhost', 5000))
-	server_socket.send(b'Shutdown')
-	server_socket.close()
-	print('Сервер выключен')
-	return 'Сервер выключен'
-
-if __name__ == '__main__':
-    server_started = True
-    app.run(debug=True, port=5000)
+asyncio.run(main())
