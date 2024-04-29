@@ -37,9 +37,11 @@ for i in range(len(lines)):
 		a={}
 print(data_set)
 # URL вашего локального сервера
-url = 'http://127.0.0.1:5000/'
+url = 'http://localhost:5000/'
 
 # Данные, которые вы хотите отправить
 for i in data_set:
 	print(i)
-	send_post_request(url,i)
+	#send_post_request(url,i)
+comp_3_url='http://192.168.0.111:5000/'
+send_post_request(url,{'type':'2'})

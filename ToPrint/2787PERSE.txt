@@ -1,0 +1,5 @@
+brand/15.499999999999995/short_font/0.7/0/
+ToPrint/2787PERSEconc/7.5/info_font/0.7/0/
+ToPrint/2787PERSEshop/7.5/info_font/0.75/0/
+ToPrint/2787PERSEname/37.599999999999824/medium_font/0.7/0/
+ToPrint/2787PERSE
