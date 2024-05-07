@@ -1,0 +1,5 @@
+brand/14.0/medium_font/0.7/0/
+ToPrint/ParfumsdeMarlyPerseusconc/7.5/info_font/0.7/0/
+ToPrint/ParfumsdeMarlyPerseusshop/7.5/info_font/0.75/0/
+ToPrint/ParfumsdeMarlyPerseusname/28.399999999999693/long_font/0.82/0/
+ToPrint/ParfumsdeMarlyPerseus

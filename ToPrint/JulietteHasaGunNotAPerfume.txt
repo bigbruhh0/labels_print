@@ -1,0 +1,5 @@
+brand/11.099999999999996/medium_font/0.7/0.0/
+ToPrint/JulietteHasaGunNotAPerfumeconc/7.5/info_font/0.7/0.0/
+ToPrint/JulietteHasaGunNotAPerfumeshop/7.5/info_font/0.75/0.0/
+ToPrint/JulietteHasaGunNotAPerfumename/15.999999999999519/short_font/0.7/0.0/
+ToPrint/JulietteHasaGunNotAPerfume

@@ -1,0 +1,5 @@
+brand/9.100000000000003/medium_font/0.82/1.5000000000000002/
+ToPrint/NicolaiParfumeurCreateurNumberOneIntenseconc/7.5/info_font/0.7/1.5000000000000002/
+ToPrint/NicolaiParfumeurCreateurNumberOneIntenseshop/7.5/info_font/0.75/1.5000000000000002/
+ToPrint/NicolaiParfumeurCreateurNumberOneIntensename/19.79999999999957/long_font/0.82/1.5000000000000002/
+ToPrint/NicolaiParfumeurCreateurNumberOneIntense

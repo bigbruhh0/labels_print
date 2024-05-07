@@ -48,21 +48,27 @@ async def post_set_comp3(request):
 		return web.Response(text=_type + "ok")
 async def update_variable(request):
 	global count_do
-	data = await request.json()
-	print(data)
-	if 'type' in data:
+	data = await request.post()
+	print(request.query)
+	b=request.query.get('brand')
+	conv_data=request.query
+	#return web.Response(text=data, status=400)
+	#print(data['data'])
+	if 'type' in conv_data:
 		#print('val')
-		_type = data.get('type')
+		_type = conv_data.get('type')
 		if _type=='1':
 			print('Создание этикетки обычной')
 		elif _type=='2':
 			print('Создание этикети сета')
 		if _type == '1':
-			brand_name = data.get('brand_name')
-			frag = data.get('frag_name')
+			brand_name = conv_data.get('brand')
+			frag = conv_data.get('frag_name')
 			frag_name = frag
-			conc = data.get('conc')
-			ml = data.get('ml')
+			conc = conv_data.get('conc')
+			conc=conc.replace('(пробник)','')
+			ml = conv_data.get('ml')
+			print([brand_name, frag_name, conc, ml])
 
 			if None in [brand_name, frag_name, conc, ml]:
 				print("Одно из значений не было получено.")
@@ -100,7 +106,7 @@ async def main():
                     web.get('/get_value', get_value)])
     app_runner = web.AppRunner(app)
     await app_runner.setup()
-    server = web.TCPSite(app_runner, '192.168.0.111', 5000)#только для 3 компа, поменять на локалхост для остальных
+    server = web.TCPSite(app_runner, "localhost", 5000)#только для 3 компа, поменять на локалхост для остальных
     await server.start()
 
     async with websockets.serve(handle_ws, "localhost", 5001):

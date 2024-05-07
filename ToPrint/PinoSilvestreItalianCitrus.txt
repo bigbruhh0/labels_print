@@ -1,0 +1,5 @@
+brand/11.099999999999996/short_font/0.7/0.0/
+ToPrint/PinoSilvestreItalianCitrusconc/7.5/info_font/0.7/0.0/
+ToPrint/PinoSilvestreItalianCitrusshop/7.5/info_font/0.75/0.0/
+ToPrint/PinoSilvestreItalianCitrusname/18.099999999999547/short_font/0.7/0.0/
+ToPrint/PinoSilvestreItalianCitrus

@@ -1,0 +1,5 @@
+brand/11.099999999999996/short_font/0.7/0/
+ToPrint/IsseyMiyakeLEaudIsseyVetiverPourHommeconc/7.5/info_font/0.7/0/
+ToPrint/IsseyMiyakeLEaudIsseyVetiverPourHommeshop/7.5/info_font/0.75/0/
+ToPrint/IsseyMiyakeLEaudIsseyVetiverPourHommename/11.999999999999533/long_font/0.82/0/
+ToPrint/IsseyMiyakeLEaudIsseyVetiverPourHomme
