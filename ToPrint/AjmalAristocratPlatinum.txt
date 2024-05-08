@@ -1,0 +1,5 @@
+brand/10.999999999999996/short_font/0.75/2.0300000000000007/
+ToPrint/AjmalAristocratPlatinumconc/7.5/info_font/0.7/2.0300000000000007/
+ToPrint/AjmalAristocratPlatinumshop/7.5/info_font/0.75/2.0300000000000007/
+ToPrint/AjmalAristocratPlatinumname/21.7999999999996/long_font/0.92/2.0300000000000007/
+ToPrint/AjmalAristocratPlatinum

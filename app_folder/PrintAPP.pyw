@@ -14,6 +14,39 @@ def check_date():
     print("Текущая дата:", current_date)
     day = current_datetime.day
     return current_date
+def set_ds():
+	url = 'http://localhost:5000/set_ds/'  # URL для отправки запроса
+	a=x_entry.get()
+	b=y_entry.get()
+	lil=[str(a),str(b)]
+	data = {'k': json.dumps({'dx':str(a),'dy':str(b)})}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
+def test_x():
+	url = 'http://localhost:5000/axis/'  # URL для отправки запроса
+	data = {'k': json.dumps(['x'])}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
+def test_y():
+	url = 'http://localhost:5000/axis/'  # URL для отправки запроса
+	data = {'k': json.dumps(['y'])}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
 
 def read_info(f_path):
     with open(f_path, "r") as file:
@@ -141,8 +174,20 @@ root = tk.Tk()
 root.title("Server Control App")
 button_frame = tk.Frame(root)
 button_frame.pack()
+d_axis=tk.Frame(button_frame)
+
+x_set=tk.Frame(d_axis)
+y_set=tk.Frame(d_axis)
+x_set.pack(side=tk.LEFT)
+y_set.pack(side=tk.RIGHT)
+d_axis.pack()
 send_post_button = tk.Button(button_frame, text="Открыть в редакторе", command=edit_pdf)
 send_log = tk.Button(button_frame, text="Сообщить об ошибке", command=send_log)
+ax_x = tk.Button(x_set, text="тест Х", command=test_x)
+ax_y = tk.Button(y_set, text="тест Y", command=test_y)
+confirm_ds = tk.Button(button_frame, text="Установить параметры", command=set_ds)
+confirm_ds.pack(side=tk.BOTTOM)
+
 
 brand_name_entry = tk.Entry(root, width=30,state="readonly")
 brand_name_entry.insert(0, "Brand Name")
@@ -155,6 +200,9 @@ conc_entry.insert(0, "Conc")
 
 ml_entry = tk.Entry(root, width=30,state="readonly")
 ml_entry.insert(0, "ML")
+
+x_entry=tk.Entry(x_set, width=30)
+y_entry=tk.Entry(y_set, width=30)
 
 
 
@@ -233,13 +281,17 @@ check_button.pack(side=tk.TOP)
 done_work_listbox.pack(padx=10, pady=10)
 send_post_button.pack(side=tk.LEFT, pady=5)
 send_log.pack(side=tk.LEFT, pady=5)
+ax_x.pack(side=tk.TOP, pady=5)
+ax_y.pack(side=tk.TOP, pady=5)
+
 brand_name_entry.pack(side=tk.TOP, pady=5)
 frag_name_entry.pack(side=tk.TOP, pady=5)
 conc_entry.pack(side=tk.TOP, pady=5)
 ml_entry.pack(side=tk.TOP, pady=5)
 result_label.pack(side=tk.TOP)
 number_label.pack(side=tk.BOTTOM)
-
+y_entry.pack(side=tk.BOTTOM)
+x_entry.pack(side=tk.BOTTOM)
 
 
 

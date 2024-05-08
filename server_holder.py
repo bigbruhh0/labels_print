@@ -7,6 +7,8 @@ import json
 a = None
 ws_data=[0,[]]
 DRAW_SHOP=1
+glob_DX='0'
+glob_DY='0'
 # Обработчик POST-запросов для обновления переменной a
 async def delete_pos(request):
     data = await request.json()  # Получаем данные запроса в формате JSON
@@ -33,6 +35,24 @@ async def checkbutton(request):
 		DRAW_SHOP=1
 	print(DRAW_SHOP)
 	return web.Response(text="ok")
+async def check_axis(request):
+	data = await request.json()  # Получаем данные запроса в формате JSON
+	bup = json.loads(data.get('k'))  # Получаем значение по ключу 'k' из JSON
+	print(bup)
+	subprocess.run(['python', 'debug_axis.py']+bup, check=True)
+	return web.Response(text= "ok")
+async def set_ds(request):
+	data = await request.json()  # Получаем данные запроса в формате JSON
+	global glob_DX
+	global glob_DY
+	bup = json.loads(data.get('k'))  # Получаем значение по ключу 'k' из JSON
+	print(bup['dx'],bup['dy'])
+	aa=bup['dx']
+	bb=bup['dy']
+	glob_DX=aa
+	glob_DY=bb
+	return web.Response(text= "ok")
+		
 async def post_set_comp3(request):
 	data = await request.json()
 	print(data)
@@ -91,7 +111,7 @@ async def update_variable(request):
 				print("Одно из значений не было получено.")
 				return "Не все данные предоставлены", 400
 			#print(brand_name,frag_name,conc,ml)
-			subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, ml,str(DRAW_SHOP)], check=True)
+			subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 			#print(brand_name, frag_name, conc, ml)
 			
 			ws_data[0]+=1
@@ -124,7 +144,7 @@ async def update_variable(request):
 				brand_name, frag_name, conc=i
 				for j in i:
 					args.append(j)
-				subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, set_ml], check=True)
+				subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, set_ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 				ws_data[0]+=1
 				ws_data[1].append([brand_name,frag_name,conc,set_ml])
 			#print(args,1)
@@ -152,7 +172,9 @@ async def main():
 					web.post('/set3/', post_set_comp3),
 					web.get('/get_value', get_value),
 					web.post('/del/', delete_pos),
-					web.post('/check/', checkbutton)])
+					web.post('/check/', checkbutton),
+					web.post('/axis/',check_axis),
+					web.post('/set_ds/',set_ds)])
     app_runner = web.AppRunner(app)
     await app_runner.setup()
     server = web.TCPSite(app_runner, "localhost", 5000)#только для 3 компа, поменять на локалхост для остальных

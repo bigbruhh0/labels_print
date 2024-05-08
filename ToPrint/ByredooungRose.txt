@@ -1,0 +1,5 @@
+brand/12/short_font/0.75/0/
+ToPrint/ByredooungRoseconc/7.5/info_font/0.7/0/
+ToPrint/ByredooungRoseshop/7.5/info_font/0.75/0/
+ToPrint/ByredooungRosename/23.599999999999625/long_font/0.92/0/
+ToPrint/ByredooungRose

@@ -1,0 +1,5 @@
+brand/10.999999999999996/medium_font/0.75/1.8900000000000006/
+ToPrint/AbercrombieFitchuthenticSelfWomanconc/7.5/info_font/0.7/1.8900000000000006/
+ToPrint/AbercrombieFitchuthenticSelfWomanshop/7.5/info_font/0.75/1.8900000000000006/
+ToPrint/AbercrombieFitchuthenticSelfWomanname/19.599999999999568/long_font/0.92/1.8900000000000006/
+ToPrint/AbercrombieFitchuthenticSelfWoman

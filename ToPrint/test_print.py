@@ -9,7 +9,7 @@ from reportlab.lib.units import cm, inch
 
 def print_pdf(input_pdf, mode=2, printer=1):
 	# тут мои принтеры, для своихузнаем имя дефолтного принтера через метод win32print.GetDefaultPrinter()
-	name = "TOSHIBA B-FV4 (300 dpi) (копия 1)" #win32print.GetDefaultPrinter()
+	name = "TOSHIBA_B-FV4_300dpi_copy4" #win32print.GetDefaultPrinter()
 	try:
 		# Устанавливаем дефолтный принтер
 		win32print.SetDefaultPrinterW(name)
@@ -46,8 +46,8 @@ def print_pdf(input_pdf, mode=2, printer=1):
 	win32print.ClosePrinter(handle)
 
 	## Меняем стандартный принтер на часто используемый  
-	win32print.SetDefaultPrinterW("TOSHIBA B-FV4 (300 dpi) (копия 1)")
-	win32print.SetDefaultPrinter("TOSHIBA B-FV4 (300 dpi) (копия 1)")
+	win32print.SetDefaultPrinterW("TOSHIBA_B-FV4_300dpi_copy4")
+	win32print.SetDefaultPrinter("TOSHIBA_B-FV4_300dpi_copy4")
 
 
 # Печатаем документы

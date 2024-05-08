@@ -22,10 +22,13 @@ frag_name=sys.argv[2]
 conc=sys.argv[3]
 ml=sys.argv[4]
 DRAW_SHOP=int(sys.argv[5])
+GDX=float(sys.argv[6])
+GDY=float(sys.argv[7])
 class st:
 	def __init__(self,_text,x,y,font,size,k,pos):
 		self.text=_text
 		self.x=x
+		self.dx=0
 		self.y=y
 		self.fontName=font
 		self.fontSize=50
@@ -76,7 +79,7 @@ class st:
 		textobject.setCharSpace(self.spacing)  # Установка межбуквенного интервала
 		b=self.spacing*(len(self.text)-1)
 		textobject.setFont(self.fontName, self.fontSize)
-		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2,dd+dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
+		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2+self.dx,dd+dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
 		print('|||',self.x-(self.getWidth()+b)/2,self.x,self.x+(self.getWidth()+b)/2),self.getWidth()+b
 		textobject.textLines(self.text)
 		c.drawText(textobject)
@@ -87,6 +90,7 @@ class st:
 class _Line:
 	def __init__(self,_text, fontName, fontSize,_type):
 		self.d=0
+		self.dx=0
 		self.text=_text
 		self.fontName = fontName
 		self.fontSize = fontSize
@@ -195,7 +199,7 @@ class _Line:
 			if stringWidth(self.text,self.fontName,self.fontSize)>_W:
 				self.fontName=self.fonts[2]
 				self.k=self.ks[2]
-			while self.getH()<MAX_H:
+			while self.getH()<MAX_H-2:
 				self.fontSize+=.1
 			while stringWidth(self.text,self.fontName,self.fontSize)>_W-v_border*2:
 				self.fontSize-=.1
@@ -268,7 +272,7 @@ class _Line:
 			c.setFont(self.fontName, self.fontSize)
 			c.setFillColorRGB(0, 0, 0)
 			#print(self.type,dd)
-			textobject1 = c.beginText(self.x-self.getWidth()/2, self.y + self.d+dd)
+			textobject1 = c.beginText(self.x-self.getWidth()/2+self.dx, self.y + self.d+dd)
 			textobject1.setCharSpace(0)
 			textobject1.setFont(self.fontName, self.fontSize)
 			textobject1.textLines(self.text)
@@ -337,7 +341,7 @@ def init_fonts():
 def get_params():
 	v_border=.1*cm
 	h_border=.1*cm
-	return v_border,h_border,2.5*cm,1.8*cm
+	return v_border,h_border,2.45*cm,1.75*cm
 
 
 def main(file_path,width,height):
@@ -365,9 +369,17 @@ def main(file_path,width,height):
 		free_h=_H-2*h_border-free_h
 		d=free_h/(3+len(obj[3].ln_text))
 		
+		
 		for i in obj:
 			i.shift(d,c)
-		
+			
+		for i in obj:
+			i.dx+=GDX
+			i.d+=GDY
+			if i.type=='name':
+				for j in i.ln_text:
+					j.dx+=GDX
+					j.d+=GDY
 		obj[0].draw_self(c,d)
 		obj[3].draw_self(c,d)
 		dh=(obj[0].y-obj[3].ln_text[0].last_fix(d))/2
