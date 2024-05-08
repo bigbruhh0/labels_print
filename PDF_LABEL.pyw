@@ -21,6 +21,7 @@ brand_name=sys.argv[1]
 frag_name=sys.argv[2]
 conc=sys.argv[3]
 ml=sys.argv[4]
+DRAW_SHOP=int(sys.argv[5])
 class st:
 	def __init__(self,_text,x,y,font,size,k,pos):
 		self.text=_text
@@ -76,6 +77,7 @@ class st:
 		b=self.spacing*(len(self.text)-1)
 		textobject.setFont(self.fontName, self.fontSize)
 		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2,dd+dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
+		print('|||',self.x-(self.getWidth()+b)/2,self.x,self.x+(self.getWidth()+b)/2),self.getWidth()+b
 		textobject.textLines(self.text)
 		c.drawText(textobject)
 	def get_pos(self,dh):
@@ -97,7 +99,7 @@ class _Line:
 		self.fontSize=30
 		if self.type=="brand":
 			self.fonts=['short_font','medium_font','medium_font']
-			self.ks=[0.7,0.7,0.82]
+			self.ks=[0.75,0.75,0.85]
 			self.k=self.ks[0]
 			self.fontName=self.fonts[0]
 			#if self.len<=20:
@@ -132,20 +134,20 @@ class _Line:
 			if len(self.lines)>1:
 				if mx>=10 and mx<=12:
 					self.fontName='long_font'
-					self.k=0.82
+					self.k=0.92
 				elif mx>=12:
 					self.fontName='long_font'
-					self.k=0.82
+					self.k=0.92
 				else:
 					self.fontName='short_font'
-					self.k=0.7
+					self.k=0.8
 			else:
 				if mx>6:
 					self.fontName='long_font'
-					self.k=0.82
+					self.k=0.92
 				else:
 					self.fontName='medium_font'
-					self.k=0.7	
+					self.k=0.8
 			l=[]
 			
 			for i in range(len(self.lines)):
@@ -182,6 +184,8 @@ class _Line:
 		if self.type=="brand":
 			if len(obj[3].ln_text)==1 and len(obj[3].ln_text[0].text)<11:
 				self.fontSize=14
+				if 'y' in self.text or 'g' in self.text:
+					self.fontSize=12
 			else:
 				self.fontSize=10
 			MAX_H=self.fontSize*(self.k+.07)
@@ -231,7 +235,7 @@ class _Line:
 			self.calc_height(c)
 	def calc_height(self,c):
 		if self.type=="name":
-			self.dh=obj[0].y-obj[1].y-obj[1].getH()
+			self.dh=obj[0].y-obj[1].y-obj[1].getH()-1
 			c.setStrokeColorRGB(255, 0, 0)
 			#c.rect(0,obj[1].y+obj[1].getH(),_W,self.dh)
 			
@@ -248,10 +252,10 @@ class _Line:
 				textH=0
 				for i in self.ln_text:
 					textH+=i.getHeight()
-			if len(self.ln_text)==1:
-				for i in self.ln_text:
-					if i.fontSize>24:
-						i.fontSize=24
+			
+			for i in self.ln_text:
+				if i.fontSize>23:
+					i.fontSize=23
 			#c.rect(v_border,1*(2+len(self.ln_text))+self.d+obj[1].y+obj[1].getH(),_W-2*v_border,self.dh-1*(2+len(self.ln_text))*2)
 	def draw_self(self, c, d):
 		dd=0
@@ -268,7 +272,9 @@ class _Line:
 			textobject1.setCharSpace(0)
 			textobject1.setFont(self.fontName, self.fontSize)
 			textobject1.textLines(self.text)
-			c.drawText(textobject1)
+			print('YUYUY',self.type,DRAW_SHOP)
+			if not (self.type=='shop' and DRAW_SHOP==0):
+				c.drawText(textobject1)
 			c.setLineWidth(0.2)
 			if dev_draw:
 				c.line(0,self.get_pos()[1],_W,self.get_pos()[1])
@@ -287,21 +293,26 @@ class _Line:
 				i.spacing=mn
 				i.draw_self(c, d,dd)
 	def shift(self,d,c):
+		#d=1.5
 		H=d
+		kk=1
+		if 'g' in obj[0].text or 'y' in obj[0].text or 'j' in obj[0].text:
+			kk=1
+		print(d,d,d,d,d,d,d,d,d)
 		for i in obj[3].ln_text:
 			H+=d+i.fontSize*i.k
 		H=H+obj[1].y+obj[1].fontSize*obj[1].k
 		H = obj[0].y - H
 		dh = H / 2
 		if self.type=='conc':
-			self.d=d+dh
+			self.d=(d+dh)*kk
 		elif self.type=='shop':
-			self.d=dh
+			self.d=dh/3#*.5*kk
 		elif self.type=='name':
 			for i in range(len(self.ln_text)):
-				self.ln_text[i].d=d+d*(i+1)
+				self.ln_text[i].d=(d+d*(i+1))*kk
 		elif self.type=='brand':
-			self.d=-d*0
+			self.d=d*((1-kk)*.5)*0
 
 def init_fonts():
 	sh="Ornitons"
@@ -365,7 +376,9 @@ def main(file_path,width,height):
 		#i.draw_rect_border(c)
 		#c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
 		c.setStrokeColorRGB(0, 255, 0)
-
+		if dev_draw:
+			#c.line(_W/2,0,_W/2,_H)
+			c.line(_W/2,obj[3].ln_text[1].y-1,_W/2-obj[3].ln_text[1].getWidth()/2,obj[3].ln_text[1].y-1)
 		conf = open(file_path+'.txt', "w")
 		for i in obj:
 			conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
@@ -373,7 +386,7 @@ def main(file_path,width,height):
 		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
 		path_print="C:\\Users\\User\\Documents\\GitHub\\labels_print\\"+f+'.pdf'
 		subprocess.run(['ToPrint\\print_script.bat', path_print], shell=True)
-		os.remove(f+'.pdf')
+		#os.remove(f+'.pdf')
 	#os.remove(str(b_f))
 
 fonts=init_fonts()
@@ -382,9 +395,10 @@ lazy_d=0
 dev_draw=False
 v_border,h_border,_W,_H=get_params()
 obj.append(_Line(brand_name,'Arial',9,'brand'))
-obj.append(_Line(conc+" "+ml+" ml",'Arial',8,'conc'))
+obj.append(_Line(conc+ml+" ml",'Arial',8,'conc'))
 obj.append(_Line("АллюрПарфюм",'Arial',8,'shop'))
 obj.append(_Line(frag_name,'Arial',10,'name'))
+print('|'+brand_name+'|'+frag_name+'|'+conc+'|'+ml+'|')
 free_h=1.5*(2+len(obj[3].ln_text))
 product_name=brand_name+frag_name
 product_name=''.join(filter(str.isalnum, product_name))

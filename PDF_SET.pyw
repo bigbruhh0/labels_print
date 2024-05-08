@@ -227,8 +227,8 @@ lines_obj=[]
 cache_folder='cache_folder/'
 for i in rg(lines_data):
 	lines_obj.append(_lines(i,lines_data[i][0],lines_data[i][1],lines_data[i][2]))
-
-name_obj = Name("ЯНТАРНАЯ АМБРА")
+elements = title_str.split(',')
+name_obj = Name(elements[0])
 
 c = Canvas("ToPrint/set_label.pdf", pagesize=(W, H))
 

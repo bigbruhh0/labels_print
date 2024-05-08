@@ -1,5 +1,0 @@
-brand/14.2/short_font/0.7/0/
-ToPrint/CoquilleteReginetteconc/7.5/info_font/0.7/0/
-ToPrint/CoquilleteReginetteshop/7.5/info_font/0.75/0/
-ToPrint/CoquilleteReginettename/24.099999999999632/long_font/0.82/0/
-ToPrint/CoquilleteReginette

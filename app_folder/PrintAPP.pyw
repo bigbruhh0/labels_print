@@ -24,9 +24,15 @@ def read_info(f_path):
         kek.append(i)
     return kek
 def send_post_del(ln):
-	if len(ln)>0:
-		data=json.dumps(ln)
-		response = requests.post('http://localhost:5000/del', json={'k':data})
+    url = 'http://localhost:5000/del/'  # URL для отправки запроса
+    data = {'k': json.dumps(ln)}  # Преобразуем список в JSON и передаем как параметр запроса
+
+    try:
+        response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+        response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+        print("Запрос успешно отправлен")
+    except requests.exceptions.RequestException as e:
+        print("Ошибка при отправке запроса:", e)
 def send_post_request():
     _copy = 1
     brand_name = brand_name_entry.get()
@@ -210,6 +216,20 @@ done_work_listbox.column('B', width=300, anchor="center")
 for i in done_work:
 	add_to_tree(i)
 # Размещение Listbox на окне
+def check_action():
+	url = 'http://localhost:5000/check/'  # URL для отправки запроса
+	
+	data = {'k': json.dumps([checkvar.get()])}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
+checkvar = tk.BooleanVar()
+check_button = tk.Checkbutton(root, text="НЕ ПЕЧАТАТЬ НАЗВАНИЕ МАГАЗИНА", variable=checkvar,command=check_action)
+check_button.pack(side=tk.TOP)
 done_work_listbox.pack(padx=10, pady=10)
 send_post_button.pack(side=tk.LEFT, pady=5)
 send_log.pack(side=tk.LEFT, pady=5)
@@ -219,6 +239,11 @@ conc_entry.pack(side=tk.TOP, pady=5)
 ml_entry.pack(side=tk.TOP, pady=5)
 result_label.pack(side=tk.TOP)
 number_label.pack(side=tk.BOTTOM)
+
+
+
+
+
 def on_item_select(event):
 	# Получить индекс выбранной строки
 	selected_row = done_work_listbox.selection()[0]
@@ -253,5 +278,7 @@ def run_asyncio():
 # Запуск асинхронной части в отдельном потоке
 asyncio_thread = threading.Thread(target=run_asyncio)
 asyncio_thread.start()
+
+
 
 root.mainloop()
