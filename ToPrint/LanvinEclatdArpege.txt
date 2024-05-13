@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/LanvinEclatdArpegeconc/7.5/info_font/0.7/0.0/
-ToPrint/LanvinEclatdArpegeshop/7.5/info_font/0.75/0.0/
-ToPrint/LanvinEclatdArpegename/14.799999999999523/short_font/0.8/0.0/
-ToPrint/LanvinEclatdArpege

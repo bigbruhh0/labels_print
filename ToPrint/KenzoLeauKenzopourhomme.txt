@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/2.500000000000001/
-ToPrint/KenzoLeauKenzopourhommeconc/7.5/info_font/0.7/2.500000000000001/
-ToPrint/KenzoLeauKenzopourhommeshop/7.5/info_font/0.75/2.500000000000001/
-ToPrint/KenzoLeauKenzopourhommename/20.599999999999582/long_font/0.92/2.500000000000001/
-ToPrint/KenzoLeauKenzopourhomme

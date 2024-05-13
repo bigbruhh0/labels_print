@@ -13,9 +13,15 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from reportlab.lib.fonts import addMapping
 from reportlab.pdfbase.ttfonts import TTFont
-from functions import do_split,split_line,get_info,split_string
+from functions import do_split,split_line,get_info,split_string,read_info
 import sys
 import os
+buf_list=read_info('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
+replace_list=[]
+for i in buf_list:
+	ba=i.split('|_|')
+	replace_list.append(ba)
+print(replace_list)
 #brand_name,frag_name,conc,ml=['Dolce and Gabbana','LIGHT BLUE FOREVER POUR HOMME','edp','3']
 brand_name=sys.argv[1]
 frag_name=sys.argv[2]
@@ -24,6 +30,11 @@ ml=sys.argv[4]
 DRAW_SHOP=int(sys.argv[5])
 GDX=float(sys.argv[6])
 GDY=float(sys.argv[7])
+for i in replace_list:
+	if frag_name==i[0]:
+		frag_name=i[1]
+		break
+print(GDX,GDY,'GDGDGDGD')
 class st:
 	def __init__(self,_text,x,y,font,size,k,pos):
 		self.text=_text
@@ -47,11 +58,8 @@ class st:
 		if len(obj[3].max_line)<=10:
 			self.spacing=self.spacing*.7
 		
-	def last_fix(self,d):
-		H=d
-		for i in obj[3].ln_text:
-			H+=d+i.fontSize*i.k
-		H=H+obj[1].y+obj[1].fontSize*obj[1].k
+	def last_fix(self):
+		H=0
 		return H
 	def getWidth(self):
 		self.width=stringWidth(self.text,self.fontName,self.fontSize)
@@ -62,29 +70,24 @@ class st:
 	def draw_rect_border(self,c):
 		c.setStrokeColorRGB(0,0,255)
 		c.rect(self.x-self.getWidth()/2,self.d+obj[3].y+self.getHeight()*(self.pos)*(len(obj[3].ln_text)-1),self.getWidth(),self.getHeight())
-	def draw_self(self, c, d,dd):
-		H = self.last_fix(d)
-		H = obj[0].y - H
-		dh = H / 2
-		global lazy_d
-		lazy_d=dh
+	def draw_self(self, c):
 		#self.space=2
 		if dev_draw:
 			c.setLineWidth(0.2)
-			c.line(0,self.get_pos(dh)[0],_W,self.get_pos(dh)[0])
-			c.line(0,self.get_pos(dh)[1],_W,self.get_pos(dh)[1])
+			c.line(0,self.get_pos()[0],_W,self.get_pos()[0])
+			c.line(0,self.get_pos()[1],_W,self.get_pos()[1])
 		self.fontSize = self.fontSize + self.size_d
 		c.setFont(self.fontName, self.fontSize)
 		textobject = c.beginText()
 		textobject.setCharSpace(self.spacing)  # Установка межбуквенного интервала
 		b=self.spacing*(len(self.text)-1)
 		textobject.setFont(self.fontName, self.fontSize)
-		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2+self.dx,dd+dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
-		print('|||',self.x-(self.getWidth()+b)/2,self.x,self.x+(self.getWidth()+b)/2),self.getWidth()+b
+		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2+self.dx,self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
+		#print('|||',self.x-(self.getWidth()+b)/2,self.x,self.x+(self.getWidth()+b)/2),self.getWidth()+b
 		textobject.textLines(self.text)
 		c.drawText(textobject)
-	def get_pos(self,dh):
-		return dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1),dh + self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1)+self.getHeight()
+	def get_pos(self):
+		return  self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1), self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1)+self.getHeight()
 
 		
 class _Line:
@@ -121,7 +124,7 @@ class _Line:
 			self.fontName='info_font'
 			self.k=.7
 			self.fontSize=7.5
-			self.y=h_border
+			self.y=h_border+self.fontSize*0.75
 		if self.type=="name":
 			self.y=obj[1].y+obj[1].getH()
 			self.lines=[]
@@ -193,25 +196,29 @@ class _Line:
 			else:
 				self.fontSize=10
 			MAX_H=self.fontSize*(self.k+.07)
-			if stringWidth(self.text,self.fontName,self.fontSize)>_W:
+			if stringWidth(self.text,self.fontName,self.fontSize)>_W-v_border*2.5:
 				self.fontName=self.fonts[1]
 				self.k=self.ks[1]
-			if stringWidth(self.text,self.fontName,self.fontSize)>_W:
+			if stringWidth(self.text,self.fontName,self.fontSize)>_W-v_border*2.5:
 				self.fontName=self.fonts[2]
 				self.k=self.ks[2]
 			while self.getH()<MAX_H-2:
 				self.fontSize+=.1
-			while stringWidth(self.text,self.fontName,self.fontSize)>_W-v_border*2:
+			while stringWidth(self.text,self.fontName,self.fontSize)>_W-v_border*2.5:
 				self.fontSize-=.1
 			self.y=_H-h_border-self.fontSize*self.k
+			'''obj[3].getH()+obj[1].getH()+obj[2].getH()'''
+
 
 		if self.type=="conc":
 			self.y=obj[2].y+obj[2].getH()
 		if self.type=="name":
+			print(1,self.fontSize)
 			self.fontSize=50
 			for i in self.ln_text:
 				i.fontSize=50
 			self.y=obj[1].y+obj[1].getH()
+
 			
 			mx=0
 			mx_buf=''
@@ -231,25 +238,31 @@ class _Line:
 				self.min_line=mn_buf
 			else:
 				self.max_line=self.ln_text[0].text
-			while(self.getWidth(self.max_line)>_W-v_border*2):
+			while(self.getWidth(self.max_line)>_W-v_border*2-0.2*cm):
 				self.fontSize-=.1
 				
 				for i in self.ln_text:
 					i.fontSize-=.1
-			self.calc_height(c)
+			print(2,self.fontSize)
+			#self.calc_height(c)
 	def calc_height(self,c):
 		if self.type=="name":
-			self.dh=obj[0].y-obj[1].y-obj[1].getH()-1
+			if len(self.ln_text)==1:
+				REG_FREE=0.25*cm
+			else:
+				REG_FREE=0.15*cm
+			self.dh=obj[0].y-obj[1].get_pos()[1]
+			#c.rect(0,obj[1].get_pos()[1],_W,obj[0].y-obj[1].get_pos()[1])
+			print('111111',obj[0].y,obj[1].get_pos()[1])
 			c.setStrokeColorRGB(255, 0, 0)
 			#c.rect(0,obj[1].y+obj[1].getH(),_W,self.dh)
-			
+			self.fontSize=self.ln_text[0].fontSize
 			for i in range(len(self.ln_text)):
-				self.ln_text[i].y=self.y+self.fontSize*self.k-self.dh*(i)
+				self.ln_text[i].y=self.fontSize*self.k
 			textH=0
 			for i in self.ln_text:
 				textH+=i.getHeight()
-			
-			while (textH>self.dh-free_h):
+			while (textH>self.dh-REG_FREE):
 				for i in self.ln_text:
 					i.fontSize-=.1
 					
@@ -258,32 +271,32 @@ class _Line:
 					textH+=i.getHeight()
 			
 			for i in self.ln_text:
+				print(3,i.fontSize)
 				if i.fontSize>23:
 					i.fontSize=23
-			#c.rect(v_border,1*(2+len(self.ln_text))+self.d+obj[1].y+obj[1].getH(),_W-2*v_border,self.dh-1*(2+len(self.ln_text))*2)
-	def draw_self(self, c, d):
-		dd=0
-		if self.type!='brand' :
-			for i in {'q','j','p','g'}:
-				if i in self.text:
-					dd=-1
-		if self.type != 'name':
 			
+			obj[0].y=obj[3].getH()+obj[3].y
+			if dev_draw:
+				c.rect(0,obj[0].get_pos()[1],_W,_H-obj[0].get_pos()[1]-h_border)
+				#c.rect(v_border,1*(2+len(self.ln_text))+self.d+obj[1].y+obj[1].getH(),_W-2*v_border,self.dh-1*(2+len(self.ln_text))*2)
+	def draw_self(self, c):
+		if self.type != 'name':
 			c.setFont(self.fontName, self.fontSize)
 			c.setFillColorRGB(0, 0, 0)
-			#print(self.type,dd)
-			textobject1 = c.beginText(self.x-self.getWidth()/2+self.dx, self.y + self.d+dd)
+			print(self.d,self.type)
+			textobject1 = c.beginText(self.x-self.getWidth()/2+self.dx, self.y + self.d)
 			textobject1.setCharSpace(0)
 			textobject1.setFont(self.fontName, self.fontSize)
 			textobject1.textLines(self.text)
-			print('YUYUY',self.type,DRAW_SHOP)
 			if not (self.type=='shop' and DRAW_SHOP==0):
 				c.drawText(textobject1)
-			c.setLineWidth(0.2)
+			
 			if dev_draw:
+				c.setLineWidth(0.2)
 				c.line(0,self.get_pos()[1],_W,self.get_pos()[1])
 				c.line(0,self.get_pos()[0],_W,self.get_pos()[0])
 		else:
+			print(self.fontSize)
 			if len(self.ln_text)>1:
 				for i in self.ln_text:
 					i.set_spacing()
@@ -293,30 +306,12 @@ class _Line:
 						mn=i.spacing
 			else:
 				mn=0
+			self.y=self.y+self.d
 			for i in self.ln_text:
 				i.spacing=mn
-				i.draw_self(c, d,dd)
+				i.draw_self(c)
 	def shift(self,d,c):
-		#d=1.5
-		H=d
-		kk=1
-		if 'g' in obj[0].text or 'y' in obj[0].text or 'j' in obj[0].text:
-			kk=1
-		print(d,d,d,d,d,d,d,d,d)
-		for i in obj[3].ln_text:
-			H+=d+i.fontSize*i.k
-		H=H+obj[1].y+obj[1].fontSize*obj[1].k
-		H = obj[0].y - H
-		dh = H / 2
-		if self.type=='conc':
-			self.d=(d+dh)*kk
-		elif self.type=='shop':
-			self.d=dh/3#*.5*kk
-		elif self.type=='name':
-			for i in range(len(self.ln_text)):
-				self.ln_text[i].d=(d+d*(i+1))*kk
-		elif self.type=='brand':
-			self.d=d*((1-kk)*.5)*0
+		pass
 
 def init_fonts():
 	sh="Ornitons"
@@ -343,7 +338,7 @@ def get_params():
 	h_border=.1*cm
 	return v_border,h_border,2.45*cm,1.75*cm
 
-
+GLOB_D=0
 def main(file_path,width,height):
 	k=0
 	f=file_path
@@ -362,17 +357,7 @@ def main(file_path,width,height):
 			
 			
 			i.calc_width(c)
-			i.calc_height(c)
-		free_h=0
-		for i in obj:
-			free_h+=i.getH()
-		free_h=_H-2*h_border-free_h
-		d=free_h/(3+len(obj[3].ln_text))
-		
-		
-		for i in obj:
-			i.shift(d,c)
-			
+			i.calc_height(c)		
 		for i in obj:
 			i.dx+=GDX
 			i.d+=GDY
@@ -380,17 +365,24 @@ def main(file_path,width,height):
 				for j in i.ln_text:
 					j.dx+=GDX
 					j.d+=GDY
-		obj[0].draw_self(c,d)
-		obj[3].draw_self(c,d)
-		dh=(obj[0].y-obj[3].ln_text[0].last_fix(d))/2
-		obj[1].draw_self(c,d+lazy_d)
-		obj[2].draw_self(c,d+lazy_d)
+		FREE_H=_H-h_border-obj[0].get_pos()[1]
+		DH=FREE_H/4
+		print(DH,FREE_H,"HHHHH")
+		
+		obj[1].d+=DH
+		obj[3].d+=DH*2
+		obj[0].d+=DH*3
+		obj[0].draw_self(c)
+		obj[3].draw_self(c)
+		obj[1].draw_self(c)
+		obj[2].draw_self(c)
 		#i.draw_rect_border(c)
-		#c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
+		
 		c.setStrokeColorRGB(0, 255, 0)
 		if dev_draw:
-			#c.line(_W/2,0,_W/2,_H)
+			c.line(_W/2,0,_W/2,_H)
 			c.line(_W/2,obj[3].ln_text[1].y-1,_W/2-obj[3].ln_text[1].getWidth()/2,obj[3].ln_text[1].y-1)
+			c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
 		conf = open(file_path+'.txt', "w")
 		for i in obj:
 			conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
@@ -398,23 +390,21 @@ def main(file_path,width,height):
 		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
 		path_print="C:\\Users\\User\\Documents\\GitHub\\labels_print\\"+f+'.pdf'
 		subprocess.run(['ToPrint\\print_script.bat', path_print], shell=True)
-		#os.remove(f+'.pdf')
+		os.remove(f+'.pdf')
 	#os.remove(str(b_f))
 
 fonts=init_fonts()
 obj=[]
-lazy_d=0
 dev_draw=False
 v_border,h_border,_W,_H=get_params()
 obj.append(_Line(brand_name,'Arial',9,'brand'))
 obj.append(_Line(conc+ml+" ml",'Arial',8,'conc'))
 obj.append(_Line("АллюрПарфюм",'Arial',8,'shop'))
 obj.append(_Line(frag_name,'Arial',10,'name'))
-print('|'+brand_name+'|'+frag_name+'|'+conc+'|'+ml+'|')
+
 free_h=1.5*(2+len(obj[3].ln_text))
 product_name=brand_name+frag_name
 product_name=''.join(filter(str.isalnum, product_name))
-#print(product_name)
 print_folder='ToPrint/'
 main(print_folder+product_name,_W,_H)
 

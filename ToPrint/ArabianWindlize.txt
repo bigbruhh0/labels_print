@@ -1,5 +1,0 @@
-brand/15.399999999999995/medium_font/0.75/0/
-ToPrint/ArabianWindlizeconc/7.5/info_font/0.7/0/
-ToPrint/ArabianWindlizeshop/7.5/info_font/0.75/0/
-ToPrint/ArabianWindlizename/50/medium_font/0.8/0/
-ToPrint/ArabianWindlize

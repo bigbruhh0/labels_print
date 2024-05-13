@@ -1,5 +1,0 @@
-brand/15.499999999999995/medium_font/0.7/0/
-test_pdfs/kukis.pdf_9.pdfconc/7.5/info_font/0.7/0/
-test_pdfs/kukis.pdf_9.pdfshop/7.5/info_font/0.75/0/
-test_pdfs/kukis.pdf_9.pdfname/33.79999999999977/long_font/0.82/0/
-test_pdfs/kukis.pdf_9.pdf

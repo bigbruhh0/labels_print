@@ -180,7 +180,7 @@ current_date = check_date()
 
 def send_log():
 	a,b,c,d=brand_name_entry.get(),frag_name_entry.get(),conc_entry.get(),ml_entry.get()
-	append_to_file('config/problem_labels.txt',a+b+c+d+'\n')
+	append_to_file('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/проблемные названия(ошибки).txt',a+","+b+","+c+","+d+'\n')
 
 root = tk.Tk()
 root.title("Server Control App")

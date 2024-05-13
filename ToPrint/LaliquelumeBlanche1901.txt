@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/1.7000000000000004/
-ToPrint/LaliquelumeBlanche1901conc/7.5/info_font/0.7/1.7000000000000004/
-ToPrint/LaliquelumeBlanche1901shop/7.5/info_font/0.75/1.7000000000000004/
-ToPrint/LaliquelumeBlanche1901name/17.299999999999535/long_font/0.92/1.7000000000000004/
-ToPrint/LaliquelumeBlanche1901

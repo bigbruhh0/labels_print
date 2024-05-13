@@ -1,5 +1,0 @@
-brand/12/medium_font/0.75/0/
-ToPrint/JoseEisenbergAmbreNuitconc/7.5/info_font/0.7/0/
-ToPrint/JoseEisenbergAmbreNuitshop/7.5/info_font/0.75/0/
-ToPrint/JoseEisenbergAmbreNuitname/21.399999999999594/long_font/0.92/0/
-ToPrint/JoseEisenbergAmbreNuit

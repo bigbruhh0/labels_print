@@ -24,11 +24,11 @@ def main(file_path,width,height):
 	b_f=file_path	
 	dy=0
 	dx=0
-	for i in range(7):
+	for i in range(5):
 		if _type=='x':
-			dx=-8+(i+1)*2
+			dx=-4+(i)*2
 		else:
-			dy=-4+(i+1)*1
+			dy=-4+(i)*2
 		print(dx,dy)
 		c = Canvas(f+'.pdf', pagesize=(_W,_H))
 		#i.draw_rect_border(c)

@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/100BonAmbreTonkaconc/7.5/info_font/0.7/0.0/
+ToPrint/100BonAmbreTonkashop/7.5/info_font/0.75/0.0/
+ToPrint/100BonAmbreTonkaname/14.399999999999524/short_font/0.8/0.0/
+ToPrint/100BonAmbreTonka

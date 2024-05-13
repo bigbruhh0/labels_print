@@ -27,6 +27,14 @@ def split_line(l):
 	l1=buf_const[:len(buf_const)-1]
 	l2=l[len(l1)+1:]
 	return l1,l2
+def read_info(f_path):
+    with open(f_path, "r") as file:
+        lines = [line.strip() for line in file.readlines()]
+    kek = []
+    for i in lines:
+        p = i.find('|')
+        kek.append(i)
+    return kek
 def do_split(frag_name):
 	s=[0,0,0]
 	flg_one=False
@@ -96,7 +104,7 @@ def do_split(frag_name):
 def split_string(l,*tp):
 	l=l.upper()
 	except_list=[]
-	with open('data/except_list.txt', 'r', encoding='utf-8') as file:
+	with open('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(в одну строку).txt', 'r', encoding='utf-8') as file:
 		for line in file:
 			modified_line = line.replace('\n', '')
 		

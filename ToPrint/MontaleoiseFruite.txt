@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0/
-ToPrint/MontaleoiseFruiteconc/7.5/info_font/0.7/0/
-ToPrint/MontaleoiseFruiteshop/7.5/info_font/0.75/0/
-ToPrint/MontaleoiseFruitename/22.399999999999608/long_font/0.92/0/
-ToPrint/MontaleoiseFruite

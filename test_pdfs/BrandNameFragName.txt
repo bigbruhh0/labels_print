@@ -1,5 +1,0 @@
-brand/8.900000000000004/medium_font/0.82/0/
-test_pdfs/BrandNameFragName_1conc/7.5/info_font/0.7/0/
-test_pdfs/BrandNameFragName_1shop/7.5/info_font/0.75/0/
-test_pdfs/BrandNameFragName_1name/10.09999999999954/long_font/0.82/0/
-test_pdfs/BrandNameFragName_1

@@ -3,12 +3,14 @@ import websockets
 from aiohttp import web
 import subprocess
 import json
+from functions import read_info
 # Переменная, которую будем отслеживать
 a = None
 ws_data=[0,[]]
 DRAW_SHOP=1
-glob_DX='0'
-glob_DY='0'
+glob_DX=read_info('app_folder/config/data/cfg.txt')[1]
+glob_DY=read_info('app_folder/config/data/cfg.txt')[2]
+print(glob_DX,glob_DY)
 # Обработчик POST-запросов для обновления переменной a
 async def delete_pos(request):
     data = await request.json()  # Получаем данные запроса в формате JSON
@@ -144,7 +146,7 @@ async def update_variable(request):
 				brand_name, frag_name, conc=i
 				for j in i:
 					args.append(j)
-				subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, set_ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
+				#subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, set_ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 				ws_data[0]+=1
 				ws_data[1].append([brand_name,frag_name,conc,set_ml])
 			#print(args,1)

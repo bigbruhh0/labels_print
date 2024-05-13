@@ -70,24 +70,30 @@ class _lines:
 		self.conc = conc
 		print(self.brand_name,self.frag_name,self.conc)
 		self.text=self.brand_name+' - '+self.frag_name+', '+self.conc
-		create_text_image(self.brand_name+' - '+self.frag_name+', '+self.conc,cache_folder+self.brand_name+' - '+self.frag_name+', '+self.conc+'.png',font_size, font_path)
+		img_path='C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/set_cache(не трогать)/'
+		img_path=img_path+self.brand_name+' - '+self.frag_name+', '+self.conc+'.png'
+		self.img_path=img_path
+		if os.path.exists(img_path):
+			pass
+		else:
+			create_text_image(self.brand_name+' - '+self.frag_name+', '+self.conc,img_path,font_size, font_path)
 		self.fontSize=12
 		self.k=0.7
 		self.x=x_border
 		self.y=H
-		self.image = Image.open(cache_folder+self.text+'.png',)
+		self.image = Image.open(img_path)
 	def drawSelf(self,d,last_shift):
 		new_image_width = self.orig_w*self.k
 		new_image_height = self.image_H
 		numb_size=self.image_H/.8
-		c.setFont(self.fontName, numb_size)
-		l_w=stringWidth(str(self.pos+1)+'.',self.fontName,numb_size)
+		c.setFont('numb_font', numb_size)
+		l_w=stringWidth(str(self.pos+1)+'.  ',self.fontName,numb_size)
 		if self.pos==9:
-			k1=stringWidth('1',self.fontName,numb_size)
+			k1=stringWidth('1 ',self.fontName,numb_size)
 		else:
 			k1=0
 		c.drawString(x_border-k1,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1)+self.image_H*0.2,str(self.pos+1)+'.')
-		c.drawImage(cache_folder+self.text+'.png',l_w+ x_border-k1,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1), width=new_image_width, height=new_image_height)
+		c.drawImage(self.img_path,l_w+ x_border,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1), width=new_image_width, height=new_image_height)
 	def calcWidth(self,h):
 		self.image_H=h
 		numb_size=self.image_H/.8
@@ -190,11 +196,12 @@ current_directory = Path(__file__).resolve()
 #print(current_directory.parent / 'fonts' / 'kek.ttf')
 pdfmetrics.registerFont(TTFont('brand_font', current_directory.parent/'fonts/'/'RainTungesten.ttf'))
 pdfmetrics.registerFont(TTFont('list_font', current_directory.parent/'fonts/'/'testset.ttf'))
+pdfmetrics.registerFont(TTFont('numb_font', current_directory.parent/'fonts/'/'Ultimate.ttf'))
 n = 10
 W=4.7*cm
 H=4.5*cm
-x_border=.2*cm
-y_border=.2*cm
+x_border=.05*cm
+y_border=.05*cm
 font_size = 300
 font_path = "fonts/arnamu.ttf"
 brandy=False
@@ -236,4 +243,4 @@ create_pdf(name_obj, lines_obj, "ToPrint/set_label.pdf")
 c.save()
 path_print="C:\\Users\\User\\Documents\\GitHub\\labels_print\\ToPrint\\set_label.pdf"
 subprocess.run(['ToPrint\\print_script_set.bat', path_print], shell=True)
-
+os.remove("ToPrint/set_label.pdf")

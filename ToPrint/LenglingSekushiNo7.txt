@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/LenglingSekushiNo7conc/7.5/info_font/0.7/0.0/
-ToPrint/LenglingSekushiNo7shop/7.5/info_font/0.75/0.0/
-ToPrint/LenglingSekushiNo7name/17.499999999999538/short_font/0.8/0.0/
-ToPrint/LenglingSekushiNo7

@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/1.2/
-ToPrint/ArmafClubdeNuitIntenseWomanconc/7.5/info_font/0.7/1.2/
-ToPrint/ArmafClubdeNuitIntenseWomanshop/7.5/info_font/0.75/1.2/
-ToPrint/ArmafClubdeNuitIntenseWomanname/15.39999999999952/long_font/0.92/1.2/
-ToPrint/ArmafClubdeNuitIntenseWoman
