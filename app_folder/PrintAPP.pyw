@@ -8,12 +8,55 @@ import websockets
 import json
 from tkinter import ttk
 ws_get=[0,[]]
+
 def check_date():
     current_datetime = datetime.now()
     current_date = current_datetime.strftime("%d-%m-%Y")
     print("Текущая дата:", current_date)
     day = current_datetime.day
     return current_date
+def set_ds():
+	url = 'http://localhost:5000/set_ds/'  # URL для отправки запроса
+	a=x_entry.get()
+	b=y_entry.get()
+	lil=[str(a),str(b)]
+	data = {'k': json.dumps({'dx':str(a),'dy':str(b)})}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+		global cur_dx
+		global cur_dy
+		cur_dx=a
+		cur_dy=b
+		x_entry.delete(0,tk.END)
+		y_entry.delete(0,tk.END)
+		x_entry.insert(0,str(cur_dx))
+		y_entry.insert(0,str(cur_dy))
+		save_cfg()
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
+def test_x():
+	url = 'http://localhost:5000/axis/'  # URL для отправки запроса
+	data = {'k': json.dumps(['x'])}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
+def test_y():
+	url = 'http://localhost:5000/axis/'  # URL для отправки запроса
+	data = {'k': json.dumps(['y'])}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
 
 def read_info(f_path):
     with open(f_path, "r") as file:
@@ -24,9 +67,15 @@ def read_info(f_path):
         kek.append(i)
     return kek
 def send_post_del(ln):
-	if len(ln)>0:
-		data=json.dumps(ln)
-		response = requests.post('http://localhost:5000/del', json={'k':data})
+    url = 'http://localhost:5000/del/'  # URL для отправки запроса
+    data = {'k': json.dumps(ln)}  # Преобразуем список в JSON и передаем как параметр запроса
+
+    try:
+        response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+        response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+        print("Запрос успешно отправлен")
+    except requests.exceptions.RequestException as e:
+        print("Ошибка при отправке запроса:", e)
 def send_post_request():
     _copy = 1
     brand_name = brand_name_entry.get()
@@ -125,6 +174,8 @@ server_path = 'server_holder.py'
 cfg_file_path = 'config/data/cfg.txt'
 done_work = []
 last_date = read_info(cfg_file_path)[0]
+cur_dx = read_info(cfg_file_path)[1]
+cur_dy = read_info(cfg_file_path)[2]
 current_date = check_date()
 
 def send_log():
@@ -135,8 +186,20 @@ root = tk.Tk()
 root.title("Server Control App")
 button_frame = tk.Frame(root)
 button_frame.pack()
+d_axis=tk.Frame(button_frame)
+
+x_set=tk.Frame(d_axis)
+y_set=tk.Frame(d_axis)
+x_set.pack(side=tk.LEFT)
+y_set.pack(side=tk.RIGHT)
+d_axis.pack()
 send_post_button = tk.Button(button_frame, text="Открыть в редакторе", command=edit_pdf)
 send_log = tk.Button(button_frame, text="Сообщить об ошибке", command=send_log)
+ax_x = tk.Button(x_set, text="тест Х", command=test_x)
+ax_y = tk.Button(y_set, text="тест Y", command=test_y)
+confirm_ds = tk.Button(button_frame, text="Установить параметры", command=set_ds)
+confirm_ds.pack(side=tk.BOTTOM)
+
 
 brand_name_entry = tk.Entry(root, width=30,state="readonly")
 brand_name_entry.insert(0, "Brand Name")
@@ -150,6 +213,12 @@ conc_entry.insert(0, "Conc")
 ml_entry = tk.Entry(root, width=30,state="readonly")
 ml_entry.insert(0, "ML")
 
+x_entry=tk.Entry(x_set, width=30)
+y_entry=tk.Entry(y_set, width=30)
+x_entry.delete(0,tk.END)
+y_entry.delete(0,tk.END)
+x_entry.insert(0,str(cur_dx))
+y_entry.insert(0,str(cur_dy))
 
 
 result_label = tk.Label(root, text="")
@@ -157,7 +226,13 @@ number_label = tk.Label(root, text="0")
 
 #open_list_button = tk.Button(button_frame, text="Open List Window", command=lambda: create_list_window(done_work, root))
 #open_list_button.pack(side=tk.LEFT,pady=20)
-
+def save_cfg():
+	current_datetime = datetime.now()
+	date_string = current_datetime.strftime("%d-%m-%Y")
+	with open(cfg_file_path, "w") as file:
+		file.write(date_string)
+		file.write('\n'+str(cur_dx))
+		file.write('\n'+str(cur_dy))
 if current_date == last_date:
     file_name = datetime.now().date()
     current_datetime = datetime.now()
@@ -171,18 +246,17 @@ if current_date == last_date:
     for i in range(len(done_work)):
         print(i + 1, done_work[i])
 else:
-    file_name = datetime.now().date()
-    current_datetime = datetime.now()
-    date_string = current_datetime.strftime("%d-%m-%Y")
-    file_name = date_string + 'summary' + '.txt'
-    file_path = 'config/data/' + file_name
-    with open(file_path, "w") as file:
-        pass  # Ничего не записываем, создаем пустой файл
-    with open(cfg_file_path, "w") as file:
-        file.write(date_string)
-    print(file_name)
-    print('Новая сессия')
-    print('Файл:')
+	file_name = datetime.now().date()
+	current_datetime = datetime.now()
+	date_string = current_datetime.strftime("%d-%m-%Y")
+	file_name = date_string + 'summary' + '.txt'
+	file_path = 'config/data/' + file_name
+	with open(file_path, "w") as file:
+		pass  # Ничего не записываем, создаем пустой файл
+	print(file_name)
+	print('Новая сессия')
+	print('Файл:')
+	save_cfg()
 # Создание Listbox для отображения списка done_work
 parent_geometry = root.geometry()
 parent_x, parent_y = map(int, parent_geometry.split('+')[1:3])
@@ -210,15 +284,38 @@ done_work_listbox.column('B', width=300, anchor="center")
 for i in done_work:
 	add_to_tree(i)
 # Размещение Listbox на окне
+def check_action():
+	url = 'http://localhost:5000/check/'  # URL для отправки запроса
+	
+	data = {'k': json.dumps([checkvar.get()])}  # Преобразуем список в JSON и передаем как параметр запроса
+
+	try:
+		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
+		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
+		print("Запрос успешно отправлен")
+	except requests.exceptions.RequestException as e:
+		print("Ошибка при отправке запроса:", e)
+checkvar = tk.BooleanVar()
+check_button = tk.Checkbutton(root, text="НЕ ПЕЧАТАТЬ НАЗВАНИЕ МАГАЗИНА", variable=checkvar,command=check_action)
+check_button.pack(side=tk.TOP)
 done_work_listbox.pack(padx=10, pady=10)
 send_post_button.pack(side=tk.LEFT, pady=5)
 send_log.pack(side=tk.LEFT, pady=5)
+ax_x.pack(side=tk.TOP, pady=5)
+ax_y.pack(side=tk.TOP, pady=5)
+
 brand_name_entry.pack(side=tk.TOP, pady=5)
 frag_name_entry.pack(side=tk.TOP, pady=5)
 conc_entry.pack(side=tk.TOP, pady=5)
 ml_entry.pack(side=tk.TOP, pady=5)
 result_label.pack(side=tk.TOP)
 number_label.pack(side=tk.BOTTOM)
+y_entry.pack(side=tk.BOTTOM)
+x_entry.pack(side=tk.BOTTOM)
+
+
+
+
 def on_item_select(event):
 	# Получить индекс выбранной строки
 	selected_row = done_work_listbox.selection()[0]
@@ -253,5 +350,7 @@ def run_asyncio():
 # Запуск асинхронной части в отдельном потоке
 asyncio_thread = threading.Thread(target=run_asyncio)
 asyncio_thread.start()
+
+
 
 root.mainloop()

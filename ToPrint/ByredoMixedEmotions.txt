@@ -1,5 +1,0 @@
-brand/11.099999999999996/short_font/0.7/0.0/
-ToPrint/ByredoMixedEmotionsconc/7.5/info_font/0.7/0.0/
-ToPrint/ByredoMixedEmotionsshop/7.5/info_font/0.75/0.0/
-ToPrint/ByredoMixedEmotionsname/12.99999999999953/short_font/0.7/0.0/
-ToPrint/ByredoMixedEmotions

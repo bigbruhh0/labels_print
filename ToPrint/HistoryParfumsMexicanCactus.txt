@@ -1,5 +1,0 @@
-brand/9.400000000000002/short_font/0.7/0.0/
-ToPrint/HistoryParfumsMexicanCactusconc/7.5/info_font/0.7/0.0/
-ToPrint/HistoryParfumsMexicanCactusshop/7.5/info_font/0.75/0.0/
-ToPrint/HistoryParfumsMexicanCactusname/14.499999999999524/short_font/0.7/0.0/
-ToPrint/HistoryParfumsMexicanCactus

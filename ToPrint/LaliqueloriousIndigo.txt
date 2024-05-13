@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/LaliqueloriousIndigoconc/7.5/info_font/0.7/0.0/
+ToPrint/LaliqueloriousIndigoshop/7.5/info_font/0.75/0.0/
+ToPrint/LaliqueloriousIndigoname/15.59999999999952/short_font/0.8/0.0/
+ToPrint/LaliqueloriousIndigo

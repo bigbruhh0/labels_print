@@ -1,5 +1,0 @@
-brand/14.1/short_font/0.7/0/
-ToPrint/MaxPhilipPinkconc/7.5/info_font/0.7/0/
-ToPrint/MaxPhilipPinkshop/7.5/info_font/0.75/0/
-ToPrint/MaxPhilipPinkname/48.79999999999998/medium_font/0.7/0/
-ToPrint/MaxPhilipPink

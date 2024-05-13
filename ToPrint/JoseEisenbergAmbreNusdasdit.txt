@@ -1,0 +1,5 @@
+brand/9.500000000000002/short_font/0.75/0.0/
+ToPrint/JoseEisenbergAmbreNusdasditconc/7.5/info_font/0.7/0.0/
+ToPrint/JoseEisenbergAmbreNusdasditshop/7.5/info_font/0.75/0.0/
+ToPrint/JoseEisenbergAmbreNusdasditname/12.79999999999953/short_font/0.8/0.0/
+ToPrint/JoseEisenbergAmbreNusdasdit

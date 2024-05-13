@@ -1,0 +1,5 @@
+brand/12/medium_font/0.75/0/
+ToPrint/JoseEisenbergGrandSoirconc/7.5/info_font/0.7/0/
+ToPrint/JoseEisenbergGrandSoirshop/7.5/info_font/0.75/0/
+ToPrint/JoseEisenbergGrandSoirname/21.7999999999996/long_font/0.92/0/
+ToPrint/JoseEisenbergGrandSoir

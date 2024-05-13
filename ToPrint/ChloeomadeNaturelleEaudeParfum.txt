@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.7/
+ToPrint/ChloeomadeNaturelleEaudeParfumconc/7.5/info_font/0.7/0.7/
+ToPrint/ChloeomadeNaturelleEaudeParfumshop/7.5/info_font/0.75/0.7/
+ToPrint/ChloeomadeNaturelleEaudeParfumname/13.899999999999526/long_font/0.92/0.7/
+ToPrint/ChloeomadeNaturelleEaudeParfum

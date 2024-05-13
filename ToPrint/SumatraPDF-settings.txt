@@ -89,6 +89,6 @@ FileStates [
 SessionData [
 ]
 TimeOfLastUpdateCheck = 0 0
-OpenCountWeek = 695
+OpenCountWeek = 696
 
 # Settings below are not recognized by the current version

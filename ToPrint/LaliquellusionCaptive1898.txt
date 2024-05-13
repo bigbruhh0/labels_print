@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/2.1000000000000005/
+ToPrint/LaliquellusionCaptive1898conc/7.5/info_font/0.7/2.1000000000000005/
+ToPrint/LaliquellusionCaptive1898shop/7.5/info_font/0.75/2.1000000000000005/
+ToPrint/LaliquellusionCaptive1898name/19.399999999999565/long_font/0.92/2.1000000000000005/
+ToPrint/LaliquellusionCaptive1898

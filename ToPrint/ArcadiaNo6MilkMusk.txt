@@ -1,0 +1,5 @@
+brand/10.999999999999996/short_font/0.75/0.0/
+ToPrint/ArcadiaNo6MilkMuskconc/7.5/info_font/0.7/0.0/
+ToPrint/ArcadiaNo6MilkMuskshop/7.5/info_font/0.75/0.0/
+ToPrint/ArcadiaNo6MilkMuskname/13.099999999999529/short_font/0.8/0.0/
+ToPrint/ArcadiaNo6MilkMusk

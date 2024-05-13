@@ -1,0 +1,5 @@
+brand/9.500000000000002/short_font/0.75/2.1000000000000005/
+ToPrint/JoseEisenbergAmberOudGoldEditionconc/7.5/info_font/0.7/2.1000000000000005/
+ToPrint/JoseEisenbergAmberOudGoldEditionshop/7.5/info_font/0.75/2.1000000000000005/
+ToPrint/JoseEisenbergAmberOudGoldEditionname/19.599999999999568/long_font/0.92/2.1000000000000005/
+ToPrint/JoseEisenbergAmberOudGoldEdition
