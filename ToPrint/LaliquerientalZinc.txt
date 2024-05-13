@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/LaliquerientalZincconc/7.5/info_font/0.7/0/
+ToPrint/LaliquerientalZincshop/7.5/info_font/0.75/0/
+ToPrint/LaliquerientalZincname/19.499999999999567/long_font/0.92/0/
+ToPrint/LaliquerientalZinc

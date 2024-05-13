@@ -1,5 +1,5 @@
-brand/9.700000000000001/short_font/0.75/0/
+brand/9.500000000000002/short_font/0.75/0/
 ToPrint/JoseEisenbergJustBeforeconc/7.5/info_font/0.7/0/
 ToPrint/JoseEisenbergJustBeforeshop/7.5/info_font/0.75/0/
-ToPrint/JoseEisenbergJustBeforename/21.09999999999959/long_font/0.92/0/
+ToPrint/JoseEisenbergJustBeforename/20.699999999999584/long_font/0.92/0/
 ToPrint/JoseEisenbergJustBefore

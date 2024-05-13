@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/2.0300000000000007/
+ToPrint/LoeweguadeLoeweEllaconc/7.5/info_font/0.7/2.0300000000000007/
+ToPrint/LoeweguadeLoeweEllashop/7.5/info_font/0.75/2.0300000000000007/
+ToPrint/LoeweguadeLoeweEllaname/21.399999999999594/long_font/0.92/2.0300000000000007/
+ToPrint/LoeweguadeLoeweElla

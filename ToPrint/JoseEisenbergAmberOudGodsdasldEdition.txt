@@ -1,5 +1,5 @@
-brand/9.700000000000001/short_font/0.75/0.30000000000000004/
-ToPrint/JoseEisenbergAmberOudGodsdasldEditionconc/7.5/info_font/0.7/0.30000000000000004/
-ToPrint/JoseEisenbergAmberOudGodsdasldEditionshop/7.5/info_font/0.75/0.30000000000000004/
-ToPrint/JoseEisenbergAmberOudGodsdasldEditionname/13.399999999999528/long_font/0.92/0.30000000000000004/
+brand/9.500000000000002/short_font/0.75/0.4/
+ToPrint/JoseEisenbergAmberOudGodsdasldEditionconc/7.5/info_font/0.7/0.4/
+ToPrint/JoseEisenbergAmberOudGodsdasldEditionshop/7.5/info_font/0.75/0.4/
+ToPrint/JoseEisenbergAmberOudGodsdasldEditionname/13.099999999999529/long_font/0.92/0.4/
 ToPrint/JoseEisenbergAmberOudGodsdasldEdition

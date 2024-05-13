@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0.0/
+ToPrint/VanCleefArpelsMoonlightRoseconc/7.5/info_font/0.7/0.0/
+ToPrint/VanCleefArpelsMoonlightRoseshop/7.5/info_font/0.75/0.0/
+ToPrint/VanCleefArpelsMoonlightRosename/10.699999999999537/short_font/0.8/0.0/
+ToPrint/VanCleefArpelsMoonlightRose

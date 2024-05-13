@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/LMParfumsensualOrchidconc/7.5/info_font/0.7/0.0/
+ToPrint/LMParfumsensualOrchidshop/7.5/info_font/0.75/0.0/
+ToPrint/LMParfumsensualOrchidname/17.799999999999542/short_font/0.8/0.0/
+ToPrint/LMParfumsensualOrchid

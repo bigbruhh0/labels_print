@@ -1,0 +1,5 @@
+brand/14/short_font/0.75/0/
+ToPrint/NicheendPlutoconc/7.5/info_font/0.7/0/
+ToPrint/NicheendPlutoshop/7.5/info_font/0.75/0/
+ToPrint/NicheendPlutoname/38.999999999999844/medium_font/0.8/0/
+ToPrint/NicheendPluto

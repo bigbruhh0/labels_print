@@ -8,6 +8,7 @@ import websockets
 import json
 from tkinter import ttk
 ws_get=[0,[]]
+
 def check_date():
     current_datetime = datetime.now()
     current_date = current_datetime.strftime("%d-%m-%Y")
@@ -25,6 +26,15 @@ def set_ds():
 		response = requests.post(url, json=data)  # Отправляем POST-запрос с JSON-данными
 		response.raise_for_status()  # Проверяем, есть ли ошибки в ответе
 		print("Запрос успешно отправлен")
+		global cur_dx
+		global cur_dy
+		cur_dx=a
+		cur_dy=b
+		x_entry.delete(0,tk.END)
+		y_entry.delete(0,tk.END)
+		x_entry.insert(0,str(cur_dx))
+		y_entry.insert(0,str(cur_dy))
+		save_cfg()
 	except requests.exceptions.RequestException as e:
 		print("Ошибка при отправке запроса:", e)
 def test_x():
@@ -164,6 +174,8 @@ server_path = 'server_holder.py'
 cfg_file_path = 'config/data/cfg.txt'
 done_work = []
 last_date = read_info(cfg_file_path)[0]
+cur_dx = read_info(cfg_file_path)[1]
+cur_dy = read_info(cfg_file_path)[2]
 current_date = check_date()
 
 def send_log():
@@ -203,7 +215,10 @@ ml_entry.insert(0, "ML")
 
 x_entry=tk.Entry(x_set, width=30)
 y_entry=tk.Entry(y_set, width=30)
-
+x_entry.delete(0,tk.END)
+y_entry.delete(0,tk.END)
+x_entry.insert(0,str(cur_dx))
+y_entry.insert(0,str(cur_dy))
 
 
 result_label = tk.Label(root, text="")
@@ -211,7 +226,13 @@ number_label = tk.Label(root, text="0")
 
 #open_list_button = tk.Button(button_frame, text="Open List Window", command=lambda: create_list_window(done_work, root))
 #open_list_button.pack(side=tk.LEFT,pady=20)
-
+def save_cfg():
+	current_datetime = datetime.now()
+	date_string = current_datetime.strftime("%d-%m-%Y")
+	with open(cfg_file_path, "w") as file:
+		file.write(date_string)
+		file.write('\n'+str(cur_dx))
+		file.write('\n'+str(cur_dy))
 if current_date == last_date:
     file_name = datetime.now().date()
     current_datetime = datetime.now()
@@ -225,18 +246,17 @@ if current_date == last_date:
     for i in range(len(done_work)):
         print(i + 1, done_work[i])
 else:
-    file_name = datetime.now().date()
-    current_datetime = datetime.now()
-    date_string = current_datetime.strftime("%d-%m-%Y")
-    file_name = date_string + 'summary' + '.txt'
-    file_path = 'config/data/' + file_name
-    with open(file_path, "w") as file:
-        pass  # Ничего не записываем, создаем пустой файл
-    with open(cfg_file_path, "w") as file:
-        file.write(date_string)
-    print(file_name)
-    print('Новая сессия')
-    print('Файл:')
+	file_name = datetime.now().date()
+	current_datetime = datetime.now()
+	date_string = current_datetime.strftime("%d-%m-%Y")
+	file_name = date_string + 'summary' + '.txt'
+	file_path = 'config/data/' + file_name
+	with open(file_path, "w") as file:
+		pass  # Ничего не записываем, создаем пустой файл
+	print(file_name)
+	print('Новая сессия')
+	print('Файл:')
+	save_cfg()
 # Создание Listbox для отображения списка done_work
 parent_geometry = root.geometry()
 parent_x, parent_y = map(int, parent_geometry.split('+')[1:3])

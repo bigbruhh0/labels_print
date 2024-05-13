@@ -1,5 +1,5 @@
-brand/13.199999999999996/medium_font/0.75/0/
+brand/12/medium_font/0.75/0/
 ToPrint/JoseEisenbergJustsaaaconc/7.5/info_font/0.7/0/
 ToPrint/JoseEisenbergJustsaaashop/7.5/info_font/0.75/0/
-ToPrint/JoseEisenbergJustsaaaname/25.199999999999648/long_font/0.92/0/
+ToPrint/JoseEisenbergJustsaaaname/24.59999999999964/long_font/0.92/0/
 ToPrint/JoseEisenbergJustsaaa

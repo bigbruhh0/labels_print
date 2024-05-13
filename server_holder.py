@@ -99,7 +99,7 @@ async def update_variable(request):
 			print('Создание этикети сета')
 		if _type == '1':
 			brand_name = conv_data.get('brand')
-			frag = conv_data.get('frag_name')[1:]
+			frag = conv_data.get('frag_name')
 			frag_name = frag
 			conc = conv_data.get('conc')
 			conc=conc.replace('(пробник)','')
