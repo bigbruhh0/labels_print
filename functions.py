@@ -101,6 +101,75 @@ def do_split(frag_name):
 	#s=[0,'MEMFIS','BOYS']		
 	cnt_lines=2	
 	return(s,cnt_lines)
+kekis={
+	'А' : '凡 ∀ ₳ Ǻ ǻ α ά Ά ẫ Ắ ắ Ằ ằ ẳ Ẵ ẵ Ä ª ä Å À Á Â å ã â à á Ã ᵰ',
+
+	'B' : 'ℬ β ฿ ß Ђ Ɓ ƀ ხ 方'.split(' '),
+
+	'C' : '☾ ℭ ℂ Ç ¢ ç Č ċ Ċ ĉ ς Ĉ ć Ć č Ḉ ḉ ⊂ ₡ ¢'.split(' '),
+
+	'D' : 'Ɗ Ď ď Đ đ ð ∂ ₫ ȡ'.split(' '),
+
+	'E' : 'ℯ £ Ē ℮ ē Ė ė Ę ě Ě ę Έ ê ξ Ê È € É ∑ Ế Ề Ể Ễ é è ع Є є έ ε'.split(' '),
+
+	'F' : 'ℱ ₣ ƒ ∮ Ḟ ḟ ჶ ᶂ φ'.split(' '),
+
+	'G' : 'ℊ Ǥ ǥ Ĝ ĝ Ğ ğ Ġ ġ Ģ ģ פ ᶃ ₲'.split(' '),
+
+	'H' : 'ℍ ℋ ℎ ℌ ℏ Ĥ Ħ ħ Ή ♅ 廾 Ћ ђ Ḩ Һ ḩ♄'.split(' '),
+
+	'I' : 'ℐ ℑ ί ι Ï Ί Î ì Ì í Í î ϊ ΐ Ĩ ĩ Ī ī Ĭ ĭ İ į Į'.split(' '),
+
+	'J' : 'ჟ Ĵ ĵ ᶖ ɉ'.split(' '),
+
+	'K' : '₭ Ќ k ќ ķ Ķ Ҝ ҝ ﻸ ᶄ'.split(' '),
+
+	'L' : 'ℒ ℓ Ŀ ŀ £ Ĺ ĺ Ļ ļ λ ₤ Ł ł ľ Ľ Ḽ ḽ ȴ ￡'.split(' '),
+
+	'M' : 'ℳ ʍ ᶆ Ḿ ḿ 爪 ₥'.split(' '),
+
+	'N' : 'ℕ η ñ ח Ñ ή ŋ Ŋ Ń ń Ņ ņ Ň ň ŉ ȵ ℵ ₦'.split(' '),
+
+	'O' : 'ℴ ტ ٥ Ό ó ό σ ǿ Ǿ Θ ò Ó Ò Ô ô Ö ö Õ õ ờ ớ ọ Ọ ợ Ợ ø Ø Ό Ở Ờ Ớ Ổ ổ Ợ Ō ō'.split(' '),
+
+	'P' : 'ℙ ℘ þ Þ ρ 尸 Ҏ ҏ ᶈ ₱ ☧ ק ァ'.split(' '),
+
+	'Q' : 'ℚ q Q ᶐ Ǭ ǭ ჹ'.split(' '),
+
+	'R' : 'ℝ ℜ ℛ ℟ ჩ ř Ř ŗ Ŗ ŕ Ŕ ᶉ 尺'.split(' '),
+
+	'S' : 'Ṧ ṧ ȿ ى § Ś ś š Š ş Ş ŝ Ŝ ₰ ∫ $ ֆ'.split(' '),
+
+	'T' : '₸ † T t τ ΐ Ţ ţ Ť ť ŧ Ŧ ィ 干 Ṫ ṫ ナ テ ₮'.split(' '),
+
+	'U' : '∪ Ũ ⋒ Ủ Ừ Ử Ữ Ự ύ ϋ Ù ú Ú ΰ ù Û û Ü ử ữ ự Џ ü ừ Ũ ũ Ū ū Ŭ ŭ ų Ų ű Ű ů Ů'.split(' '),
+
+	'V' : '✔ ✓ ∨ √ Ṽ ṽ ᶌ ℣ ʋ'.split(' '),
+
+	'W' : '₩ ẃ Ẃ ẁ Ẁ ẅ ώ ω ŵ Ŵ Ẅ ѡ'.split(' '),
+
+	'X' : 'χ × ✗ ✘ ჯ Ẍ ẍ ᶍ ⏆'.split(' '),
+
+	'Y' : 'ɣ Ẏ ẏ ϒ ɤ ￥ り'.split(' '),
+
+	'Z' : 'ℤ ℨ ჳ 乙 Ẑ ẑ ɀ' .split(' '),
+}
+
+def correct_line(ln):
+	buf=''
+	for i in range(len(ln)):
+		buf_i=ln[i]
+		for j in kekis:
+			for k in kekis[j]:
+				b=k.replace(' ','')
+				if b==ln[i]:
+					if ln[i].islower():
+						buf_i=j.lower()
+					else:
+						buf_i=j.upper()
+		buf+=buf_i
+	return(buf)
+correct_line('Lanvin Oxygène Homme,')
 def split_string(l,*tp):
 	l=l.upper()
 	except_list=[]

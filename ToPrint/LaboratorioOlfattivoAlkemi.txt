@@ -1,0 +1,5 @@
+brand/11.600000000000009/medium_font/0.85/0/
+ToPrint/LaboratorioOlfattivoAlkemiconc/7.5/info_font/0.7/0/
+ToPrint/LaboratorioOlfattivoAlkemishop/7.5/info_font/0.75/0/
+ToPrint/LaboratorioOlfattivoAlkeminame/30.19999999999972/medium_font/0.8/0/
+ToPrint/LaboratorioOlfattivoAlkemi

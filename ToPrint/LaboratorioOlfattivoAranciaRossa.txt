@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0.0/
+ToPrint/LaboratorioOlfattivoAranciaRossaconc/7.5/info_font/0.7/0.0/
+ToPrint/LaboratorioOlfattivoAranciaRossashop/7.5/info_font/0.75/0.0/
+ToPrint/LaboratorioOlfattivoAranciaRossaname/14.599999999999524/short_font/0.8/0.0/
+ToPrint/LaboratorioOlfattivoAranciaRossa

@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/ArteOlfattoBriseMarineconc/7.5/info_font/0.7/0/
+ToPrint/ArteOlfattoBriseMarineshop/7.5/info_font/0.75/0/
+ToPrint/ArteOlfattoBriseMarinename/16.799999999999528/long_font/0.92/0/
+ToPrint/ArteOlfattoBriseMarine

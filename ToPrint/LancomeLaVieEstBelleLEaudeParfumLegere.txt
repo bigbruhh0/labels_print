@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/LancomeLaVieEstBelleLEaudeParfumLegereconc/7.5/info_font/0.7/0/
+ToPrint/LancomeLaVieEstBelleLEaudeParfumLegereshop/7.5/info_font/0.75/0/
+ToPrint/LancomeLaVieEstBelleLEaudeParfumLegerename/10.399999999999539/long_font/0.92/0/
+ToPrint/LancomeLaVieEstBelleLEaudeParfumLegere

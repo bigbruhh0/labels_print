@@ -13,7 +13,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from reportlab.lib.fonts import addMapping
 from reportlab.pdfbase.ttfonts import TTFont
-from functions import do_split,split_line,get_info,split_string,read_info
+from functions import do_split,split_line,get_info,split_string,read_info,correct_line
 import sys
 import os
 buf_list=read_info('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
@@ -23,8 +23,9 @@ for i in buf_list:
 	replace_list.append(ba)
 print(replace_list)
 #brand_name,frag_name,conc,ml=['Dolce and Gabbana','LIGHT BLUE FOREVER POUR HOMME','edp','3']
-brand_name=sys.argv[1]
-frag_name=sys.argv[2]
+brand_name=correct_line(sys.argv[1])
+frag_name=correct_line(sys.argv[2])
+print(brand_name,frag_name,'corrected')
 conc=sys.argv[3]
 ml=sys.argv[4]
 DRAW_SHOP=int(sys.argv[5])
@@ -396,9 +397,12 @@ def main(file_path,width,height):
 fonts=init_fonts()
 obj=[]
 dev_draw=False
+conc=conc.replace(' ','')
+ml=ml.replace(' ','')
+
 v_border,h_border,_W,_H=get_params()
 obj.append(_Line(brand_name,'Arial',9,'brand'))
-obj.append(_Line(conc+ml+" ml",'Arial',8,'conc'))
+obj.append(_Line(conc+' '+ml+" ml",'Arial',8,'conc'))
 obj.append(_Line("АллюрПарфюм",'Arial',8,'shop'))
 obj.append(_Line(frag_name,'Arial',10,'name'))
 

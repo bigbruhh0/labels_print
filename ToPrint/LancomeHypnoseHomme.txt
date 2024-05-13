@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/LancomeHypnoseHommeconc/7.5/info_font/0.7/0.0/
+ToPrint/LancomeHypnoseHommeshop/7.5/info_font/0.75/0.0/
+ToPrint/LancomeHypnoseHommename/13.399999999999528/short_font/0.8/0.0/
+ToPrint/LancomeHypnoseHomme
