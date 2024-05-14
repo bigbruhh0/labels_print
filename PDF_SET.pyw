@@ -14,8 +14,7 @@ from pathlib import Path
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import subprocess
-import sys
-import os
+
 from PIL import Image, ImageDraw, ImageFont
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -23,8 +22,12 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from PIL import Image, ImageFilter
 from reportlab.lib.units import cm
+from win32com.shell import shell, shellcon
+import sys
 import os
-
+user_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Profile)
+doc_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Documents)
+user_name='User'
 def add_image_to_pdf(image_path, pdf_path,y,c):
     image = Image.open(image_path)
 
@@ -122,7 +125,7 @@ class _lines:
 class Name:
 	def __init__(self, s_name):
 		self.s_name = s_name
-		self.lines=split_string(s_name,0)
+		self.lines=split_string(s_name,0,user_path)
 		if '' in self.lines:
 			self.lines.remove('')
 		self.fontName='brand_font'

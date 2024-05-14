@@ -3,4 +3,9 @@ import sys
 def i(t):
 	subprocess.check_call([sys.executable,'-m','pip','install',t])
 
-i('win32printing')
+i('aiohttp')
+i('requests')
+i('flask')
+i('websockets')
+i('reportlab')
+

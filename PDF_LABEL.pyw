@@ -14,12 +14,16 @@ from reportlab.lib import colors
 from reportlab.lib.fonts import addMapping
 from reportlab.pdfbase.ttfonts import TTFont
 from functions import do_split,split_line,get_info,split_string,read_info,correct_line
+import pathlib
+from win32com.shell import shell, shellcon
 import sys
 import os
+user_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Profile)
+doc_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Documents)
 user_name='User'
-buf_list=read_info('C:/Users/'+user_name+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
-delete_list=read_info('C:/Users/'+user_name+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(удаление).txt')
-buf2=read_info('C:/Users/'+user_name+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/замены для концентрации.txt')
+buf_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
+delete_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(удаление).txt')
+buf2=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/замены для концентрации.txt')
 
 conc_replace_list=[]
 for i in buf2:
@@ -164,7 +168,7 @@ class _Line:
 		if self.type=="name":
 			self.y=obj[1].y+obj[1].getH()
 			self.lines=[]
-			l=split_string(self.text)
+			l=split_string(self.text,user_path)
 			mx=0
 			for i in l:
 				if i!='':
@@ -426,7 +430,7 @@ def main(file_path,width,height):
 			conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
 		c.save()
 		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
-		path_print="C:\\Users\\User\\Documents\\GitHub\\labels_print\\"+f+'.pdf'
+		path_print="%USERPROFILE%\\Documents\\GitHub\\labels_print\\"+f+'.pdf'
 		subprocess.run(['ToPrint\\print_script.bat', path_print], shell=True)
 		os.remove(f+'.pdf')
 	#os.remove(str(b_f))

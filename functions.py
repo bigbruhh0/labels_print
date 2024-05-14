@@ -175,7 +175,11 @@ correct_line('Lanvin Oxygène Homme,')
 def split_string(l,*tp):
 	l=l.upper()
 	except_list=[]
-	with open('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(в одну строку).txt', 'r', encoding='utf-8') as file:
+	if tp[0]==0:
+		user_path=tp[1]
+	else:
+		user_path=tp[0]
+	with open(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(в одну строку).txt', 'r', encoding='utf-8') as file:
 		for line in file:
 			modified_line = line.replace('\n', '')
 		
@@ -225,10 +229,11 @@ def split_string(l,*tp):
 						
 						s[i]=150
 						s[i+1]=150
-		if tp:
-			k=22
-		else:
-			k=12
+		if tp:#############################CHECK IF PROBLEMS WITH SETS
+			if tp[0]==0:
+				k=22
+			else:
+				k=12
 		if len(s)>2 and len(l)>k:
 			for i in range(len(s)):
 				if abs(mid-s[i])<min_D:
