@@ -1,0 +1,9 @@
+17:54:24|TIFFANY^TIFFANY & LOVE FOR HER^edp (пробник)^1^http://localhost:5000/?type=1&brand=Tiffany&frag_name=Tiffany+%26+Love+For+Her&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+18:00:23|ZARKOPERFUME^CLOUD COLLECTION NO.3^edp (пробник)^2^http://localhost:5000/?type=1&brand=Zarkoperfume&frag_name=Cloud+Collection+No.3&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=2
+18:00:54|ZARKOPERFUME^CLOUD COLLECTION NO.3^edp (пробник)^2^http://localhost:5000/?type=1&brand=Zarkoperfume&frag_name=Cloud+Collection+No.3&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=2
+18:03:16|TIZIANA TERENZI^CASSIOPEA^parf (пробник)^10^http://localhost:5000/?type=1&brand=Tiziana+Terenzi&frag_name=Cassiopea&conc=parf+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=10
+18:11:36|VERSACE^VERSENSE^edt (пробник)^1^http://localhost:5000/?type=1&brand=Versace&frag_name=Versense&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+18:11:39|VERSACE^VERSENSE^edt (пробник)^1^http://localhost:5000/?type=1&brand=Versace&frag_name=Versense&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+18:12:11|VERSACE^POUR HOMME DYLAN BLUE^edt (пробник)^10^http://localhost:5000/?type=1&brand=Versace&frag_name=Pour+Homme+Dylan+Blue&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=10
+18:14:28|VERSACE^POUR HOMME DYLAN BLUE^edt (пробник)^10^http://localhost:5000/?type=1&brand=Versace&frag_name=Pour+Homme+Dylan+Blue&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=10
+18:15:18|ZARKOPERFUME^CLOUD COLLECTION NO.3^edp (пробник)^2^http://localhost:5000/?type=1&brand=Zarkoperfume&frag_name=Cloud+Collection+No.3&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=2

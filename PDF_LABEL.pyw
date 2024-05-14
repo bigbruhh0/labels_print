@@ -425,7 +425,8 @@ def main(file_path,width,height):
 		'''conf = open(file_path+'.txt', "w")
 		for i in obj:
 			conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
-		c.save()'''
+			'''
+		c.save()
 		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
 		path_print=f.replace(print_folder,'')+'.pdf'
 		subprocess.run(['ToPrint\\print_script.bat', path_print], shell=True)

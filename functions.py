@@ -203,7 +203,7 @@ def split_string(l,*tp):
 		print(s)
 		for i in s:
 			print('|'+l[i-3:i]+'|')
-			if l[i-3:i]=='NO.':
+			if l[i-3:i]=='NO.' and l[i]==' ':
 				s.remove(i)
 		print(s)
 		mid=len(l)/2
@@ -251,8 +251,9 @@ def split_string(l,*tp):
 		keks=i
 		if i.find('NO.')>-1:
 			print(i,1)
-			keks=i[:i.find('NO.')+3]+i[i.find('NO.')+4:]
-			print(i,2)
+			if i[i.find('NO.')+3]==' ':
+				keks=i[:i.find('NO.')+3]+i[i.find('NO.')+4:]
+				print(i,2)
 		if len(line)>mx:
 			mx=len(line)
 		linnne.append(keks)
