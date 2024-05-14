@@ -1,5 +1,0 @@
-brand/14/short_font/0.75/0/
-ToPrint/MontaleROSESMUSKconc/7.5/info_font/0.7/0/
-ToPrint/MontaleROSESMUSKshop/7.5/info_font/0.75/0/
-ToPrint/MontaleROSESMUSKname/18.599999999999554/long_font/0.92/0/
-ToPrint/MontaleROSESMUSK

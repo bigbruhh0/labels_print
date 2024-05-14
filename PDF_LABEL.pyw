@@ -422,12 +422,12 @@ def main(file_path,width,height):
 			c.line(_W/2,0,_W/2,_H)
 			c.line(_W/2,obj[3].ln_text[1].y-1,_W/2-obj[3].ln_text[1].getWidth()/2,obj[3].ln_text[1].y-1)
 			c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
-		conf = open(file_path+'.txt', "w")
+		'''conf = open(file_path+'.txt', "w")
 		for i in obj:
 			conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
-		c.save()
+		c.save()'''
 		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
-		path_print="%USERPROFILE%\\Documents\\GitHub\\labels_print\\"+f+'.pdf'
+		path_print=f.replace(print_folder,'')+'.pdf'
 		subprocess.run(['ToPrint\\print_script.bat', path_print], shell=True)
 		os.remove(f+'.pdf')
 	#os.remove(str(b_f))

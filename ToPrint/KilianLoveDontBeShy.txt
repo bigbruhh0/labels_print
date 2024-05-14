@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/1.8900000000000006/
-ToPrint/KilianLoveDontBeShyconc/7.5/info_font/0.7/1.8900000000000006/
-ToPrint/KilianLoveDontBeShyshop/7.5/info_font/0.75/1.8900000000000006/
-ToPrint/KilianLoveDontBeShyname/20.999999999999588/long_font/0.92/1.8900000000000006/
-ToPrint/KilianLoveDontBeShy

@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/1.2/
-ToPrint/KilianAppleBrandyontheRocksconc/7.5/info_font/0.7/1.2/
-ToPrint/KilianAppleBrandyontheRocksshop/7.5/info_font/0.75/1.2/
-ToPrint/KilianAppleBrandyontheRocksname/16.699999999999527/long_font/0.92/1.2/
-ToPrint/KilianAppleBrandyontheRocks

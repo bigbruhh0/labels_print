@@ -1,5 +1,0 @@
-brand/14/medium_font/0.75/0/
-ToPrint/LorisAzzaroWantedconc/7.5/info_font/0.7/0/
-ToPrint/LorisAzzaroWantedshop/7.5/info_font/0.75/0/
-ToPrint/LorisAzzaroWantedname/25.99999999999966/medium_font/0.8/0/
-ToPrint/LorisAzzaroWanted

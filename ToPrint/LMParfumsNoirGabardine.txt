@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/LMParfumsNoirGabardineconc/7.5/info_font/0.7/0.0/
-ToPrint/LMParfumsNoirGabardineshop/7.5/info_font/0.75/0.0/
-ToPrint/LMParfumsNoirGabardinename/10.999999999999536/short_font/0.8/0.0/
-ToPrint/LMParfumsNoirGabardine

@@ -1,5 +1,0 @@
-brand/14/short_font/0.75/0/
-ToPrint/KenzoAmourconc/7.5/info_font/0.7/0/
-ToPrint/KenzoAmourshop/7.5/info_font/0.75/0/
-ToPrint/KenzoAmourname/29.999999999999716/medium_font/0.8/0/
-ToPrint/KenzoAmour

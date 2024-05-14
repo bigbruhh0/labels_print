@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.5/
-ToPrint/GuerlainCHAMPSELYSEES—“¿–€…conc/7.5/info_font/0.7/0.5/
-ToPrint/GuerlainCHAMPSELYSEES—“¿–€…shop/7.5/info_font/0.75/0.5/
-ToPrint/GuerlainCHAMPSELYSEES—“¿–€…name/13.599999999999527/long_font/0.92/0.5/
-ToPrint/GuerlainCHAMPSELYSEES—“¿–€…

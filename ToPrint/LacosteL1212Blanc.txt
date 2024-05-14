@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/LacosteL1212Blancconc/7.5/info_font/0.7/0.0/
-ToPrint/LacosteL1212Blancshop/7.5/info_font/0.75/0.0/
-ToPrint/LacosteL1212Blancname/17.69999999999954/short_font/0.8/0.0/
-ToPrint/LacosteL1212Blanc

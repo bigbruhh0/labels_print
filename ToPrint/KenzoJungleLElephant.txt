@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/1.7500000000000004/
-ToPrint/KenzoJungleLElephantconc/7.5/info_font/0.7/1.7500000000000004/
-ToPrint/KenzoJungleLElephantshop/7.5/info_font/0.75/1.7500000000000004/
-ToPrint/KenzoJungleLElephantname/20.299999999999578/long_font/0.92/1.7500000000000004/
-ToPrint/KenzoJungleLElephant

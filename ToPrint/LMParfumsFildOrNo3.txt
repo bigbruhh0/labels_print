@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0/
-ToPrint/LMParfumsFildOrNo3conc/7.5/info_font/0.7/0/
-ToPrint/LMParfumsFildOrNo3shop/7.5/info_font/0.75/0/
-ToPrint/LMParfumsFildOrNo3name/18.899999999999558/long_font/0.92/0/
-ToPrint/LMParfumsFildOrNo3

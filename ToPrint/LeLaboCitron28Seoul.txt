@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/LeLaboCitron28Seoulconc/7.5/info_font/0.7/0.0/
-ToPrint/LeLaboCitron28Seoulshop/7.5/info_font/0.75/0.0/
-ToPrint/LeLaboCitron28Seoulname/12.299999999999532/short_font/0.8/0.0/
-ToPrint/LeLaboCitron28Seoul

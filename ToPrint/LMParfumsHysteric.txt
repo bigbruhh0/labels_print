@@ -1,5 +1,0 @@
-brand/14/medium_font/0.75/0/
-ToPrint/LMParfumsHystericconc/7.5/info_font/0.7/0/
-ToPrint/LMParfumsHystericshop/7.5/info_font/0.75/0/
-ToPrint/LMParfumsHystericname/24.899999999999643/long_font/0.92/0/
-ToPrint/LMParfumsHysteric

@@ -9,4 +9,4 @@ rem Path to SumatraPDF.exe
 set "sumatra_path=%USERPROFILE%\Documents\GitHub\labels_print\ToPrint\SumatraPDF.exe" 
  
 rem Print the PDF file using SumatraPDF 
-%sumatra_path% -print-to-default -print-settings "fit,landscape" "%arg1%"
+"%sumatra_path%" -print-to-default -print-settings "fit,landscape" "%USERPROFILE%\Documents\GitHub\labels_print\ToPrint\%arg1%"

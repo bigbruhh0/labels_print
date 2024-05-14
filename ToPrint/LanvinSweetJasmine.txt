@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/LanvinSweetJasmineconc/7.5/info_font/0.7/0.0/
-ToPrint/LanvinSweetJasmineshop/7.5/info_font/0.75/0.0/
-ToPrint/LanvinSweetJasminename/14.999999999999522/short_font/0.8/0.0/
-ToPrint/LanvinSweetJasmine

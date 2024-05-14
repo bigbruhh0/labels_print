@@ -1,5 +1,0 @@
-brand/10/medium_font/0.75/0.0/
-ToPrint/KeikoMecheriPeauDePecheconc/7.5/info_font/0.7/0.0/
-ToPrint/KeikoMecheriPeauDePecheshop/7.5/info_font/0.75/0.0/
-ToPrint/KeikoMecheriPeauDePechename/15.59999999999952/short_font/0.8/0.0/
-ToPrint/KeikoMecheriPeauDePeche

@@ -1,5 +1,0 @@
-brand/14/short_font/0.75/0/
-ToPrint/ExNihiloGALVANIZEconc/6.400000000000004/info_font/0.7/0/
-ToPrint/ExNihiloGALVANIZEshop/7.5/info_font/0.75/0/
-ToPrint/ExNihiloGALVANIZEname/21.499999999999595/long_font/0.92/0/
-ToPrint/ExNihiloGALVANIZE

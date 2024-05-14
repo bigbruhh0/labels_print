@@ -1,5 +1,0 @@
-brand/10/medium_font/0.75/0/
-ToPrint/KeikoMecheriGourmandisesconc/7.5/info_font/0.7/0/
-ToPrint/KeikoMecheriGourmandisesshop/7.5/info_font/0.75/0/
-ToPrint/KeikoMecheriGourmandisesname/15.199999999999521/long_font/0.92/0/
-ToPrint/KeikoMecheriGourmandises

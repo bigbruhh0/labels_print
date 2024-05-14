@@ -1,5 +1,0 @@
-brand/14/short_font/0.75/0/
-ToPrint/ExNihiloEXALTconc/7.5/info_font/0.7/0/
-ToPrint/ExNihiloEXALTshop/7.5/info_font/0.75/0/
-ToPrint/ExNihiloEXALTname/36.999999999999815/medium_font/0.8/0/
-ToPrint/ExNihiloEXALT

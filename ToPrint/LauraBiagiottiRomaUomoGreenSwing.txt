@@ -1,5 +1,0 @@
-brand/10/medium_font/0.75/1.7000000000000004/
-ToPrint/LauraBiagiottiRomaUomoGreenSwingconc/7.5/info_font/0.7/1.7000000000000004/
-ToPrint/LauraBiagiottiRomaUomoGreenSwingshop/7.5/info_font/0.75/1.7000000000000004/
-ToPrint/LauraBiagiottiRomaUomoGreenSwingname/17.199999999999534/long_font/0.92/1.7000000000000004/
-ToPrint/LauraBiagiottiRomaUomoGreenSwing

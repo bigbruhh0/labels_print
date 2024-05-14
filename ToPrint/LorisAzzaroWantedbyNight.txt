@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/LorisAzzaroWantedbyNightconc/7.5/info_font/0.7/0.0/
-ToPrint/LorisAzzaroWantedbyNightshop/7.5/info_font/0.75/0.0/
-ToPrint/LorisAzzaroWantedbyNightname/13.499999999999527/short_font/0.8/0.0/
-ToPrint/LorisAzzaroWantedbyNight

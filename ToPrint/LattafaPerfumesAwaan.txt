@@ -1,5 +1,0 @@
-brand/13.8/medium_font/0.85/0/
-ToPrint/LattafaPerfumesAwaanconc/7.5/info_font/0.7/0/
-ToPrint/LattafaPerfumesAwaanshop/7.5/info_font/0.75/0/
-ToPrint/LattafaPerfumesAwaanname/29.399999999999707/medium_font/0.8/0/
-ToPrint/LattafaPerfumesAwaan

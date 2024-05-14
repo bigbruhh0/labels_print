@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0/
-ToPrint/LArtisanLArtisanNaturaFabularis26Tenebraeconc/7.5/info_font/0.7/0/
-ToPrint/LArtisanLArtisanNaturaFabularis26Tenebraeshop/7.5/info_font/0.75/0/
-ToPrint/LArtisanLArtisanNaturaFabularis26Tenebraename/9.599999999999541/long_font/0.92/0/
-ToPrint/LArtisanLArtisanNaturaFabularis26Tenebrae

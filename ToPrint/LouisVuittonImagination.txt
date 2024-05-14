@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0/
-ToPrint/LouisVuittonImaginationconc/7.5/info_font/0.7/0/
-ToPrint/LouisVuittonImaginationshop/7.5/info_font/0.75/0/
-ToPrint/LouisVuittonImaginationname/17.999999999999545/long_font/0.92/0/
-ToPrint/LouisVuittonImagination

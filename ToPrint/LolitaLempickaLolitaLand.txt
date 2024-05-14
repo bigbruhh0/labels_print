@@ -1,5 +1,0 @@
-brand/14/medium_font/0.75/0/
-ToPrint/LolitaLempickaLolitaLandconc/7.5/info_font/0.7/0/
-ToPrint/LolitaLempickaLolitaLandshop/7.5/info_font/0.75/0/
-ToPrint/LolitaLempickaLolitaLandname/19.899999999999572/long_font/0.92/0/
-ToPrint/LolitaLempickaLolitaLand

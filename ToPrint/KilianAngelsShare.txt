@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.0/
-ToPrint/KilianAngelsShareconc/7.5/info_font/0.7/0.0/
-ToPrint/KilianAngelsShareshop/7.5/info_font/0.75/0.0/
-ToPrint/KilianAngelsSharename/15.099999999999522/short_font/0.8/0.0/
-ToPrint/KilianAngelsShare

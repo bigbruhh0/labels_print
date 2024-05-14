@@ -1,5 +1,0 @@
-brand/9.900000000000015/medium_font/0.85/0/
-ToPrint/BoadiceatheVictoriousExoticconc/7.5/info_font/0.7/0/
-ToPrint/BoadiceatheVictoriousExoticshop/7.5/info_font/0.75/0/
-ToPrint/BoadiceatheVictoriousExoticname/31.899999999999743/medium_font/0.8/0/
-ToPrint/BoadiceatheVictoriousExotic

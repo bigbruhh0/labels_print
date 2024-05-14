@@ -1,5 +1,0 @@
-brand/14/short_font/0.75/0/
-ToPrint/ExNihiloMAGNETIZEconc/7.5/info_font/0.7/0/
-ToPrint/ExNihiloMAGNETIZEshop/7.5/info_font/0.75/0/
-ToPrint/ExNihiloMAGNETIZEname/20.999999999999588/long_font/0.92/0/
-ToPrint/ExNihiloMAGNETIZE

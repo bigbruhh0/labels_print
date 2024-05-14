@@ -1,5 +1,0 @@
-brand/11.600000000000009/medium_font/0.85/0/
-ToPrint/LaboratorioOlfattivoSalinaconc/7.5/info_font/0.7/0/
-ToPrint/LaboratorioOlfattivoSalinashop/7.5/info_font/0.75/0/
-ToPrint/LaboratorioOlfattivoSalinaname/31.199999999999733/medium_font/0.8/0/
-ToPrint/LaboratorioOlfattivoSalina

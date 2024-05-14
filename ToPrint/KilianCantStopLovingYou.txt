@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/1.7500000000000004/
-ToPrint/KilianCantStopLovingYouconc/7.5/info_font/0.7/1.7500000000000004/
-ToPrint/KilianCantStopLovingYoushop/7.5/info_font/0.75/1.7500000000000004/
-ToPrint/KilianCantStopLovingYouname/20.199999999999577/long_font/0.92/1.7500000000000004/
-ToPrint/KilianCantStopLovingYou

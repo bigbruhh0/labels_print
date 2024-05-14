@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0.7999999999999999/
-ToPrint/LacosteL1212BlancRolandGarrosconc/7.5/info_font/0.7/0.7999999999999999/
-ToPrint/LacosteL1212BlancRolandGarrosshop/7.5/info_font/0.75/0.7999999999999999/
-ToPrint/LacosteL1212BlancRolandGarrosname/14.399999999999524/long_font/0.92/0.7999999999999999/
-ToPrint/LacosteL1212BlancRolandGarros

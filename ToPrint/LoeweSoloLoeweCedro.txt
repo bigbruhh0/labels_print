@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/1.6100000000000003/
-ToPrint/LoeweSoloLoeweCedroconc/7.5/info_font/0.7/1.6100000000000003/
-ToPrint/LoeweSoloLoeweCedroshop/7.5/info_font/0.75/1.6100000000000003/
-ToPrint/LoeweSoloLoeweCedroname/19.09999999999956/long_font/0.92/1.6100000000000003/
-ToPrint/LoeweSoloLoeweCedro

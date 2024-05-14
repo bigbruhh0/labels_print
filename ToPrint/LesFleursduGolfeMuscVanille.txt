@@ -1,5 +1,0 @@
-brand/10/medium_font/0.75/0/
-ToPrint/LesFleursduGolfeMuscVanilleconc/7.5/info_font/0.7/0/
-ToPrint/LesFleursduGolfeMuscVanilleshop/7.5/info_font/0.75/0/
-ToPrint/LesFleursduGolfeMuscVanillename/16.399999999999523/long_font/0.92/0/
-ToPrint/LesFleursduGolfeMuscVanille

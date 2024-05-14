@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/0/
-ToPrint/ChloeLoveChloeEauFloraleÂÈÍÒÀÆconc/7.5/info_font/0.7/0/
-ToPrint/ChloeLoveChloeEauFloraleÂÈÍÒÀÆshop/7.5/info_font/0.75/0/
-ToPrint/ChloeLoveChloeEauFloraleÂÈÍÒÀÆname/9.89999999999954/long_font/0.92/0/
-ToPrint/ChloeLoveChloeEauFloraleÂÈÍÒÀÆ

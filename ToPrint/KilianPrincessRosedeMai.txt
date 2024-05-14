@@ -1,5 +1,0 @@
-brand/10/short_font/0.75/2.1000000000000005/
-ToPrint/KilianPrincessRosedeMaiconc/7.5/info_font/0.7/2.1000000000000005/
-ToPrint/KilianPrincessRosedeMaishop/7.5/info_font/0.75/2.1000000000000005/
-ToPrint/KilianPrincessRosedeMainame/18.899999999999558/long_font/0.92/2.1000000000000005/
-ToPrint/KilianPrincessRosedeMai
