@@ -7,3 +7,14 @@
 13:11:51|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^5^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=5
 13:12:26|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^5^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=5
 13:12:41|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^10^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=10
+15:27:43|CHANEL^CHANCE EAU FRAICHE^edt (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chance+Eau+Fraiche&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:30:26|CHANEL^CHANCE EAU FRAICHE^edt (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chance+Eau+Fraiche&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:30:49|CHANEL^CHANCE EAU FRAICHE^edt (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chance+Eau+Fraiche&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:31:14|CHANEL^CHANCE EAU FRAICHE^edt (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chance+Eau+Fraiche&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:31:28|CHANEL^CHANCE EAU FRAICHE^edt (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chance+Eau+Fraiche&conc=edt+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:32:46|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:33:18|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:33:41|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:34:43|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:35:03|CHANEL^CHANEL № 19 POUDRE^edp (пробник)^1^http://localhost:5000/?type=1&brand=Chanel&frag_name=Chanel+%E2%84%96+19+Poudre&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=1
+15:37:13|CHANEL^ALLURE HOMME EDITION BLANCHE^edp (пробник)^5^http://localhost:5000/?type=1&brand=Chanel&frag_name=Allure+Homme+Edition+Blanche&conc=edp+%28%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D0%B8%D0%BA%29&ml=5

@@ -41,7 +41,7 @@ async def check_axis(request):
 	data = await request.json()  # Получаем данные запроса в формате JSON
 	bup = json.loads(data.get('k'))  # Получаем значение по ключу 'k' из JSON
 	print(bup)
-	subprocess.run(['python', 'debug_axis.py']+bup, check=True)
+	subprocess.run(['python', 'debug_axis.pyw']+bup, check=True)
 	return web.Response(text= "ok")
 async def set_ds(request):
 	data = await request.json()  # Получаем данные запроса в формате JSON

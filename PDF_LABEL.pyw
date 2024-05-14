@@ -403,10 +403,7 @@ def main(file_path,width,height):
 		for i in obj:
 			i.dx+=GDX
 			i.d+=GDY
-			if i.type=='name':
-				for j in i.ln_text:
-					j.dx+=GDX
-					j.d+=GDY
+			
 		FREE_H=_H-h_border-obj[0].get_pos()[1]
 		DH=FREE_H/4
 

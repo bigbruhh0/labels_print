@@ -8,4 +8,4 @@ i('requests')
 i('flask')
 i('websockets')
 i('reportlab')
-
+i('pywin32')
