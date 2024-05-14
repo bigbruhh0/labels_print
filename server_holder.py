@@ -90,6 +90,7 @@ async def update_variable(request):
 	print(request.query)
 	b=request.query.get('brand')
 	conv_data=request.query
+	print(request.url,'CONVCONVONCONCOC')
 	#return web.Response(text=data, status=400)
 	#print(data['data'])
 	if 'type' in conv_data:
@@ -102,9 +103,8 @@ async def update_variable(request):
 		if _type == '1':
 			brand_name = conv_data.get('brand')
 			frag = conv_data.get('frag_name')
-			frag_name = frag
+			frag_name = frag.upper()
 			conc = conv_data.get('conc')
-			conc=conc.replace('(пробник)','')
 			ml = conv_data.get('ml')
 			print('|'+brand_name+'|'+frag_name+'|'+conc+'|'+ml+'|')
 			print([brand_name, frag_name, conc, ml])
@@ -117,7 +117,7 @@ async def update_variable(request):
 			#print(brand_name, frag_name, conc, ml)
 			
 			ws_data[0]+=1
-			ws_data[1].append([brand_name,frag_name,conc,ml])
+			ws_data[1].append([brand_name,frag_name,conc,ml,str(request.url)])
 			return web.Response(text=_type + "ok")
 		elif _type=='2':
 			set_name=conv_data.get('set_name')

@@ -1,0 +1,5 @@
+brand/14/short_font/0.75/0/
+ToPrint/KilianDarkLordconc/7.5/info_font/0.7/0/
+ToPrint/KilianDarkLordshop/7.5/info_font/0.75/0/
+ToPrint/KilianDarkLordname/21.299999999999592/long_font/0.92/0/
+ToPrint/KilianDarkLord

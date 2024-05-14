@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/KilianBlackPhantomconc/7.5/info_font/0.7/0.0/
+ToPrint/KilianBlackPhantomshop/7.5/info_font/0.75/0.0/
+ToPrint/KilianBlackPhantomname/12.399999999999531/short_font/0.8/0.0/
+ToPrint/KilianBlackPhantom

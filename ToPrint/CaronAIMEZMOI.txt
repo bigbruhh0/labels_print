@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/CaronAIMEZMOIconc/7.5/info_font/0.7/0/
+ToPrint/CaronAIMEZMOIshop/7.5/info_font/0.75/0/
+ToPrint/CaronAIMEZMOIname/19.899999999999572/long_font/0.92/0/
+ToPrint/CaronAIMEZMOI

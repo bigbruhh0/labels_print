@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0/
+ToPrint/LorenzoVilloresiAtmanXamanconc/7.5/info_font/0.7/0/
+ToPrint/LorenzoVilloresiAtmanXamanshop/7.5/info_font/0.75/0/
+ToPrint/LorenzoVilloresiAtmanXamanname/15.59999999999952/long_font/0.92/0/
+ToPrint/LorenzoVilloresiAtmanXaman

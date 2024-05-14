@@ -1,0 +1,5 @@
+brand/9.500000000000002/medium_font/0.85/0/
+ToPrint/LesLiquidesImaginairesDesertSuaveconc/7.5/info_font/0.7/0/
+ToPrint/LesLiquidesImaginairesDesertSuaveshop/7.5/info_font/0.75/0/
+ToPrint/LesLiquidesImaginairesDesertSuavename/16.399999999999523/long_font/0.92/0/
+ToPrint/LesLiquidesImaginairesDesertSuave

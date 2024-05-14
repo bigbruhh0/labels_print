@@ -106,13 +106,14 @@ async def handle_messages():
 				global ws_get
 				ws_get=my_list
 				if len(my_list[1])>0:
-					add_work(my_list[1][0][0].upper() + '^' + my_list[1][0][1] + '^' + my_list[1][0][2] + '^' + my_list[1][0][3])
+					add_work(my_list[1][0][0].upper() + '^' + my_list[1][0][1] + '^' + my_list[1][0][2] + '^' + my_list[1][0][3]+'^' + my_list[1][0][4])
 					print(my_list[1])
 					# Установка состояния полей ввода на normal
 					brand_name_entry.config(state="normal")
 					frag_name_entry.config(state="normal")
 					conc_entry.config(state="normal")
 					ml_entry.config(state="normal")
+					url_entry.config(state="normal")
 
 					# Вставка новых значений
 					brand_name_entry.delete(0, tk.END)
@@ -123,6 +124,8 @@ async def handle_messages():
 					conc_entry.insert(0, my_list[1][0][2])
 					ml_entry.delete(0, tk.END)
 					ml_entry.insert(0, my_list[1][0][3])
+					url_entry.delete(0, tk.END)
+					url_entry.insert(0, my_list[1][0][4])
 
 					# Возврат состояния полей ввода в readonly
 					brand_name_entry.config(state="readonly")
@@ -142,8 +145,8 @@ async def handle_messages():
 
 def add_to_tree(item):
 	time_data, product_data = item.split("|")
-	a, b, c, d = product_data.split("^")
-	done_work_listbox.insert('', tk.END, values=(len(done_work_listbox.get_children())+1,a, b, c, d))
+	a, b, c, d,e = product_data.split("^")
+	done_work_listbox.insert('', tk.END, values=(len(done_work_listbox.get_children())+1,a, b, c, d,e))
 	done_work_listbox.yview_moveto(1)
 	
 def append_to_file(filename, value):
@@ -179,8 +182,8 @@ cur_dy = read_info(cfg_file_path)[2]
 current_date = check_date()
 
 def send_log():
-	a,b,c,d=brand_name_entry.get(),frag_name_entry.get(),conc_entry.get(),ml_entry.get()
-	append_to_file('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/проблемные названия(ошибки).txt',a+","+b+","+c+","+d+'\n')
+	a,b,c,d,e=brand_name_entry.get(),frag_name_entry.get(),conc_entry.get(),ml_entry.get(),url_entry.get()
+	append_to_file('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/проблемные названия(ошибки).txt',a+","+b+","+c+","+d+"||"+e+'\n')
 
 root = tk.Tk()
 root.title("Server Control App")
@@ -212,7 +215,7 @@ conc_entry.insert(0, "Conc")
 
 ml_entry = tk.Entry(root, width=30,state="readonly")
 ml_entry.insert(0, "ML")
-
+url_entry = tk.Entry(root, width=30,state="readonly")
 x_entry=tk.Entry(x_set, width=30)
 y_entry=tk.Entry(y_set, width=30)
 x_entry.delete(0,tk.END)
@@ -270,13 +273,15 @@ child_y = parent_y  # Позиция Y окна (верхняя граница �
 #list_window = tk.Toplevel(root)
 #list_window.title("Done Work List")
 #list_window.geometry(f"{child_width}x{child_height}+{child_x}+{child_y}")
-done_work_listbox = ttk.Treeview(root, columns=('d','A', 'B', 'C', 'D'), show='headings')
+done_work_listbox = ttk.Treeview(root, columns=('d','A', 'B', 'C', 'D','E'), show='headings')
 done_work_listbox.heading('d', text='#')
 done_work_listbox.heading('A', text='Бренд')
 done_work_listbox.heading('B', text='Аромат')
 done_work_listbox.heading('C', text='Конц.')
 done_work_listbox.heading('D', text='Объем')
+done_work_listbox.heading('E', text='url')
 done_work_listbox.column('d', width=30, anchor="center")
+done_work_listbox.column('E', width=10, anchor="center")
 done_work_listbox.column('C', width=30, anchor="center")
 done_work_listbox.column('D', width=30, anchor="center")
 done_work_listbox.column('A', width=250, anchor="center")
@@ -308,6 +313,7 @@ brand_name_entry.pack(side=tk.TOP, pady=5)
 frag_name_entry.pack(side=tk.TOP, pady=5)
 conc_entry.pack(side=tk.TOP, pady=5)
 ml_entry.pack(side=tk.TOP, pady=5)
+url_entry.pack(side=tk.TOP,pady=5)
 result_label.pack(side=tk.TOP)
 number_label.pack(side=tk.BOTTOM)
 y_entry.pack(side=tk.BOTTOM)
@@ -318,6 +324,7 @@ x_entry.pack(side=tk.BOTTOM)
 
 def on_item_select(event):
 	# Получить индекс выбранной строки
+	print(event)
 	selected_row = done_work_listbox.selection()[0]
 
 	# Получить данные из выбранной строки
@@ -326,6 +333,7 @@ def on_item_select(event):
 	frag_name_entry.config(state="normal")
 	conc_entry.config(state="normal")
 	ml_entry.config(state="normal")
+	url_entry.config(state="normal")
 	# Вставить данные в Entry
 	brand_name_entry.delete(0, tk.END)  # Очистить Entry перед вставкой новых данных
 	brand_name_entry.insert(0, data[1])  # Пример: вставить первый элемент из строки таблицы
@@ -335,10 +343,13 @@ def on_item_select(event):
 	conc_entry.insert(0, data[3])  # Пример: вставить первый элемент из строки таблицы
 	ml_entry.delete(0, tk.END)  # Очистить Entry перед вставкой новых данных
 	ml_entry.insert(0, data[4])  # Пример: вставить первый элемент из строки таблицы
+	url_entry.delete(0, tk.END)  # Очистить Entry перед вставкой новых данных
+	url_entry.insert(0, data[5])  # Пример: вставить первый элемент из строки таблицы
 	brand_name_entry.config(state="readonly")
 	frag_name_entry.config(state="readonly")
 	conc_entry.config(state="readonly")
 	ml_entry.config(state="readonly")
+	url_entry.config(state="readonly")
 
 # Привязать обработчик событий к таблице
 done_work_listbox.bind('<ButtonRelease-1>', on_item_select)

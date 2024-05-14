@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0/
+ToPrint/LOrchestreParfumPianoSantalconc/7.5/info_font/0.7/0/
+ToPrint/LOrchestreParfumPianoSantalshop/7.5/info_font/0.75/0/
+ToPrint/LOrchestreParfumPianoSantalname/16.499999999999524/long_font/0.92/0/
+ToPrint/LOrchestreParfumPianoSantal

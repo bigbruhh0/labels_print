@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0.0/
+ToPrint/JulietteHasaGunLadyVengeanceconc/7.5/info_font/0.7/0.0/
+ToPrint/JulietteHasaGunLadyVengeanceshop/7.5/info_font/0.75/0.0/
+ToPrint/JulietteHasaGunLadyVengeancename/10.299999999999539/short_font/0.8/0.0/
+ToPrint/JulietteHasaGunLadyVengeance

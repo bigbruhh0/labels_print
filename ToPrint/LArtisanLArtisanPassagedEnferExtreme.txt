@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/LArtisanLArtisanPassagedEnferExtremeconc/7.5/info_font/0.7/0/
+ToPrint/LArtisanLArtisanPassagedEnferExtremeshop/7.5/info_font/0.75/0/
+ToPrint/LArtisanLArtisanPassagedEnferExtremename/11.899999999999533/long_font/0.92/0/
+ToPrint/LArtisanLArtisanPassagedEnferExtreme

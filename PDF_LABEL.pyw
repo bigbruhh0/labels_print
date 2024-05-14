@@ -16,17 +16,35 @@ from reportlab.pdfbase.ttfonts import TTFont
 from functions import do_split,split_line,get_info,split_string,read_info,correct_line
 import sys
 import os
-buf_list=read_info('C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
+user_name='User'
+buf_list=read_info('C:/Users/'+user_name+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
+delete_list=read_info('C:/Users/'+user_name+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(удаление).txt')
+buf2=read_info('C:/Users/'+user_name+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/замены для концентрации.txt')
+
+conc_replace_list=[]
+for i in buf2:
+	print(i)
+	conc_replace_list.append(i.split('|_|'))
+
 replace_list=[]
 for i in buf_list:
 	ba=i.split('|_|')
 	replace_list.append(ba)
-print(replace_list)
+
 #brand_name,frag_name,conc,ml=['Dolce and Gabbana','LIGHT BLUE FOREVER POUR HOMME','edp','3']
 brand_name=correct_line(sys.argv[1])
 frag_name=correct_line(sys.argv[2])
-print(brand_name,frag_name,'corrected')
+
 conc=sys.argv[3]
+for i in conc_replace_list:
+	if frag_name.find(i[0].upper())>-1:
+		print('FOUND')
+		conc=i[1]+', '+conc
+
+for i in delete_list:
+	frag_name=frag_name.replace(i.upper(),'')
+	conc=conc.replace(i,'')
+
 ml=sys.argv[4]
 DRAW_SHOP=int(sys.argv[5])
 GDX=float(sys.argv[6])
@@ -35,7 +53,24 @@ for i in replace_list:
 	if frag_name==i[0]:
 		frag_name=i[1]
 		break
-print(GDX,GDY,'GDGDGDGD')
+print('|'+frag_name+'|','|'+conc+'|')
+if frag_name[0]==' ':
+	frag_name=frag_name[1:]
+if frag_name[len(frag_name)-1]==' ':
+	frag_name=frag_name[:len(frag_name)-1]
+if conc[0]==' ':
+	conc=conc[1:]
+if conc[len(conc)-1]==' ':
+	conc=conc[:len(conc)-1]
+if ml[0]==' ':
+	ml=ml[1:]
+if ml[len(ml)-1]==' ':
+	ml=ml[:len(ml)-1]
+if brand_name[0]==' ':
+	brand_name=brand_name[1:]
+if brand_name[len(brand_name)-1]==' ':
+	brand_name=brand_name[:len(brand_name)-1]
+print('|'+brand_name+'|','|'+frag_name+'|','|'+conc+'|','|'+ml+'|')
 class st:
 	def __init__(self,_text,x,y,font,size,k,pos):
 		self.text=_text
@@ -84,7 +119,7 @@ class st:
 		b=self.spacing*(len(self.text)-1)
 		textobject.setFont(self.fontName, self.fontSize)
 		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2+self.dx,self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
-		#print('|||',self.x-(self.getWidth()+b)/2,self.x,self.x+(self.getWidth()+b)/2),self.getWidth()+b
+		
 		textobject.textLines(self.text)
 		c.drawText(textobject)
 	def get_pos(self):
@@ -212,9 +247,11 @@ class _Line:
 
 
 		if self.type=="conc":
+			while(stringWidth(self.text,self.fontName,self.fontSize))>_W-v_border*2:
+				self.fontSize-=.1
 			self.y=obj[2].y+obj[2].getH()
 		if self.type=="name":
-			print(1,self.fontSize)
+
 			self.fontSize=50
 			for i in self.ln_text:
 				i.fontSize=50
@@ -244,7 +281,7 @@ class _Line:
 				
 				for i in self.ln_text:
 					i.fontSize-=.1
-			print(2,self.fontSize)
+
 			#self.calc_height(c)
 	def calc_height(self,c):
 		if self.type=="name":
@@ -254,7 +291,7 @@ class _Line:
 				REG_FREE=0.15*cm
 			self.dh=obj[0].y-obj[1].get_pos()[1]
 			#c.rect(0,obj[1].get_pos()[1],_W,obj[0].y-obj[1].get_pos()[1])
-			print('111111',obj[0].y,obj[1].get_pos()[1])
+
 			c.setStrokeColorRGB(255, 0, 0)
 			#c.rect(0,obj[1].y+obj[1].getH(),_W,self.dh)
 			self.fontSize=self.ln_text[0].fontSize
@@ -272,7 +309,7 @@ class _Line:
 					textH+=i.getHeight()
 			
 			for i in self.ln_text:
-				print(3,i.fontSize)
+
 				if i.fontSize>23:
 					i.fontSize=23
 			
@@ -284,7 +321,7 @@ class _Line:
 		if self.type != 'name':
 			c.setFont(self.fontName, self.fontSize)
 			c.setFillColorRGB(0, 0, 0)
-			print(self.d,self.type)
+
 			textobject1 = c.beginText(self.x-self.getWidth()/2+self.dx, self.y + self.d)
 			textobject1.setCharSpace(0)
 			textobject1.setFont(self.fontName, self.fontSize)
@@ -297,7 +334,7 @@ class _Line:
 				c.line(0,self.get_pos()[1],_W,self.get_pos()[1])
 				c.line(0,self.get_pos()[0],_W,self.get_pos()[0])
 		else:
-			print(self.fontSize)
+
 			if len(self.ln_text)>1:
 				for i in self.ln_text:
 					i.set_spacing()
@@ -368,7 +405,7 @@ def main(file_path,width,height):
 					j.d+=GDY
 		FREE_H=_H-h_border-obj[0].get_pos()[1]
 		DH=FREE_H/4
-		print(DH,FREE_H,"HHHHH")
+
 		
 		obj[1].d+=DH
 		obj[3].d+=DH*2
@@ -397,8 +434,11 @@ def main(file_path,width,height):
 fonts=init_fonts()
 obj=[]
 dev_draw=False
-conc=conc.replace(' ','')
-ml=ml.replace(' ','')
+#conc=conc.replace(' ','')
+#ml=ml.replace(' ','')
+
+
+
 
 v_border,h_border,_W,_H=get_params()
 obj.append(_Line(brand_name,'Arial',9,'brand'))

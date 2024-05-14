@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/KilianSmokingHotconc/7.5/info_font/0.7/0/
+ToPrint/KilianSmokingHotshop/7.5/info_font/0.75/0/
+ToPrint/KilianSmokingHotname/17.399999999999537/long_font/0.92/0/
+ToPrint/KilianSmokingHot

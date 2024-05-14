@@ -1,0 +1,5 @@
+brand/14/short_font/0.75/0/
+ToPrint/MontaleSoFlowersconc/7.5/info_font/0.7/0/
+ToPrint/MontaleSoFlowersshop/7.5/info_font/0.75/0/
+ToPrint/MontaleSoFlowersname/18.799999999999557/long_font/0.92/0/
+ToPrint/MontaleSoFlowers

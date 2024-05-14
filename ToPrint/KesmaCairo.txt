@@ -1,0 +1,5 @@
+brand/14/short_font/0.75/0/
+ToPrint/KesmaCairoconc/7.5/info_font/0.7/0/
+ToPrint/KesmaCairoshop/7.5/info_font/0.75/0/
+ToPrint/KesmaCaironame/36.69999999999981/medium_font/0.8/0/
+ToPrint/KesmaCairo

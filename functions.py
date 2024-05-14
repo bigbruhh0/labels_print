@@ -28,7 +28,7 @@ def split_line(l):
 	l2=l[len(l1)+1:]
 	return l1,l2
 def read_info(f_path):
-    with open(f_path, "r") as file:
+    with open(f_path, "r", encoding='utf-8') as file:
         lines = [line.strip() for line in file.readlines()]
     kek = []
     for i in lines:
@@ -102,6 +102,8 @@ def do_split(frag_name):
 	cnt_lines=2	
 	return(s,cnt_lines)
 kekis={
+	'No.': '№ ',
+	
 	'А' : '凡 ∀ ₳ Ǻ ǻ α ά Ά ẫ Ắ ắ Ằ ằ ẳ Ẵ ẵ Ä ª ä Å À Á Â å ã â à á Ã ᵰ',
 
 	'B' : 'ℬ β ฿ ß Ђ Ɓ ƀ ხ 方'.split(' '),
@@ -180,11 +182,11 @@ def split_string(l,*tp):
 			except_list.append(modified_line)
 
 	if l.find("NO.")>-1:
-		l=l.replace("NO.","no.")
+		pass#l=l.replace("NO.","no.")
 	
 	buf=''
 	buf_n=0
-	syms_list=[" ",'!']
+	syms_list=[" "]
 	line=['','']
 	s=[0]
 	if len(line)>10:
@@ -193,7 +195,13 @@ def split_string(l,*tp):
 		for i in range(len(l)):
 			if (l[i] in syms_list)or (i==len(l)-1):
 				s.append(i)
-
+		k=s
+		print(s)
+		for i in s:
+			print('|'+l[i-3:i]+'|')
+			if l[i-3:i]=='NO.':
+				s.remove(i)
+		print(s)
 		mid=len(l)/2
 	
 		min_D=9999999
@@ -233,10 +241,18 @@ def split_string(l,*tp):
 			line[0]=l
 
 	mx=0
+	linnne=[]
 	for i in line:
+		keks=i
+		if i.find('NO.')>-1:
+			print(i,1)
+			keks=i[:i.find('NO.')+3]+i[i.find('NO.')+4:]
+			print(i,2)
 		if len(line)>mx:
 			mx=len(line)
-	return line
+		linnne.append(keks)
+	print(linnne)
+	return linnne
 def get_info():
 	brand='Les Liquides Imaginaires'
 	name='DOM ROSA'

@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/KenzoFlowerIkebanaconc/7.5/info_font/0.7/0.0/
+ToPrint/KenzoFlowerIkebanashop/7.5/info_font/0.75/0.0/
+ToPrint/KenzoFlowerIkebananame/15.39999999999952/short_font/0.8/0.0/
+ToPrint/KenzoFlowerIkebana

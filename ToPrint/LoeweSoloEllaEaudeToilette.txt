@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.7/
+ToPrint/LoeweSoloEllaEaudeToiletteconc/7.5/info_font/0.7/0.7/
+ToPrint/LoeweSoloEllaEaudeToiletteshop/7.5/info_font/0.75/0.7/
+ToPrint/LoeweSoloEllaEaudeToilettename/14.599999999999524/long_font/0.92/0.7/
+ToPrint/LoeweSoloEllaEaudeToilette

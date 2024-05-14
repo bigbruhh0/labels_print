@@ -1,0 +1,5 @@
+brand/14/medium_font/0.75/0/
+ToPrint/LouisVuittonMeteoreconc/7.5/info_font/0.7/0/
+ToPrint/LouisVuittonMeteoreshop/7.5/info_font/0.75/0/
+ToPrint/LouisVuittonMeteorename/26.09999999999966/long_font/0.92/0/
+ToPrint/LouisVuittonMeteore

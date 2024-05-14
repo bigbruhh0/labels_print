@@ -1,0 +1,5 @@
+brand/9.500000000000009/medium_font/0.85/0/
+ToPrint/LesLiquidesImaginairesSancticonc/7.5/info_font/0.7/0/
+ToPrint/LesLiquidesImaginairesSanctishop/7.5/info_font/0.75/0/
+ToPrint/LesLiquidesImaginairesSanctiname/30.499999999999723/medium_font/0.8/0/
+ToPrint/LesLiquidesImaginairesSancti

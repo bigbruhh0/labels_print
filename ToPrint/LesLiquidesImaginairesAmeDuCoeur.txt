@@ -1,0 +1,5 @@
+brand/9.500000000000002/medium_font/0.85/0/
+ToPrint/LesLiquidesImaginairesAmeDuCoeurconc/7.5/info_font/0.7/0/
+ToPrint/LesLiquidesImaginairesAmeDuCoeurshop/7.5/info_font/0.75/0/
+ToPrint/LesLiquidesImaginairesAmeDuCoeurname/16.29999999999952/long_font/0.92/0/
+ToPrint/LesLiquidesImaginairesAmeDuCoeur

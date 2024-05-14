@@ -1,0 +1,5 @@
+brand/14/medium_font/0.75/0/
+ToPrint/KeikoMecheriLoukhoumconc/7.5/info_font/0.7/0/
+ToPrint/KeikoMecheriLoukhoumshop/7.5/info_font/0.75/0/
+ToPrint/KeikoMecheriLoukhoumname/21.499999999999595/long_font/0.92/0/
+ToPrint/KeikoMecheriLoukhoum

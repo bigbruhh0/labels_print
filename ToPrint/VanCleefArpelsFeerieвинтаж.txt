@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0.0/
+ToPrint/VanCleefArpelsFEERIEÂÈÍÒÀÆconc/7.5/info_font/0.7/0.0/
+ToPrint/VanCleefArpelsFEERIEÂÈÍÒÀÆshop/7.5/info_font/0.75/0.0/
+ToPrint/VanCleefArpelsFEERIEÂÈÍÒÀÆname/16.19999999999952/short_font/0.8/0.0/
+ToPrint/VanCleefArpelsFEERIEÂÈÍÒÀÆ

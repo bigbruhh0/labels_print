@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/CathyGuettaIBIZAFEMMEconc/7.5/info_font/0.7/0/
+ToPrint/CathyGuettaIBIZAFEMMEshop/7.5/info_font/0.75/0/
+ToPrint/CathyGuettaIBIZAFEMMEname/17.69999999999954/long_font/0.92/0/
+ToPrint/CathyGuettaIBIZAFEMME

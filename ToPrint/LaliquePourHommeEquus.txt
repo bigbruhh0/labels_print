@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/LaliquePOURHOMMEEQUUSconc/7.5/info_font/0.7/0/
+ToPrint/LaliquePOURHOMMEEQUUSshop/7.5/info_font/0.75/0/
+ToPrint/LaliquePOURHOMMEEQUUSname/11.099999999999536/long_font/0.92/0/
+ToPrint/LaliquePOURHOMMEEQUUS

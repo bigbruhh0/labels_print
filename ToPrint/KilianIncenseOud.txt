@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/KilianIncenseOudconc/7.5/info_font/0.7/0/
+ToPrint/KilianIncenseOudshop/7.5/info_font/0.75/0/
+ToPrint/KilianIncenseOudname/18.39999999999955/long_font/0.92/0/
+ToPrint/KilianIncenseOud

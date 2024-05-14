@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0.0/
+ToPrint/JulietteHasaGunLiquidIllusionconc/7.5/info_font/0.7/0.0/
+ToPrint/JulietteHasaGunLiquidIllusionshop/7.5/info_font/0.75/0.0/
+ToPrint/JulietteHasaGunLiquidIllusionname/13.799999999999526/short_font/0.8/0.0/
+ToPrint/JulietteHasaGunLiquidIllusion

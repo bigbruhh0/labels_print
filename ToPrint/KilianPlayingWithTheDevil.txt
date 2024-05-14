@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/1.4000000000000001/
+ToPrint/KilianPlayingWithTheDevilconc/7.5/info_font/0.7/1.4000000000000001/
+ToPrint/KilianPlayingWithTheDevilshop/7.5/info_font/0.75/1.4000000000000001/
+ToPrint/KilianPlayingWithTheDevilname/16.499999999999524/long_font/0.92/1.4000000000000001/
+ToPrint/KilianPlayingWithTheDevil

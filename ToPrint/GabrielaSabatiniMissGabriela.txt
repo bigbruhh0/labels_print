@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/0.0/
+ToPrint/GabrielaSabatiniMissGabrielaconc/7.5/info_font/0.7/0.0/
+ToPrint/GabrielaSabatiniMissGabrielashop/7.5/info_font/0.75/0.0/
+ToPrint/GabrielaSabatiniMissGabrielaname/13.399999999999528/short_font/0.8/0.0/
+ToPrint/GabrielaSabatiniMissGabriela

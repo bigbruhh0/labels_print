@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/LaliquePOURHOMMELIONconc/7.5/info_font/0.7/0/
+ToPrint/LaliquePOURHOMMELIONshop/7.5/info_font/0.75/0/
+ToPrint/LaliquePOURHOMMELIONname/12.199999999999532/long_font/0.92/0/
+ToPrint/LaliquePOURHOMMELION

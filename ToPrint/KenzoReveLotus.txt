@@ -1,0 +1,5 @@
+brand/14/short_font/0.75/0/
+ToPrint/KenzoReveLotusconc/7.5/info_font/0.7/0/
+ToPrint/KenzoReveLotusshop/7.5/info_font/0.75/0/
+ToPrint/KenzoReveLotusname/20.199999999999577/long_font/0.92/0/
+ToPrint/KenzoReveLotus

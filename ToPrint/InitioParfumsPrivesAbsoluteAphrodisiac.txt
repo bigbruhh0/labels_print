@@ -1,0 +1,5 @@
+brand/10/medium_font/0.75/1.9000000000000006/
+ToPrint/InitioParfumsPrivesAbsoluteAphrodisiacconc/7.5/info_font/0.7/1.9000000000000006/
+ToPrint/InitioParfumsPrivesAbsoluteAphrodisiacshop/7.5/info_font/0.75/1.9000000000000006/
+ToPrint/InitioParfumsPrivesAbsoluteAphrodisiacname/17.899999999999544/long_font/0.92/1.9000000000000006/
+ToPrint/InitioParfumsPrivesAbsoluteAphrodisiac

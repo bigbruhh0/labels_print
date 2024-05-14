@@ -1,0 +1,5 @@
+brand/14/medium_font/0.75/0/
+ToPrint/RalphLaurenPOLOSPORTconc/7.5/info_font/0.7/0/
+ToPrint/RalphLaurenPOLOSPORTshop/7.5/info_font/0.75/0/
+ToPrint/RalphLaurenPOLOSPORTname/19.69999999999957/long_font/0.92/0/
+ToPrint/RalphLaurenPOLOSPORT

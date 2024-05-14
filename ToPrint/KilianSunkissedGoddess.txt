@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/KilianSunkissedGoddessconc/7.5/info_font/0.7/0.0/
+ToPrint/KilianSunkissedGoddessshop/7.5/info_font/0.75/0.0/
+ToPrint/KilianSunkissedGoddessname/11.899999999999533/short_font/0.8/0.0/
+ToPrint/KilianSunkissedGoddess

@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.1/
+ToPrint/KilianKissingBurns64CaloriesAnHourconc/7.5/info_font/0.7/0.1/
+ToPrint/KilianKissingBurns64CaloriesAnHourshop/7.5/info_font/0.75/0.1/
+ToPrint/KilianKissingBurns64CaloriesAnHourname/12.299999999999532/long_font/0.92/0.1/
+ToPrint/KilianKissingBurns64CaloriesAnHour

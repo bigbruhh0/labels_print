@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0/
+ToPrint/BoucheronJaipurHommeconc/7.5/info_font/0.7/0/
+ToPrint/BoucheronJaipurHommeshop/7.5/info_font/0.75/0/
+ToPrint/BoucheronJaipurHommename/15.79999999999952/long_font/0.92/0/
+ToPrint/BoucheronJaipurHomme

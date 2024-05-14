@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/KilianKillingMeSlowlyconc/7.5/info_font/0.7/0.0/
+ToPrint/KilianKillingMeSlowlyshop/7.5/info_font/0.75/0.0/
+ToPrint/KilianKillingMeSlowlyname/10.899999999999537/short_font/0.8/0.0/
+ToPrint/KilianKillingMeSlowly

@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/1.2/
+ToPrint/Chanel1DECHANELLEAUROUGEconc/7.5/info_font/0.7/1.2/
+ToPrint/Chanel1DECHANELLEAUROUGEshop/7.5/info_font/0.75/1.2/
+ToPrint/Chanel1DECHANELLEAUROUGEname/16.09999999999952/long_font/0.92/1.2/
+ToPrint/Chanel1DECHANELLEAUROUGE

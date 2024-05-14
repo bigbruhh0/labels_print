@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/0.0/
+ToPrint/KenzoPoudreMatchaconc/7.5/info_font/0.7/0.0/
+ToPrint/KenzoPoudreMatchashop/7.5/info_font/0.75/0.0/
+ToPrint/KenzoPoudreMatchaname/15.199999999999521/short_font/0.8/0.0/
+ToPrint/KenzoPoudreMatcha

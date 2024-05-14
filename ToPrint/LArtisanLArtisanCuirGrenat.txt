@@ -1,0 +1,5 @@
+brand/10/short_font/0.75/1.9000000000000006/
+ToPrint/LArtisanLArtisanCuirGrenatconc/7.5/info_font/0.7/1.9000000000000006/
+ToPrint/LArtisanLArtisanCuirGrenatshop/7.5/info_font/0.75/1.9000000000000006/
+ToPrint/LArtisanLArtisanCuirGrenatname/18.39999999999955/long_font/0.92/1.9000000000000006/
+ToPrint/LArtisanLArtisanCuirGrenat
