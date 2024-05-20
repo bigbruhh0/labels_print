@@ -294,3 +294,27 @@ def create_text_image(text, image_path, font_size=20, font_path=None):
     cropped_image = image.crop(bbox)
 
     cropped_image.save(image_path)
+
+def do_corrections(a,b,c,d,conc_replace_list,delete_list,buf_list,replace_list):
+	aa=a
+	bb=b
+	cc=c
+	dd=d
+	for i in delete_list: #удаление
+		print(i)
+		bb=bb.replace(i.upper(),'')
+		cc=cc.replace(i,'')
+		print(bb,b,cc,c)
+
+	for i in replace_list: # замены
+		if b.find(i[0])>-1:
+			bb=bb.replace(i[0],i[1])
+		if a.find(i[0])>-1:
+			aa=aa.replace(i[0],i[1])
+	for i in conc_replace_list: # винтаж /старый и тп
+		if b.find(i[0].upper())>-1:
+			print('FOUND')
+			cc=i[1]+', '+cc
+	aa=correct_line(aa)
+	bb=correct_line(bb)
+	return aa,bb,cc,dd

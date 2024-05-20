@@ -88,7 +88,7 @@ class _lines:
 	def drawSelf(self,d,last_shift):
 		new_image_width = self.orig_w*self.k
 		new_image_height = self.image_H
-		numb_size=self.image_H/.8
+		numb_size=self.image_H/1
 		c.setFont('numb_font', numb_size)
 		l_w=stringWidth(str(self.pos+1)+'.  ',self.fontName,numb_size)
 		if self.pos==9:
@@ -99,7 +99,7 @@ class _lines:
 		c.drawImage(self.img_path,l_w+ x_border,-last_shift/2+ name_obj.y-(d+self.image_H)*(self.pos+1), width=new_image_width, height=new_image_height)
 	def calcWidth(self,h):
 		self.image_H=h
-		numb_size=self.image_H/.8
+		numb_size=self.image_H/1
 		if self.pos==9:
 			k1=stringWidth('1',self.fontName,numb_size)
 		else:
@@ -107,11 +107,11 @@ class _lines:
 		image_width, image_height = self.image.size
 		k=h/image_height
 		hh=k*image_width
-		numb_size=self.image_H/0.8
+		numb_size=self.image_H/1
 		l_w=stringWidth(str(self.pos+1)+'.',self.fontName,numb_size)
-		if hh>W-2*x_border-l_w-k1:
+		if hh>W-2*x_border-l_w*2-k1:
 			print("MEASURED",self.pos+1)
-			self.image_W=W-2*x_border-l_w-k1
+			self.image_W=W-2*x_border-l_w*2-k1
 		else:
 			print("DEF WIDTH",self.pos+1)
 			self.image_W=hh
@@ -131,9 +131,10 @@ class Name:
 		self.fontName='brand_font'
 		self.fontSize=20
 		self.x=W/2
-		self.y=H-y_border
+		self.y=H-y_border*1.5
 		self.k=0.7
 	def drawSelf(self,last_shift):
+		#c.line(0,self.y,100,self.y)
 		for i in range(len(self.lines)):
 			c.setLineWidth(0.1)
 			self.y=self.y-self.getHeight()*i-2*(i)
@@ -203,8 +204,8 @@ pdfmetrics.registerFont(TTFont('numb_font', current_directory.parent/'fonts/'/'U
 n = 10
 W=4.7*cm
 H=4.5*cm
-x_border=.05*cm
-y_border=.05*cm
+x_border=.15*cm
+y_border=.1*cm
 font_size = 300
 font_path = "fonts/arnamu.ttf"
 brandy=False

@@ -3,7 +3,26 @@ import websockets
 from aiohttp import web
 import subprocess
 import json
-from functions import read_info
+from functions import read_info,correct_line,read_info,do_corrections
+from win32com.shell import shell, shellcon
+user_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Profile)
+doc_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Documents)
+user_name='User'
+buf_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
+delete_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(удаление).txt')
+buf2=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/замены для концентрации.txt')
+conc_replace_list=[]
+for i in buf2:
+	print(i)
+	conc_replace_list.append(i.split('|_|'))
+
+replace_list=[]
+for i in buf_list:
+	ba=i.split('|_|')
+	replace_list.append(ba)
+	
+
+	
 # Переменная, которую будем отслеживать
 a = None
 ws_data=[0,[]]
@@ -108,7 +127,7 @@ async def update_variable(request):
 			ml = conv_data.get('ml')
 			print('|'+brand_name+'|'+frag_name+'|'+conc+'|'+ml+'|')
 			print([brand_name, frag_name, conc, ml])
-
+			brand_name,frag_name,conc,ml=do_corrections(brand_name,frag_name,conc,ml,conc_replace_list,delete_list,buf_list,replace_list)
 			if None in [brand_name, frag_name, conc, ml]:
 				print("Одно из значений не было получено.")
 				return "Не все данные предоставлены", 400

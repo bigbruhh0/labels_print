@@ -3,6 +3,7 @@ import websockets
 from aiohttp import web
 import subprocess
 import json
+import requests
 from functions import read_info,correct_line,read_info,do_corrections
 from win32com.shell import shell, shellcon
 user_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Profile)
@@ -15,30 +16,43 @@ conc_replace_list=[]
 for i in buf2:
 	print(i)
 	conc_replace_list.append(i.split('|_|'))
-
+set_id=read_info('handle_set_id.txt')[0]
 replace_list=[]
 for i in buf_list:
 	ba=i.split('|_|')
 	replace_list.append(ba)
 	
-
-	
-# Переменная, которую будем отслеживать
 a = None
-ws_data=[0,[]]
 DRAW_SHOP=1
 glob_DX=read_info('app_folder/config/data/cfg.txt')[1]
 glob_DY=read_info('app_folder/config/data/cfg.txt')[2]
-print(glob_DX,glob_DY)
-# Обработчик POST-запросов для обновления переменной a
-a=requests.get('https://allureparfum.ru/rest/1/56a3dyn1xzwl8ado/retailcrm.get_product/?id=290783').json()
+
+a=requests.get('https://allureparfum.ru/rest/1/56a3dyn1xzwl8ado/retailcrm.get_product/?id='+set_id).json()
+print(a["result"]["response"])
 print(a["result"]["response"]["SET"])
+set_name=a["result"]["response"]["BRAND"]+' '+a["result"]["response"]["NAME"]
+lines_data=[]
+ML=0
 for i in a["result"]["response"]["SET"]:
 	a=i["BRAND"]
 	b=i["NAME"]
 	c=i["SKU_TYPE"]
-	d=i["VOLUME"]
-	print(a,b,c,d)
+	ML=i["VOLUME"]
+	#print(a,b,c,ML)
+	a,b,c,d=do_corrections(a,b,c,ML,conc_replace_list,delete_list,buf_list,replace_list)
+	lines_data.append([a,b,c])
+args=[set_name]
+lines_data.sort()
+print(lines_data)
+for i in lines_data:
+	for j in i:
+		args.append(j)
+print(args)
+
+subprocess.run(['python', 'PDF_SET.pyw']+args, check=True)
+print(args)
+for i in lines_data:
+	pass#subprocess.run(['python', 'PDF_LABEL.pyw', i[0], i[1], i[2], ML,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 '''def send_post_request(url, data):
 	try:
 		response = requests.post(url, json=data)

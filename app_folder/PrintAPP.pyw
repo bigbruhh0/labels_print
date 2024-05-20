@@ -8,7 +8,7 @@ import websockets
 import json
 from tkinter import ttk
 ws_get=[0,[]]
-
+last_shit=''
 def check_date():
     current_datetime = datetime.now()
     current_date = current_datetime.strftime("%d-%m-%Y")
@@ -146,8 +146,11 @@ async def handle_messages():
 def add_to_tree(item):
 	time_data, product_data = item.split("|")
 	a, b, c, d,e = product_data.split("^")
-	done_work_listbox.insert('', tk.END, values=(len(done_work_listbox.get_children())+1,a, b, c, d,e))
-	done_work_listbox.yview_moveto(1)
+	global last_shit
+	if last_shit!=a+b+c+d+e:
+		done_work_listbox.insert('', tk.END, values=(len(done_work_listbox.get_children())+1,a, b, c, d,e))
+		done_work_listbox.yview_moveto(1)
+		last_shit=a+b+c+d+e
 	
 def append_to_file(filename, value):
 	with open(filename, 'a') as file:

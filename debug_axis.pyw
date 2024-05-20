@@ -39,7 +39,7 @@ def main(file_path,width,height):
 		c.rect(x_b+dx,y_b+dy,_W-x_b*2,_H-y_b*2)
 		c.save()
 		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
-		path_print="C:\\Users\\User\\Documents\\GitHub\\labels_print\\"+f+'.pdf'
+		path_print=f.replace(print_folder,'')+'.pdf'
 		subprocess.run(['ToPrint\\print_script.bat', path_print], shell=True)
 		os.remove(f+'.pdf')
 

@@ -25,38 +25,19 @@ buf_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печ
 delete_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(удаление).txt')
 buf2=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/замены для концентрации.txt')
 
-conc_replace_list=[]
-for i in buf2:
-	print(i)
-	conc_replace_list.append(i.split('|_|'))
-
-replace_list=[]
-for i in buf_list:
-	ba=i.split('|_|')
-	replace_list.append(ba)
-
 #brand_name,frag_name,conc,ml=['Dolce and Gabbana','LIGHT BLUE FOREVER POUR HOMME','edp','3']
 brand_name=correct_line(sys.argv[1])
 frag_name=correct_line(sys.argv[2])
-
+if "L'ARTISAN" in frag_name:
+	frag_name=frag_name.replace("L'ARTISAN",'')
 conc=sys.argv[3]
-for i in conc_replace_list:
-	if frag_name.find(i[0].upper())>-1:
-		print('FOUND')
-		conc=i[1]+', '+conc
 
-for i in delete_list:
-	frag_name=frag_name.replace(i.upper(),'')
-	conc=conc.replace(i,'')
 
 ml=sys.argv[4]
 DRAW_SHOP=int(sys.argv[5])
 GDX=float(sys.argv[6])
 GDY=float(sys.argv[7])
-for i in replace_list:
-	if frag_name==i[0]:
-		frag_name=i[1]
-		break
+
 print('|'+frag_name+'|','|'+conc+'|')
 if frag_name[0]==' ':
 	frag_name=frag_name[1:]
@@ -122,7 +103,7 @@ class st:
 		textobject.setCharSpace(self.spacing)  # Установка межбуквенного интервала
 		b=self.spacing*(len(self.text)-1)
 		textobject.setFont(self.fontName, self.fontSize)
-		textobject.setTextOrigin(self.x-(self.getWidth()+b)/2+self.dx,self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
+		textobject.setTextOrigin(obj[3].x-(self.getWidth()+b)/2+self.dx,self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
 		
 		textobject.textLines(self.text)
 		c.drawText(textobject)
