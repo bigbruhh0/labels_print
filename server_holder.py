@@ -5,6 +5,7 @@ import subprocess
 import json
 from functions import read_info,correct_line,read_info,do_corrections
 from win32com.shell import shell, shellcon
+import requests
 user_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Profile)
 doc_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Documents)
 user_name='User'
@@ -79,21 +80,10 @@ async def post_set_comp3(request):
 	print(data)
 	if 'type' in data:
 		_type=data.get('type')
+		set_id=request.query.get('external_id')
 		set_name='FUCKING SET NAME'
-		lines_data = [
-					["Jose Eisenberg", "Ambre D'Orient Secret V", "edp"],
-					["Jose Eisenberg", "Ambre Nuit", "edp"],
-					["Jose Eisenberg", "Grand Soir", "parf"],
-					["Jose Eisenberg", "Just Before", "edt"],
-					["Jose Eisenberg", "Amber Oud Gold Edition", "edp"],
-					["Jose Eisenberg", "Amasadadbre D'Orient Secret V", "edp"],
-					["Jose Eisenberg", "Ambre Nusdasdit", "edp"],
-					["Jose Eisenberg", "Graasdsadnd Soir", "parf"],
-					["Jose Eisenberg", "Just saaa", "edt"],
-					["Jose Eisenberg", "Amber Oud Godsdasld Edition", "edp"],
-		
-		
-				]
+		print(external_id,'IDIDIDIDIDD')
+		lines_data=[]
 		args=[set_name]
 		for i in lines_data:
 			for j in i:
@@ -143,33 +133,32 @@ async def update_variable(request):
 			set_url=conv_data.get('set_url')
 			set_ml=conv_data.get('ml')
 			set_ml=set_ml.split('по')[1].replace(' ','')
-			print('ML','|'+set_ml+'|')
-			#получить и обработать информацию о ароматах в сете----------------------------
-			lines_data = [
-					["Jose Eisenberg", "Ambre D'Orient Secret V", "edp"],
-					["Jose Eisenberg", "Ambre Nuit", "edp"],
-					["Jose Eisenberg", "Grand Soir", "parf"],
-					["Jose Eisenberg", "Just Before", "edt"],
-					["Jose Eisenberg", "Amber Oud Gold Edition", "edp"],
-					["Jose Eisenberg", "Amasadadbre D'Orient Secret V", "edp"],
-					["Jose Eisenberg", "Ambre Nusdasdit", "edp"],
-					["Jose Eisenberg", "Graasdsadnd Soir", "parf"],
-					["Jose Eisenberg", "Just saaa", "edt"],
-					["Jose Eisenberg", "Amber Oud Godsdasld Edition", "edp"],
-			
-			
-					]
-			#------------------------------------------------------------------------------
+			set_id=request.query.get('external_id')
+			set_name='FUCKING SET NAME'
+			a=requests.get('https://allureparfum.ru/rest/1/56a3dyn1xzwl8ado/retailcrm.get_product/?id='+set_id).json()
+			set_name=a["result"]["response"]["BRAND"]+' '+a["result"]["response"]["NAME"]
+			lines_data=[]
+			ML=0
+			for i in a["result"]["response"]["SET"]:
+				a=i["BRAND"]
+				b=i["NAME"]
+				c=i["SKU_TYPE"]
+				ML=i["VOLUME"]
+				#print(a,b,c,ML)
+				a,b,c,d=do_corrections(a,b,c,ML,conc_replace_list,delete_list,buf_list,replace_list)
+				lines_data.append([a,b,c])
 			args=[set_name]
 			for i in lines_data:
-				brand_name, frag_name, conc=i
 				for j in i:
 					args.append(j)
-				#subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, set_ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
-				ws_data[0]+=1
-				ws_data[1].append([brand_name,frag_name,conc,set_ml])
-			#print(args,1)
+			print(args)
+
 			subprocess.run(['python', 'PDF_SET.pyw']+args, check=True)
+			print(args)
+			for i in lines_data:
+				ws_data[0]+=1
+				ws_data[1].append(['(сет)'+i[0], i[1], i[2], ML,str(request.url)])
+				subprocess.run(['python', 'PDF_LABEL.pyw', i[0], i[1], i[2], ML,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 			return web.Response(text=_type + "ok")
 		else:
 			return web.Response(text="Value not provided in request", status=400)

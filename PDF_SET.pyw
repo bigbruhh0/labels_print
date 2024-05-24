@@ -245,6 +245,6 @@ c = Canvas("ToPrint/set_label.pdf", pagesize=(W, H))
 
 create_pdf(name_obj, lines_obj, "ToPrint/set_label.pdf")
 c.save()
-path_print="C:\\Users\\User\\Documents\\GitHub\\labels_print\\ToPrint\\set_label.pdf"
+path_print="ToPrint/set_label.pdf"
 subprocess.run(['ToPrint\\print_script_set.bat', path_print], shell=True)
 os.remove("ToPrint/set_label.pdf")
