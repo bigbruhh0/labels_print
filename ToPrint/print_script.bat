@@ -7,6 +7,6 @@ echo "%arg1%"
  
 rem Path to SumatraPDF.exe 
 set "sumatra_path=%USERPROFILE%\Documents\GitHub\labels_print\ToPrint\SumatraPDF.exe" 
- 
+set "printer_name=TOSHIBA_DEFAULT"
 rem Print the PDF file using SumatraPDF 
-"%sumatra_path%" -print-to-default -print-settings "fit,landscape" "%USERPROFILE%\Documents\GitHub\labels_print\ToPrint\%arg1%"
+"%sumatra_path%" -print-to "%printer_name%" -print-settings "fit,landscape" "%USERPROFILE%\Documents\GitHub\labels_print\ToPrint\%arg1%"

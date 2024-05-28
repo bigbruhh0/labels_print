@@ -74,6 +74,8 @@ class st:
 		if len(obj[3].max_line)>=10:
 			w=self.getWidth()+self.spacing*(len(self.text)-1)
 			while (w<_W-v_border*5):
+				if len(self.text)<3:
+					break
 				self.spacing+=.1
 				w=self.getWidth()+self.spacing*(len(self.text)-1)
 		if len(obj[3].max_line)<=10:
@@ -303,7 +305,7 @@ class _Line:
 				c.rect(0,obj[0].get_pos()[1],_W,_H-obj[0].get_pos()[1]-h_border)
 				#c.rect(v_border,1*(2+len(self.ln_text))+self.d+obj[1].y+obj[1].getH(),_W-2*v_border,self.dh-1*(2+len(self.ln_text))*2)
 	def draw_self(self, c):
-		if self.type != 'name':
+		if self.type not in ['name']:
 			c.setFont(self.fontName, self.fontSize)
 			c.setFillColorRGB(0, 0, 0)
 
@@ -318,11 +320,12 @@ class _Line:
 				c.setLineWidth(0.2)
 				c.line(0,self.get_pos()[1],_W,self.get_pos()[1])
 				c.line(0,self.get_pos()[0],_W,self.get_pos()[0])
-		else:
-
+		elif self.type not in ['-']:
+			print('kekis1')
 			if len(self.ln_text)>1:
 				for i in self.ln_text:
 					i.set_spacing()
+					
 				mn=9999
 				for i in self.ln_text:
 					if i.spacing<mn:
@@ -330,9 +333,11 @@ class _Line:
 			else:
 				mn=0
 			self.y=self.y+self.d
+			print('kekis1')
 			for i in self.ln_text:
 				i.spacing=mn
 				i.draw_self(c)
+			print('kekis2')
 	def shift(self,d,c):
 		pass
 
@@ -373,6 +378,7 @@ def main(file_path,width,height):
 		c = Canvas(f+'.pdf', pagesize=(_W,_H))
 		obj[0].calc_width(c)
 		obj[1].calc_width(c)
+		print('calc1')
 		global free_h
 		
 		
@@ -381,6 +387,7 @@ def main(file_path,width,height):
 			
 			i.calc_width(c)
 			i.calc_height(c)		
+		
 		for i in obj:
 			i.dx+=GDX
 			i.d+=GDY
@@ -388,14 +395,18 @@ def main(file_path,width,height):
 		FREE_H=_H-h_border-obj[0].get_pos()[1]
 		DH=FREE_H/4
 
-		
+		print('calc')
 		obj[1].d+=DH
 		obj[3].d+=DH*2
 		obj[0].d+=DH*3
 		obj[0].draw_self(c)
+		print('draw1')
 		obj[3].draw_self(c)
+		print('draw2')
 		obj[1].draw_self(c)
+		print('draw3')
 		obj[2].draw_self(c)
+		print('draw4')
 		#i.draw_rect_border(c)
 		
 		c.setStrokeColorRGB(0, 255, 0)

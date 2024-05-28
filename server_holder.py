@@ -138,12 +138,11 @@ async def update_variable(request):
 			a=requests.get('https://allureparfum.ru/rest/1/56a3dyn1xzwl8ado/retailcrm.get_product/?id='+set_id).json()
 			set_name=a["result"]["response"]["BRAND"]+' '+a["result"]["response"]["NAME"]
 			lines_data=[]
-			ML=0
+			ML=set_ml
 			for i in a["result"]["response"]["SET"]:
 				a=i["BRAND"]
 				b=i["NAME"]
 				c=i["SKU_TYPE"]
-				ML=i["VOLUME"]
 				#print(a,b,c,ML)
 				a,b,c,d=do_corrections(a,b,c,ML,conc_replace_list,delete_list,buf_list,replace_list)
 				lines_data.append([a,b,c])
@@ -156,13 +155,14 @@ async def update_variable(request):
 			subprocess.run(['python', 'PDF_SET.pyw']+args, check=True)
 			print(args)
 			for i in lines_data:
-				ws_data[0]+=1
-				ws_data[1].append(['(сет)'+i[0], i[1], i[2], ML,str(request.url)])
+				#ws_data[0]+=1
+				#ws_data[1].append(['(сет)'+i[0], i[1], i[2], ML,str(request.url)])
 				subprocess.run(['python', 'PDF_LABEL.pyw', i[0], i[1], i[2], ML,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 			return web.Response(text=_type + "ok")
 		else:
 			return web.Response(text="Value not provided in request", status=400)
-
+def sort_key(elem):
+	return elem[0]+elem[1]
 # Эндпоинт для получения текущего значения переменной a
 async def get_value(request):
     global a

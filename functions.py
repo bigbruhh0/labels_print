@@ -258,6 +258,7 @@ def split_string(l,*tp):
 			mx=len(line)
 		linnne.append(keks)
 	print(linnne)
+	print('LINELNEIENE')
 	return linnne
 def get_info():
 	brand='Les Liquides Imaginaires'
@@ -307,10 +308,16 @@ def do_corrections(a,b,c,d,conc_replace_list,delete_list,buf_list,replace_list):
 		print(bb,b,cc,c)
 
 	for i in replace_list: # замены
-		if b.find(i[0])>-1:
-			bb=bb.replace(i[0],i[1])
+		print('------------------------------------')
+		print('|'+a+'|'+b+'|'+c+'|'+d+'|')
+		print('|'+i[0]+'|'+i[1]+'|')
+		if b.find(i[0].upper())>-1:
+			bb=bb.replace(i[0],i[1]).upper()
 		if a.find(i[0])>-1:
+			print('12359798----------')
 			aa=aa.replace(i[0],i[1])
+		if c.find(i[0])>-1:
+			cc=cc.replace(i[0],i[1])
 	for i in conc_replace_list: # винтаж /старый и тп
 		if b.find(i[0].upper())>-1:
 			print('FOUND')
