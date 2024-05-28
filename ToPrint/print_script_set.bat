@@ -1,10 +1,12 @@
 @echo off 
 setlocal enabledelayedexpansion 
-rem Установка аргумента, переданного из Python, как arg1 
+ 
+rem Set the argument passed from Python as arg1 
 set arg1=%1 
-rem Путь к SumatraPDF.exe 
-set "sumatra_path=C:\Users\User\Documents\GitHub\labels_print\ToPrint\SumatraPDF.exe" 
-rem Имя принтера 
+echo "%arg1%"
+ 
+rem Path to SumatraPDF.exe 
+set "sumatra_path=%USERPROFILE%\Documents\GitHub\labels_print\ToPrint\SumatraPDF.exe" 
 set "printer_name=TOSHIBA_SET"
-rem Печать PDF-файла с использованием SumatraPDF 
-%sumatra_path% -print-to "%printer_name%" -print-settings "fit,landscape" "%arg1%"
+rem Print the PDF file using SumatraPDF 
+"%sumatra_path%" -print-to "%printer_name%" -print-settings "fit,landscape" "%USERPROFILE%\Documents\GitHub\labels_print\ToPrint\%arg1%"

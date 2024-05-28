@@ -27,7 +27,7 @@ import sys
 import os
 user_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Profile)
 doc_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Documents)
-user_name='User'
+user_name='User Trade'
 def add_image_to_pdf(image_path, pdf_path,y,c):
     image = Image.open(image_path)
 
@@ -73,7 +73,7 @@ class _lines:
 		self.conc = conc
 		print(self.brand_name,self.frag_name,self.conc)
 		self.text=self.brand_name+' - '+self.frag_name+', '+self.conc
-		img_path='C:/Users/User/YandexDisk/ЭТИКЕТКИ/Для авт. печати/set_cache(не трогать)/'
+		img_path=user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/set_cache(не трогать)/'
 		img_path=img_path+self.brand_name+' - '+self.frag_name+', '+self.conc+'.png'
 		self.img_path=img_path
 		if os.path.exists(img_path):
@@ -245,6 +245,6 @@ c = Canvas("ToPrint/set_label.pdf", pagesize=(W, H))
 
 create_pdf(name_obj, lines_obj, "ToPrint/set_label.pdf")
 c.save()
-path_print="ToPrint/set_label.pdf"
+path_print="set_label.pdf"
 subprocess.run(['ToPrint\\print_script_set.bat', path_print], shell=True)
-os.remove("ToPrint/set_label.pdf")
+#os.remove("ToPrint/set_label.pdf")

@@ -155,8 +155,8 @@ async def update_variable(request):
 			subprocess.run(['python', 'PDF_SET.pyw']+args, check=True)
 			print(args)
 			for i in lines_data:
-				#ws_data[0]+=1
-				#ws_data[1].append(['(сет)'+i[0], i[1], i[2], ML,str(request.url)])
+				ws_data[0]+=1
+				ws_data[1].append(['(сет)'+i[0], i[1], i[2], ML,str(request.url)])
 				subprocess.run(['python', 'PDF_LABEL.pyw', i[0], i[1], i[2], ML,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 			return web.Response(text=_type + "ok")
 		else:
