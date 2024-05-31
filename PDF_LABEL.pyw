@@ -55,7 +55,6 @@ if brand_name[0]==' ':
 	brand_name=brand_name[1:]
 if brand_name[len(brand_name)-1]==' ':
 	brand_name=brand_name[:len(brand_name)-1]
-print('|'+brand_name+'|','|'+frag_name+'|','|'+conc+'|','|'+ml+'|')
 class st:
 	def __init__(self,_text,x,y,font,size,k,pos):
 		self.text=_text
@@ -105,7 +104,7 @@ class st:
 		textobject.setCharSpace(self.spacing)  # Установка межбуквенного интервала
 		b=self.spacing*(len(self.text)-1)
 		textobject.setFont(self.fontName, self.fontSize)
-		textobject.setTextOrigin(obj[3].x-(self.getWidth()+b)/2+self.dx,self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
+		textobject.setTextOrigin(obj[3].x+obj[3].dx-(self.getWidth()+b)/2+self.dx,self.d + obj[3].y + self.getHeight() * (self.pos) * (len(obj[3].ln_text) - 1))
 		
 		textobject.textLines(self.text)
 		c.drawText(textobject)
@@ -248,6 +247,7 @@ class _Line:
 			mx=0
 			mx_buf=''
 			mn_buf=''
+			mx_id=0
 			if len(self.ln_text)>1:
 				for i in range(len(self.ln_text)):
 					if len(self.ln_text[i].text)>mx:
@@ -256,6 +256,7 @@ class _Line:
 							pass
 						else:
 							mn_buf=mx_buf
+							mx_id=i
 						mx_buf=self.ln_text[i].text
 					else:
 						mn_buf=self.ln_text[i].text
@@ -263,12 +264,21 @@ class _Line:
 				self.min_line=mn_buf
 			else:
 				self.max_line=self.ln_text[0].text
-			while(self.getWidth(self.max_line)>_W-v_border*2-0.2*cm):
+				mx_id=0
+			while(self.ln_text[mx_id].getWidth()>=_W-v_border*2):
 				self.fontSize-=.1
-				
 				for i in self.ln_text:
 					i.fontSize-=.1
-
+			if len(self.ln_text)>1:
+				if self.ln_text[0].getWidth()>self.ln_text[1].getWidth():
+					MAX_LINE_ID=0
+				else:
+					MAX_LINE_ID=1
+				while(self.ln_text[MAX_LINE_ID].getWidth()>=_W-v_border*2):
+					self.fontSize-=.1
+					
+					for i in self.ln_text:
+						i.fontSize-=.1
 			#self.calc_height(c)
 	def calc_height(self,c):
 		if self.type=="name":
@@ -321,7 +331,6 @@ class _Line:
 				c.line(0,self.get_pos()[1],_W,self.get_pos()[1])
 				c.line(0,self.get_pos()[0],_W,self.get_pos()[0])
 		elif self.type not in ['-']:
-			print('kekis1')
 			if len(self.ln_text)>1:
 				for i in self.ln_text:
 					i.set_spacing()
@@ -333,11 +342,11 @@ class _Line:
 			else:
 				mn=0
 			self.y=self.y+self.d
-			print('kekis1')
+
 			for i in self.ln_text:
 				i.spacing=mn
 				i.draw_self(c)
-			print('kekis2')
+
 	def shift(self,d,c):
 		pass
 
@@ -378,7 +387,7 @@ def main(file_path,width,height):
 		c = Canvas(f+'.pdf', pagesize=(_W,_H))
 		obj[0].calc_width(c)
 		obj[1].calc_width(c)
-		print('calc1')
+
 		global free_h
 		
 		
@@ -395,18 +404,15 @@ def main(file_path,width,height):
 		FREE_H=_H-h_border-obj[0].get_pos()[1]
 		DH=FREE_H/4
 
-		print('calc')
 		obj[1].d+=DH
 		obj[3].d+=DH*2
 		obj[0].d+=DH*3
 		obj[0].draw_self(c)
-		print('draw1')
+
 		obj[3].draw_self(c)
-		print('draw2')
 		obj[1].draw_self(c)
-		print('draw3')
 		obj[2].draw_self(c)
-		print('draw4')
+
 		#i.draw_rect_border(c)
 		
 		c.setStrokeColorRGB(0, 255, 0)
@@ -414,10 +420,10 @@ def main(file_path,width,height):
 			c.line(_W/2,0,_W/2,_H)
 			c.line(_W/2,obj[3].ln_text[1].y-1,_W/2-obj[3].ln_text[1].getWidth()/2,obj[3].ln_text[1].y-1)
 			c.rect(v_border,h_border,_W-v_border*2,_H-h_border*2)
-		'''conf = open(file_path+'.txt', "w")
-		for i in obj:
-			conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
-			'''
+		#conf = open(file_path+'.txt', "w")
+		#for i in obj:
+		#	conf.write(str(i.type)+'/'+str(i.fontSize)+'/'+str(i.fontName)+'/'+str(i.k)+'/'+str(obj[3].ln_text[0].spacing)+'/'+'\n'+b_f)
+		#	
 		c.save()
 		print("Направлено на печать:",f.replace(print_folder,'')+'.pdf')
 		path_print=f.replace(print_folder,'')+'.pdf'
