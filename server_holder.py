@@ -115,18 +115,20 @@ async def update_variable(request):
 			frag_name = frag.upper()
 			conc = conv_data.get('conc')
 			ml = conv_data.get('ml')
+			cnt=int(conv_data.get('cnt'))
+			full_text=conv_data.get('full_text')
 			print('|'+brand_name+'|'+frag_name+'|'+conc+'|'+ml+'|')
 			print([brand_name, frag_name, conc, ml])
-			brand_name,frag_name,conc,ml=do_corrections(brand_name,frag_name,conc,ml,conc_replace_list,delete_list,buf_list,replace_list)
+			brand_name,frag_name,conc,ml=do_corrections(brand_name,frag_name,conc,ml,full_text,conc_replace_list,delete_list,buf_list,replace_list)
 			if None in [brand_name, frag_name, conc, ml]:
 				print("Одно из значений не было получено.")
 				return "Не все данные предоставлены", 400
 			#print(brand_name,frag_name,conc,ml)
-			subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
-			#print(brand_name, frag_name, conc, ml)
-			
-			ws_data[0]+=1
-			ws_data[1].append([brand_name,frag_name,conc,ml,str(request.url)])
+			for i in range(cnt):
+				subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
+				#print(brand_name, frag_name, conc, ml)
+				ws_data[0]+=1
+				ws_data[1].append([brand_name,frag_name,conc,ml,str(request.url)])
 			return web.Response(text=_type + "ok")
 		elif _type=='2':
 			set_name=conv_data.get('set_name')

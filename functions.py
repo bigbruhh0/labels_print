@@ -193,72 +193,90 @@ def split_string(l,*tp):
 	syms_list=[" "]
 	line=['','']
 	s=[0]
+	words=l.split(' ')
+	words_s_pair=[]
+
 	if len(line)>10:
 		line[0]=l
 	else:
 		for i in range(len(l)):
 			if (l[i] in syms_list)or (i==len(l)-1):
 				s.append(i)
+				if i!=0 and i!=len(l)-1:
+					words_s_pair.append([words[len(s)-1-1],words[len(s)-1]])
 		k=s
-		print(s)
+
 		for i in s:
-			print('|'+l[i-3:i]+'|')
+			#print('|'+l[i-3:i]+'|')
 			if l[i-3:i]=='NO.' and l[i]==' ':
 				s.remove(i)
-		print(s)
+
 		mid=len(l)/2
 	
 		min_D=9999999
-		for i in range(len(s)):
-			if i!=0 and i<len(s)-1:
-				p1=s[i-1]
-				p2=s[i]
-				p3=s[i+1]
-				if i>1:
-					p1=s[i-1]+1
-				if i==len(s)-2:
-					p3=s[i+1]+1
-				b1=l[p1:p2]
-				b2=l[p2+1:p3]
-				check_string=b1+' '+b2
-				if check_string=="EAU DE":
-					check_string+=l[s[i+1]:s[i+2]+1]
-				
-				for j in except_list:
-					if check_string==j or check_string==j+' ' or check_string==' '+j:
-						
-						s[i]=150
-						s[i+1]=150
+
+			
 		if tp:#############################CHECK IF PROBLEMS WITH SETS
 			if tp[0]==0:
 				k=22
 			else:
 				k=12
 		if len(s)>2 and len(l)>k:
+
 			for i in range(len(s)):
 				if abs(mid-s[i])<min_D:
 					min_D=mid-s[i]
 					buf=s[i]
 					
-			line[0]=l[:buf]
+			line[0]=l[:buf+1]
 			line[1]=l[buf+1:]
 		else:
 			line[0]=l
+	
 
 	mx=0
 	linnne=[]
 	for i in line:
 		keks=i
 		if i.find('NO.')>-1:
-			print(i,1)
+
 			if i[i.find('NO.')+3]==' ':
 				keks=i[:i.find('NO.')+3]+i[i.find('NO.')+4:]
-				print(i,2)
+
 		if len(line)>mx:
 			mx=len(line)
 		linnne.append(keks)
-	print(linnne)
-	print('LINELNEIENE')
+	if linnne[1]=='':
+		pass
+	else:
+		a1=linnne[0].split(' ')
+		a2=linnne[1].split(' ')
+		if ''in a1:
+			a1.remove('')
+		if '' in a2:
+			a2.remove('')
+		word1=a1[len(a1)-1]
+		word2=a2[0]
+		len_line1=-1
+		for i in a1:
+			if i!=word1:
+				len_line1+=1+len(i)
+		len_line2=-1
+		for i in a2:
+			if i!=word2:
+				len_line2+=1+len(i)
+		print(len_line1,len_line2,len(linnne[0]),len(linnne[1]))
+		for i in except_list:
+			ex_l=i.split(' ')
+			if word1 in ex_l and word2 in ex_l:
+				#ebana rot chtoto nado pridumat line1 line2 perenos slova tuda suda
+				if len_line1>len_line2:
+					a2.remove(word2)
+					a1.append(word2)
+		print(a1,a2)
+		print(linnne)
+
+	print(linnne,'!!!')
 	return linnne
 def get_info():
 	brand='Les Liquides Imaginaires'
@@ -296,32 +314,35 @@ def create_text_image(text, image_path, font_size=20, font_path=None):
 
     cropped_image.save(image_path)
 
-def do_corrections(a,b,c,d,conc_replace_list,delete_list,buf_list,replace_list):
+def do_corrections(a,b,c,d,full_text,conc_replace_list,delete_list,buf_list,replace_list):
 	aa=a
-	bb=b
+	bb=b.upper()
 	cc=c
 	dd=d
+	if full_text.find('старый дизайн')>-1:
+		cc='старый, '+c
 	for i in delete_list: #удаление
-		print(i)
+
 		bb=bb.replace(i.upper(),'')
 		cc=cc.replace(i,'')
-		print(bb,b,cc,c)
+
 
 	for i in replace_list: # замены
-		print('------------------------------------')
-		print('|'+a+'|'+b+'|'+c+'|'+d+'|')
-		print('|'+i[0]+'|'+i[1]+'|')
-		if b.find(i[0].upper())>-1:
-			bb=bb.replace(i[0],i[1]).upper()
+
+		if bb.find(i[0].upper())>-1:
+
+			bb=bb.replace(i[0].upper(),i[1].upper())
+		bb=bb.upper()
 		if a.find(i[0])>-1:
-			print('12359798----------')
+
 			aa=aa.replace(i[0],i[1])
 		if c.find(i[0])>-1:
 			cc=cc.replace(i[0],i[1])
 	for i in conc_replace_list: # винтаж /старый и тп
 		if b.find(i[0].upper())>-1:
-			print('FOUND')
+
 			cc=i[1]+', '+cc
 	aa=correct_line(aa)
 	bb=correct_line(bb)
+	print(aa,bb,cc,dd)
 	return aa,bb,cc,dd
