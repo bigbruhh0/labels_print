@@ -2,8 +2,37 @@ import asyncio
 import websockets
 from aiohttp import web
 import subprocess
+
 import json
+<<<<<<< Updated upstream
 from functions import read_info
+=======
+from functions import read_info,correct_line,read_info,do_corrections
+from win32com.shell import shell, shellcon
+from noti_sys import show_message
+import requests
+user_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Profile)
+doc_path = shell.SHGetKnownFolderPath(shellcon.FOLDERID_Documents)
+user_name='User'
+buf_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список замен.txt')
+delete_list=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/список исключений(удаление).txt')
+buf2=read_info(user_path+'/YandexDisk/ЭТИКЕТКИ/Для авт. печати/замены для концентрации.txt')
+conc_replace_list=[]
+show_message('Сервер успешно запущен.')
+for i in buf2:
+	print(i)
+	conc_replace_list.append(i.split('|_|'))
+
+did_list=[]
+
+replace_list=[]
+for i in buf_list:
+	ba=i.split('|_|')
+	replace_list.append(ba)
+	
+
+	
+>>>>>>> Stashed changes
 # Переменная, которую будем отслеживать
 a = None
 ws_data=[0,[]]
@@ -106,6 +135,12 @@ async def update_variable(request):
 			frag_name = frag.upper()
 			conc = conv_data.get('conc')
 			ml = conv_data.get('ml')
+<<<<<<< Updated upstream
+=======
+			b_id=conv_data.get('b_id')
+			cnt=int(conv_data.get('cnt'))
+			full_text=conv_data.get('full_text')
+>>>>>>> Stashed changes
 			print('|'+brand_name+'|'+frag_name+'|'+conc+'|'+ml+'|')
 			print([brand_name, frag_name, conc, ml])
 
@@ -113,17 +148,34 @@ async def update_variable(request):
 				print("Одно из значений не было получено.")
 				return "Не все данные предоставлены", 400
 			#print(brand_name,frag_name,conc,ml)
+<<<<<<< Updated upstream
 			subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 			#print(brand_name, frag_name, conc, ml)
 			
 			ws_data[0]+=1
 			ws_data[1].append([brand_name,frag_name,conc,ml,str(request.url)])
+=======
+			for i in range(cnt):
+				subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
+				#print(brand_name, frag_name, conc, ml)
+				if cnt>1:
+					b_id+='_'+string(cnt)
+				if b_id not in did_list:
+					ws_data[0]+=1
+					ws_data[1].append([brand_name,frag_name,conc,ml,str(request.url)])
+					did_list.append(b_id)
+				else:
+					show_message('Внимание.Повторная печать:'+'\n'+brand_name+' '+frag_name+' '+conc+' '+ml+'ml')
+			
+>>>>>>> Stashed changes
 			return web.Response(text=_type + "ok")
 		elif _type=='2':
 			set_name=conv_data.get('set_name')
 			set_url=conv_data.get('set_url')
 			set_ml=conv_data.get('ml')
+			full_text=conv_data.get('full_text')
 			set_ml=set_ml.split('по')[1].replace(' ','')
+<<<<<<< Updated upstream
 			print('ML','|'+set_ml+'|')
 			#получить и обработать информацию о ароматах в сете----------------------------
 			lines_data = [
@@ -141,12 +193,36 @@ async def update_variable(request):
 			
 					]
 			#------------------------------------------------------------------------------
+=======
+			set_id=request.query.get('external_id')
+			set_name='FUCKING SET NAME'
+			a=requests.get('https://allureparfum.ru/rest/1/56a3dyn1xzwl8ado/retailcrm.get_product/?id='+set_id).json()
+			set_name=a["result"]["response"]["BRAND"]+' '+a["result"]["response"]["NAME"]
+			lines_data=[]
+			ML=set_ml
+			for i in a["result"]["response"]["SET"]:
+				a=i["BRAND"]
+				b=i["NAME"]
+				c=i["SKU_TYPE"]
+				#print(a,b,c,ML)
+				a,b,c,d=do_corrections(a,b,c,ML,full_text,conc_replace_list,delete_list,buf_list,replace_list)
+				lines_data.append([a,b,c])
+>>>>>>> Stashed changes
 			args=[set_name]
 			for i in lines_data:
 				brand_name, frag_name, conc=i
 				for j in i:
 					args.append(j)
+<<<<<<< Updated upstream
 				#subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, set_ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
+=======
+			print(args)
+
+			subprocess.run(['python', 'PDF_SET.pyw']+args, check=True)
+			print(args)
+			for i in lines_data:
+				
+>>>>>>> Stashed changes
 				ws_data[0]+=1
 				ws_data[1].append([brand_name,frag_name,conc,set_ml])
 			#print(args,1)

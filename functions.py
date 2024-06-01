@@ -256,7 +256,41 @@ def split_string(l,*tp):
 		if len(line)>mx:
 			mx=len(line)
 		linnne.append(keks)
+<<<<<<< Updated upstream
 	print(linnne)
+=======
+	if linnne[1]=='':
+		pass
+	else:
+		a1=linnne[0].split(' ')
+		a2=linnne[1].split(' ')
+		if ''in a1:
+			a1.remove('')
+		if '' in a2:
+			a2.remove('')
+		word1=a1[len(a1)-1]
+		word2=a2[0]
+		len_line1=-1
+		for i in a1:
+			if i!=word1:
+				len_line1+=1+len(i)
+		len_line2=-1
+		for i in a2:
+			if i!=word2:
+				len_line2+=1+len(i)
+		print(len_line1,len_line2,len(linnne[0]),len(linnne[1]))
+		for i in except_list:
+			ex_l=i.split(' ')
+			if word1 in ex_l and word2 in ex_l:
+				print(word1,word2,a1,a2,word2 in a2)
+				
+				#ebana rot chtoto nado pridumat line1 line2 perenos slova tuda suda
+				
+		print(a1,a2)
+		print(linnne)
+
+	print(linnne,'!!!')
+>>>>>>> Stashed changes
 	return linnne
 def get_info():
 	brand='Les Liquides Imaginaires'
