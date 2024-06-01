@@ -115,6 +115,10 @@ async def update_variable(request):
 			frag_name = frag.upper()
 			conc = conv_data.get('conc')
 			ml = conv_data.get('ml')
+<<<<<<< Updated upstream
+=======
+			b_id=conv_data.get('b_id')
+>>>>>>> Stashed changes
 			cnt=int(conv_data.get('cnt'))
 			full_text=conv_data.get('full_text')
 			print('|'+brand_name+'|'+frag_name+'|'+conc+'|'+ml+'|')
@@ -127,8 +131,20 @@ async def update_variable(request):
 			for i in range(cnt):
 				subprocess.run(['python', 'PDF_LABEL.pyw', brand_name, frag_name, conc, ml,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
 				#print(brand_name, frag_name, conc, ml)
+<<<<<<< Updated upstream
 				ws_data[0]+=1
 				ws_data[1].append([brand_name,frag_name,conc,ml,str(request.url)])
+=======
+				if cnt>1:
+					b_id+='_'+string(cnt)
+				if b_id not in did_list:
+					ws_data[0]+=1
+					ws_data[1].append([brand_name,frag_name,conc,ml,str(request.url)])
+					did_list.append(b_id)
+				else:
+					show_message('Внимание.Повторная печать:'+'\n'+brand_name+' '+frag_name+' '+conc+' '+ml+'ml')
+			
+>>>>>>> Stashed changes
 			return web.Response(text=_type + "ok")
 		elif _type=='2':
 			set_name=conv_data.get('set_name')
@@ -157,6 +173,10 @@ async def update_variable(request):
 			subprocess.run(['python', 'PDF_SET.pyw']+args, check=True)
 			print(args)
 			for i in lines_data:
+<<<<<<< Updated upstream
+=======
+				
+>>>>>>> Stashed changes
 				ws_data[0]+=1
 				ws_data[1].append(['(сет)'+i[0], i[1], i[2], ML,str(request.url)])
 				subprocess.run(['python', 'PDF_LABEL.pyw', i[0], i[1], i[2], ML,str(DRAW_SHOP),glob_DX,glob_DY], check=True)
